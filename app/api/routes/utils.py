@@ -6,8 +6,7 @@ from app.models import Message
 from app.utils import generate_test_email, send_email
 
 router = APIRouter(prefix="/utils", tags=["utils"])
-
-
+######################该页面定义了测试邮件的接口以及实现
 @router.post(
     "/test-email/",
     dependencies=[Depends(get_current_active_superuser)],

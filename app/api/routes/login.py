@@ -20,7 +20,7 @@ from app.utils import (
     send_email,
     verify_password_reset_token,
 )
-
+######################该页面定义了登录和通过token验证的接口以及实现
 # 创建一个新的 API 路由器，并标记所有路由属于 "login" 标签
 router = APIRouter(tags=["login"])
 

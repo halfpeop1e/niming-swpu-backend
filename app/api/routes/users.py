@@ -27,8 +27,7 @@ from app.models import (
 from app.utils import generate_new_account_email, send_email
 
 router = APIRouter(prefix="/users", tags=["users"])
-
-
+######################该页面定义了用户管理相关的接口以及实现
 @router.get(
     "/",
     dependencies=[Depends(get_current_active_superuser)],
@@ -47,7 +46,7 @@ def read_users(session: SessionDep, skip: int = 0, limit: int = 100) -> Any:
 
     return UsersPublic(data=users, count=count)
 
-
+#创建用户
 @router.post(
     "/", dependencies=[Depends(get_current_active_superuser)], response_model=UserPublic
 )
@@ -74,7 +73,7 @@ def create_user(*, session: SessionDep, user_in: UserCreate) -> Any:
         )
     return user
 
-
+#更新用户信息
 @router.patch("/me", response_model=UserPublic)
 def update_user_me(
     *, session: SessionDep, user_in: UserUpdateMe, current_user: CurrentUser
@@ -96,7 +95,7 @@ def update_user_me(
     session.refresh(current_user)
     return current_user
 
-
+#更新密码
 @router.patch("/me/password", response_model=Message)
 def update_password_me(
     *, session: SessionDep, body: UpdatePassword, current_user: CurrentUser
@@ -124,7 +123,7 @@ def read_user_me(current_user: CurrentUser) -> Any:
     """
     return current_user
 
-
+#删除用户
 @router.delete("/me", response_model=Message)
 def delete_user_me(session: SessionDep, current_user: CurrentUser) -> Any:
     """
@@ -138,13 +137,13 @@ def delete_user_me(session: SessionDep, current_user: CurrentUser) -> Any:
     session.commit()
     return Message(message="User deleted successfully")
 
-#注册用户的接口
+#注册用户的接口以及实现
 @router.post("/signup", response_model=UserPublic)
 def register_user(session: SessionDep, user_in: UserRegister) -> Any:
     """
     Create new user without the need to be logged in.
     """
-    #查重
+    #查重邮箱
     user = crud.get_user_by_email(session=session, email=user_in.email)
     if user:
         raise HTTPException(
@@ -177,7 +176,7 @@ def read_user_by_id(
 
 @router.patch(
     "/{user_id}",
-    dependencies=[Depends(get_current_active_superuser)],
+    dependencies=[Depends(get_current_active_superuser)],#依赖注入：获取当前已认证且具有超级用户权限的用户
     response_model=UserPublic,
 )
 def update_user(

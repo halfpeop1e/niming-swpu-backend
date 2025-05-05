@@ -24,7 +24,6 @@ reusable_oauth2 = OAuth2PasswordBearer(
 def get_db() -> Generator[Session, None, None]:
     """
     数据库会话依赖项生成器。
-
     使用 Session(engine) 创建一个新的 SQLAlchemy 会话。
     通过 yield 将会话提供给路径操作函数或其他依赖项。
     请求处理完成后，会话会自动关闭。

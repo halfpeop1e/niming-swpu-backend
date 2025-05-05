@@ -4,7 +4,7 @@ from pydantic import EmailStr
 from sqlmodel import Field, Relationship, SQLModel
 
 
-# Shared properties
+# 这个算是用户表的基类，其他的用户表继承这个基类
 class UserBase(SQLModel):
     email: EmailStr = Field(unique=True, index=True, max_length=255)
     is_active: bool = True
@@ -25,8 +25,7 @@ class UserRegister(SQLModel):
     password: str = Field(min_length=8, max_length=40)
     full_name: str | None = Field(default=None, max_length=255)
 
-
-# Properties to receive via API on update, all are optional
+# 更新用户信息，这里继承了UserBase，然后添加了email和password
 class UserUpdate(UserBase):
     email: EmailStr | None = Field(default=None, max_length=255)  # type: ignore
     password: str | None = Field(default=None, min_length=8, max_length=40)
@@ -42,14 +41,14 @@ class UpdatePassword(SQLModel):
     new_password: str = Field(min_length=8, max_length=40)
 
 
-# Database model, database table inferred from class name
+# 数据库模型，数据库表从类名推断，会去访问user表 通过继承UserBase，然后添加uuid,哈希加密的密码
 class User(UserBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
     hashed_password: str
     items: list["Item"] = Relationship(back_populates="owner", cascade_delete=True)
 
 
-# Properties to return via API, id is always required
+# 返回给前端的用户信息，这里继承了UserBase，然后添加了uuid标识符
 class UserPublic(UserBase):
     id: uuid.UUID
 
@@ -114,3 +113,14 @@ class TokenPayload(SQLModel):
 class NewPassword(SQLModel):
     token: str
     new_password: str = Field(min_length=8, max_length=40)
+
+#聊天内容的卡片
+class DefaultCard(SQLModel,table=True):
+    number: int = Field(primary_key=True)#主键
+    id: str
+    content: str
+    time: str
+
+#响应的卡片
+class DefaultCardResponse(SQLModel):
+    data: list[DefaultCard]
