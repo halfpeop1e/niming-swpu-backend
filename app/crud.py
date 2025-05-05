@@ -4,7 +4,20 @@ from typing import Any
 from sqlmodel import Session, select
 
 from app.core.security import get_password_hash, verify_password
-from app.models import Item, ItemCreate, User, UserCreate, UserUpdate
+from app.models import Item, ItemCreate, User, UserCreate, UserUpdate, DefaultCard
+
+#向数据库中添加新卡片的函数实现
+def create_card(*, session: Session, card_in: DefaultCard) -> DefaultCard:
+    """
+    Adds a new card record to the database.
+    Assumes card_in is a pre-validated DefaultCard instance.
+    """
+    # 直接使用传递进来的 DefaultCard 实例
+    db_card = card_in
+    session.add(db_card)
+    session.commit()
+    session.refresh(db_card)
+    return db_card
 
 #向数据库中添加新用户的函数实现
 def create_user(*, session: Session, user_create: UserCreate) -> User:

@@ -1,6 +1,6 @@
 import uuid
 
-from pydantic import EmailStr
+from pydantic import EmailStr, BaseModel
 from sqlmodel import Field, Relationship, SQLModel
 
 
@@ -124,3 +124,13 @@ class DefaultCard(SQLModel,table=True):
 #响应的卡片
 class DefaultCardResponse(SQLModel):
     data: list[DefaultCard]
+
+#请求的卡片
+class CardRequest(BaseModel):
+    skip: int = 0
+
+#添加的卡片
+class AddCard(BaseModel):
+    id: str
+    content: str
+    time: str
