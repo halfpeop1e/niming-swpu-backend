@@ -10,6 +10,7 @@ class UserBase(SQLModel):
     is_active: bool = True
     is_superuser: bool = False
     full_name: str | None = Field(default=None, max_length=255)
+    cookies: int
 
 
 # Properties to receive via API on creation
@@ -164,5 +165,13 @@ class AddReplyCard(SQLModel,table=True):
 #添加回复卡片的响应
 class AddReplyCardResponse(SQLModel):
     data: list[AddReplyCard]
+
+class Cookie(SQLModel,table=True):
+    name: str = Field(primary_key=True)
+    time: str
+    isbanned: bool
+    inused: bool
+    id: uuid.UUID = Field(foreign_key="user.id",nullable=False)#外键,关联用户表
+
 
 

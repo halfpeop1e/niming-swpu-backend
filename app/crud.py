@@ -4,7 +4,7 @@ from typing import Any
 from sqlmodel import Session, select
 
 from app.core.security import get_password_hash, verify_password
-from app.models import Item, ItemCreate, User, UserCreate, UserUpdate, DefaultCard, AddReplyCard
+from app.models import Item, ItemCreate, User, UserCreate, UserUpdate, DefaultCard, AddReplyCard, Cookie
 
 #向数据库中添加新卡片的函数实现
 def create_card(*, session: Session, card_in: DefaultCard) -> DefaultCard:
@@ -56,6 +56,13 @@ def update_user(*, session: Session, db_user: User, user_in: UserUpdate) -> Any:
     session.refresh(db_user)
     return db_user
 
+#更新用户的cookies
+def update_user_cookies(*, session: Session, db_user: User, cookies: int) -> Any:
+    db_user.cookies = cookies
+    session.add(db_user)
+    session.commit()
+    session.refresh(db_user)
+    return db_user
 
 def get_user_by_email(*, session: Session, email: str) -> User | None:
     statement = select(User).where(User.email == email)
@@ -78,3 +85,36 @@ def create_item(*, session: Session, item_in: ItemCreate, owner_id: uuid.UUID) -
     session.commit()
     session.refresh(db_item)
     return db_item
+
+def get_user_for_cookie_operation(session: Session, user_id: uuid.UUID) -> User | None:
+    user = session.get(User, user_id) # session.get is efficient for PK lookup
+    if user and (user.cookies is None or user.cookies <= 0):
+        return None # Or raise a specific exception
+    return user
+
+def get_cookie_by_name(session: Session, name: str) -> Cookie | None:
+    statement = select(Cookie).where(Cookie.name == name)
+    return session.exec(statement).first()
+
+def create_new_cookie(session: Session, cookie_data: Cookie) -> Cookie:
+    session.add(cookie_data)
+    # The commit for creating a cookie might be better handled in a service layer
+    # or a transactional block with user update.
+    # For now, let's assume it's part of a larger transaction.
+    return cookie_data
+
+# Potentially a service-like function that combines operations
+def spend_user_cookie_and_create_new_db_cookie(
+    session: Session, user_id: uuid.UUID, new_cookie_obj: Cookie
+) -> tuple[User | None, Cookie | None]:
+    user = session.get(User, user_id)
+    if not user:
+        return None, None # User not found
+    if user.cookies is None or user.cookies <= 0:
+        return user, None # Insufficient cookies
+
+    user.cookies -= 1
+    session.add(user)
+    session.add(new_cookie_obj)
+    # Commit happens after this function returns, in the API route
+    return user, new_cookie_obj
