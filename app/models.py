@@ -116,7 +116,7 @@ class NewPassword(SQLModel):
 
 #聊天内容的卡片
 class DefaultCard(SQLModel,table=True):
-    number: int = Field(primary_key=True)#主键
+    number: int = Field(primary_key=True)#主键,可以自增
     id: str
     content: str
     time: str
@@ -125,12 +125,44 @@ class DefaultCard(SQLModel,table=True):
 class DefaultCardResponse(SQLModel):
     data: list[DefaultCard]
 
-#请求的卡片
+#请求话题的卡片
 class CardRequest(BaseModel):
     skip: int = 0
 
-#添加的卡片
+#请求回复卡片的内容
+class ReplyCardRequest(BaseModel):
+    number: int
+    skip: int = 0
+
+#添加的卡片，客户端发送的卡片
 class AddCard(BaseModel):
     id: str
     content: str
     time: str
+
+#添加的回复卡片，客户端发送
+class AddReplyCard_Client(BaseModel):
+    number: int
+    id: str
+    content: str
+    time: str
+    reply: str|None=None #回复内容,可以为空
+    time: str
+
+#添加回复卡片,数据库存储
+class AddReplyCard(SQLModel,table=True):
+    number_primary: uuid.UUID = Field(primary_key=True,default_factory=uuid.uuid4)#主键,默认生成一个uuid
+    number: int = Field(foreign_key="defaultcard.number", nullable=False)
+    #通过外键和DefaultCard关联
+    id: str
+    content: str
+    time: str
+    reply: str|None=None #回复内容,可以为空
+    time: str
+    thumbs: int
+
+#添加回复卡片的响应
+class AddReplyCardResponse(SQLModel):
+    data: list[AddReplyCard]
+
+

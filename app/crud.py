@@ -4,7 +4,7 @@ from typing import Any
 from sqlmodel import Session, select
 
 from app.core.security import get_password_hash, verify_password
-from app.models import Item, ItemCreate, User, UserCreate, UserUpdate, DefaultCard
+from app.models import Item, ItemCreate, User, UserCreate, UserUpdate, DefaultCard, AddReplyCard
 
 #向数据库中添加新卡片的函数实现
 def create_card(*, session: Session, card_in: DefaultCard) -> DefaultCard:
@@ -18,6 +18,18 @@ def create_card(*, session: Session, card_in: DefaultCard) -> DefaultCard:
     session.commit()
     session.refresh(db_card)
     return db_card
+
+#向数据库中添加新回复卡片的函数实现
+def create_reply_card(*, session: Session, reply_card_in: AddReplyCard) -> AddReplyCard:
+    """
+    这个函数是向数据库中添加新回复卡片的函数实现
+    """
+    db_reply_card = reply_card_in
+    session.add(db_reply_card)
+    session.commit()
+    session.refresh(db_reply_card)
+    return db_reply_card
+
 
 #向数据库中添加新用户的函数实现
 def create_user(*, session: Session, user_create: UserCreate) -> User:
