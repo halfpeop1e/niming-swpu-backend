@@ -4,7 +4,7 @@ from datetime import datetime
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlmodel import select
 from loguru import logger
-from app.models import Cookie, User, Message
+from app.models import Cookie, User, Message, CookieResponse, CookieUse
 from app import crud
 from app.api.deps import CurrentUser, SessionDep
 
@@ -54,6 +54,30 @@ def add_cookie(session:SessionDep,current_user:CurrentUser):
         logger.exception(f"Error committing to database: {e}")
         session.rollback()
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="添加Cookie失败，请稍后再试")
+
+# 查询cookie,通过user.id，也就是uuid去查询
+@router.get("/getcookie", response_model=CookieResponse)
+def get_cookie(session:SessionDep,current_user:CurrentUser):
+    user_id_from_token = current_user.id
+    # 通过user.id去查询cookie
+    cookies = session.exec(select(Cookie).where(Cookie.id==user_id_from_token)).all()
+    return CookieResponse(data=cookies)
+
+# 客户端携带cookie的name以及自己的token去启用name对应的cookie
+@router.post("/use_cookie", response_model=Message)
+def use_cookie(session:SessionDep,current_user:CurrentUser,cookie_use:CookieUse):
+    user_id_from_token = current_user.id
+    # 通过user.id去查询cookie
+    cookies = session.exec(select(Cookie).where(Cookie.id==user_id_from_token)).all()
+    # 如果有cookies的inused为True，则将inused设置为False
+    for cookie in cookies:
+        if cookie.inused:
+            crud.set_cookie_inused_to_false(session=session, cookie_name=cookie.name)
+    # 将传入的cookie_use.name设置为True
+    crud.set_cookie_inused_to_true(session=session, cookie_name=cookie_use.name)
+    logger.info(f"User {user_id_from_token} used cookie (Name: {cookie_use.name}).")
+    return Message(message="Cookie启用成功")
+
 
 
 

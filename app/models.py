@@ -173,5 +173,10 @@ class Cookie(SQLModel,table=True):
     inused: bool
     id: uuid.UUID = Field(foreign_key="user.id",nullable=False)#外键,关联用户表
 
+class CookieResponse(SQLModel):
+    data: list[Cookie]
 
+#cookie的启用
+class CookieUse(SQLModel):
+    name: str
 

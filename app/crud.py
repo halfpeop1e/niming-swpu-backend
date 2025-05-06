@@ -118,3 +118,21 @@ def spend_user_cookie_and_create_new_db_cookie(
     session.add(new_cookie_obj)
     # Commit happens after this function returns, in the API route
     return user, new_cookie_obj
+
+# 将cookie的inused设置为Fasle
+def set_cookie_inused_to_false(session: Session, cookie_name: str) -> Cookie | None:
+    cookie = session.exec(select(Cookie).where(Cookie.name == cookie_name)).first()
+    if cookie:
+        cookie.inused = False
+        session.add(cookie)
+        session.commit()
+        session.refresh(cookie)
+
+# 将cookie的inused设置为True
+def set_cookie_inused_to_true(session: Session, cookie_name: str) -> Cookie | None:
+    cookie = session.exec(select(Cookie).where(Cookie.name == cookie_name)).first()
+    if cookie:
+        cookie.inused = True
+        session.add(cookie)
+        session.commit()
+        session.refresh(cookie)
