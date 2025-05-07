@@ -122,6 +122,7 @@ class DefaultCard(SQLModel,table=True):
     content: str
     time: str
     category: str
+    thumbs:int
 
 #响应的卡片
 class DefaultCardResponse(SQLModel):
