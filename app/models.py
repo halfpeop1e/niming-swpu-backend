@@ -121,6 +121,7 @@ class DefaultCard(SQLModel,table=True):
     id: str
     content: str
     time: str
+    category: str
 
 #响应的卡片
 class DefaultCardResponse(SQLModel):
@@ -129,6 +130,10 @@ class DefaultCardResponse(SQLModel):
 #请求话题的卡片
 class CardRequest(BaseModel):
     skip: int = 0
+    category: str
+#请求最新的一个卡片
+class CardRequest_New(BaseModel):
+    category: str
 
 #请求回复卡片的内容
 class ReplyCardRequest(BaseModel):
@@ -140,6 +145,7 @@ class AddCard(BaseModel):
     id: str
     content: str
     time: str
+    category: str
 
 #添加的回复卡片，客户端发送
 class AddReplyCard_Client(BaseModel):

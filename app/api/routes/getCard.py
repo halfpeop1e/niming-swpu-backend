@@ -5,7 +5,7 @@ from loguru import logger
 
 from app import crud
 from app.api.deps import CurrentUser, SessionDep
-from app.models import AddReplyCard, AddReplyCard_Client, DefaultCard, DefaultCardResponse, Message, CardRequest, AddCard, ReplyCardRequest, AddReplyCardResponse
+from app.models import AddReplyCard, AddReplyCard_Client, DefaultCard, DefaultCardResponse, Message, CardRequest, AddCard, ReplyCardRequest, AddReplyCardResponse, CardRequest_New
 ##################该页面定义了获取聊天卡片信息的接口以及实现
 
 router = APIRouter(prefix="/cards", tags=["cards"])
@@ -17,9 +17,18 @@ def get_card(session: SessionDep, request_data: CardRequest): # Receive request 
     # count = session.exec(count_statement).one()#执行查询
 
     # Use values from the request body model
-    statement = select(DefaultCard).offset(request_data.skip).limit(5)#获取卡片列表
+    statement = select(DefaultCard).where(DefaultCard.category==request_data.category).offset(request_data.skip).limit(5)#获取卡片列表
+    # 用时间来排序，时间越大的靠在前面
+    statement = statement.order_by(DefaultCard.time.desc())
     cards = session.exec(statement).all()#执行查询
     return DefaultCardResponse(data = cards) #返回卡片列表
+
+# 请求最新的一个卡片，通过category去查询
+@router.post("/getnewcard",response_model=DefaultCardResponse)
+def get_new_card(session:SessionDep,request_data:CardRequest_New):
+    statement = select(DefaultCard).where(DefaultCard.category==request_data.category).order_by(DefaultCard.time.desc()).limit(1)
+    card = session.exec(statement).first()
+    return DefaultCardResponse(data = card)
 
 # 请求回复卡片的内容
 @router.post("/getreplycard",response_model=AddReplyCardResponse)
@@ -50,7 +59,7 @@ def add_card(session:SessionDep,current_user: CurrentUser,request_data:AddCard):
     #创建新的卡片
     try:
         new_card = DefaultCard(number=new_number,id=request_data.id,content=request_data.content,
-                               time=request_data.time)
+                               time=request_data.time,category=request_data.category)
         # 3. Log the created DefaultCard instance before passing to CRUD
         logger.info(f"Created DefaultCard instance: {new_card}")
         # logger.info(f"new_card.id: {new_card.id} (Type: {type(new_card.id)})")
@@ -80,6 +89,7 @@ def add_reply_card(session:SessionDep,current_user: CurrentUser,request_data:Add
                                   reply=request_data.reply,thumbs=0)
     #将新的回复卡片添加到数据库中
     crud.create_reply_card(session=session,reply_card_in=new_reply_card)
+    logger.info(f"User {request_data.id} added reply card (Number: {number}), content: {request_data.content}, reply: {request_data.reply}, time: {request_data.time}")
     return Message(message="回复卡片添加成功")
 
         
