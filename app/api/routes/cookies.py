@@ -4,7 +4,7 @@ from datetime import datetime
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlmodel import select
 from loguru import logger
-from app.models import Cookie, User, Message, CookieResponse, CookieUse
+from app.models import Cookie, User, Message, CookieResponse, CookieUse, GetUserCookieNum
 from app import crud
 from app.api.deps import CurrentUser, SessionDep
 
@@ -78,7 +78,12 @@ def use_cookie(session:SessionDep,current_user:CurrentUser,cookie_use:CookieUse)
     logger.info(f"User {user_id_from_token} used cookie (Name: {cookie_use.name}).")
     return Message(message="Cookie启用成功")
 
-
-
+#通过用户的id去查询用户拥有的cookie数量
+@router.get("/getusercookienum",response_model=GetUserCookieNum)
+def get_user_cookie_num(session:SessionDep,current_user:CurrentUser):
+    user_id_from_token = current_user.id
+    # 通过user.id 去查询user表里的cookies的int值
+    user = session.exec(select(User).where(User.id==user_id_from_token)).first()
+    return GetUserCookieNum(number=user.cookies)
 
 

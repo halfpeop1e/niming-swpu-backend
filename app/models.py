@@ -186,3 +186,7 @@ class CookieResponse(SQLModel):
 class CookieUse(SQLModel):
     name: str
 
+#获取用户cookie数量
+class GetUserCookieNum(SQLModel):
+    number: int
+
