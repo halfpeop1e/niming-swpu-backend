@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Depends
+import uuid
+
+from fastapi import APIRouter, Depends,HTTPException
 from sqlmodel import select
 from pydantic import BaseModel
 from loguru import logger
