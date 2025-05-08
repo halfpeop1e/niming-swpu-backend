@@ -1,6 +1,9 @@
 import uuid
+from datetime import datetime
+from typing import Literal
 
 from pydantic import EmailStr, BaseModel
+from sqlalchemy import UniqueConstraint
 from sqlmodel import Field, Relationship, SQLModel
 
 
@@ -190,4 +193,16 @@ class CookieUse(SQLModel):
 #获取用户cookie数量
 class GetUserCookieNum(SQLModel):
     number: int
+class ReplyLike(SQLModel, table=True):
+    reply_id: str=Field(primary_key=True)
+    user_id: uuid.UUID
+    created_at: datetime = Field(default_factory=datetime.utcnow)
 
+    __table_args__ = (
+        # 防止重复点赞
+        UniqueConstraint("reply_id", "user_id"),
+    )
+
+class LikeRequest(BaseModel):
+    reply_id: str
+    action: Literal["like", "unlike"]
