@@ -1,3 +1,4 @@
+from typing import Optional
 import uuid
 from datetime import datetime
 from typing import Literal
@@ -13,7 +14,7 @@ class UserBase(SQLModel):
     is_active: bool = True
     is_superuser: bool = False
     full_name: str | None = Field(default=None, max_length=255)
-    cookies: int
+    cookies: Optional[int] = None  # 设置为可选字段
 
 
 # Properties to receive via API on creation
