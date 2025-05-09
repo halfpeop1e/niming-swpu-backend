@@ -198,7 +198,6 @@ class ReplyLike(SQLModel, table=True):
     reply_id: str=Field(primary_key=True)
     user_id: uuid.UUID
     created_at: datetime = Field(default_factory=datetime.utcnow)
-
     __table_args__ = (
         # 防止重复点赞
         UniqueConstraint("reply_id", "user_id"),
