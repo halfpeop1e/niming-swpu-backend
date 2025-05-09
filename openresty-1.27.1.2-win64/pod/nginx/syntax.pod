@@ -1,0 +1,139 @@
+=encoding utf-8
+
+
+=head1 Name
+
+
+syntax - Configuration file measurement units
+
+
+=head1
+
+
+
+nginx supports several measurement units for specifying
+sizes, offsets, and time intervals within configuration files.
+
+
+
+
+=head1 Sizes and offsets
+
+
+
+Sizes can be specified in bytes, kilobytes, or megabytes
+using the following suffixes:
+
+
+=over
+
+
+
+
+=item *
+
+C<k> and C<K> for kilobytes
+
+
+
+=item *
+
+C<m> and C<M> for megabytes
+
+
+
+=back
+
+
+
+
+
+
+
+For example,
+“C<1024>”, “C<8k>”, “C<1m>”.
+
+
+
+
+
+Offsets can be also specified in gigabytes using the
+C<g> or C<G> suffixes.
+
+
+
+
+=head1 Time intervals
+
+
+
+Time intervals can be specified in milliseconds, seconds,
+minutes, hours, days and so on, using the following suffixes:
+
+ms       milliseconds
+ s  seconds (default)
+ m            minutes
+ h              hours
+ d               days
+ w              weeks
+ M    months, 30 days
+ y    years, 365 days
+
+
+
+
+
+
+Multiple units can be combined in a single value
+by specifying them in the order from the most to the least significant,
+and optionally separated by whitespace.
+For example, “C<1h 30m>” specifies the same time
+as “C<90m>” or “C<5400s>”.
+
+
+
+
+
+
+=over
+
+
+
+
+=item *
+
+
+
+A value without a suffix means seconds.
+
+
+
+
+
+=item *
+
+
+
+It is recommended to always specify a suffix.
+
+
+
+
+
+=item *
+
+
+
+Certain time intervals can be specified only with a seconds resolution.
+
+
+
+
+
+=back
+
+
+
+
+
+

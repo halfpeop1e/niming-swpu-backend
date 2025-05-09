@@ -1,0 +1,1363 @@
+2025/05/09 20:18:39 [notice] 19560#44036: signal process started
+2025/05/09 20:18:45 [notice] 44176#38852: signal process started
+2025/05/09 20:18:45 [error] 44176#38852: CreateFile() "./logs/nginx.pid" failed (2: The system cannot find the file specified)
+2025/05/09 20:23:49 [error] 22076#40052: *4 CreateFile() "./html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "https://localhost/"
+2025/05/09 20:23:50 [error] 22076#40052: *4 CreateFile() "./html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "https://localhost/"
+2025/05/09 20:23:50 [error] 22076#40052: *4 CreateFile() "./html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "https://localhost/"
+2025/05/09 20:23:51 [error] 22076#40052: *4 CreateFile() "./html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "https://localhost/"
+2025/05/09 20:23:51 [error] 22076#40052: *4 CreateFile() "./html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "https://localhost/"
+2025/05/09 20:23:51 [error] 22076#40052: *4 CreateFile() "./html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "https://localhost/"
+2025/05/09 20:23:53 [error] 22076#40052: *4 CreateFile() "./html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "https://localhost/"
+2025/05/09 20:24:19 [notice] 31704#5844: signal process started
+2025/05/09 20:24:19 [error] 31704#5844: CreateFile() "./logs/nginx.pid" failed (2: The system cannot find the file specified)
+2025/05/09 20:24:19 [notice] 39516#23828: signal process started
+2025/05/09 20:24:19 [error] 39516#23828: CreateFile() "./logs/nginx.pid" failed (2: The system cannot find the file specified)
+2025/05/09 20:24:20 [notice] 43256#24624: signal process started
+2025/05/09 20:24:20 [error] 43256#24624: CreateFile() "./logs/nginx.pid" failed (2: The system cannot find the file specified)
+2025/05/09 20:24:20 [notice] 42668#38440: signal process started
+2025/05/09 20:24:20 [error] 42668#38440: CreateFile() "./logs/nginx.pid" failed (2: The system cannot find the file specified)
+2025/05/09 20:24:44 [notice] 31688#30364: signal process started
+2025/05/09 20:24:52 [notice] 25144#41632: signal process started
+2025/05/09 20:25:44 [notice] 3396#10120: signal process started
+2025/05/09 20:26:20 [notice] 41656#42724: signal process started
+2025/05/09 20:34:26 [error] 4204#32680: *6 CreateFile() "./html/psdk/getseeds" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: localhost, request: "POST /psdk/getseeds HTTP/1.1", host: "seeds-darwin.xycdn.com"
+2025/05/09 20:35:02 [notice] 16408#22940: signal process started
+2025/05/09 20:35:08 [notice] 42976#21892: using the "select" event method
+2025/05/09 20:35:08 [notice] 42976#21892: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 42976#21892: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 42976#21892: start worker processes
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 15636
+2025/05/09 20:35:08 [notice] 15636#40400: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 15636#40400: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 15636#40400: create thread 29628
+2025/05/09 20:35:08 [notice] 15636#40400: create thread 30596
+2025/05/09 20:35:08 [notice] 15636#40400: create thread 27656
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 30600
+2025/05/09 20:35:08 [notice] 30600#34876: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 30600#34876: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 30600#34876: create thread 42072
+2025/05/09 20:35:08 [notice] 30600#34876: create thread 15652
+2025/05/09 20:35:08 [notice] 30600#34876: create thread 31528
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 41480
+2025/05/09 20:35:08 [notice] 41480#44960: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 41480#44960: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 41480#44960: create thread 32076
+2025/05/09 20:35:08 [notice] 41480#44960: create thread 20516
+2025/05/09 20:35:08 [notice] 41480#44960: create thread 38896
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 22772
+2025/05/09 20:35:08 [notice] 22772#30732: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 22772#30732: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 22772#30732: create thread 35768
+2025/05/09 20:35:08 [notice] 22772#30732: create thread 11560
+2025/05/09 20:35:08 [notice] 22772#30732: create thread 44764
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 35160
+2025/05/09 20:35:08 [notice] 35160#14200: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 35160#14200: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 35160#14200: create thread 32300
+2025/05/09 20:35:08 [notice] 35160#14200: create thread 16064
+2025/05/09 20:35:08 [notice] 35160#14200: create thread 30952
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 30888
+2025/05/09 20:35:08 [notice] 30888#39516: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 30888#39516: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 30888#39516: create thread 28340
+2025/05/09 20:35:08 [notice] 30888#39516: create thread 27556
+2025/05/09 20:35:08 [notice] 30888#39516: create thread 15620
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 18248
+2025/05/09 20:35:08 [notice] 18248#25068: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 18248#25068: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 18248#25068: create thread 31296
+2025/05/09 20:35:08 [notice] 18248#25068: create thread 3164
+2025/05/09 20:35:08 [notice] 18248#25068: create thread 28948
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 25360
+2025/05/09 20:35:08 [notice] 25360#42348: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 25360#42348: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 25360#42348: create thread 29428
+2025/05/09 20:35:08 [notice] 25360#42348: create thread 3120
+2025/05/09 20:35:08 [notice] 25360#42348: create thread 28276
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 37828
+2025/05/09 20:35:08 [notice] 37828#18572: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 37828#18572: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 37828#18572: create thread 29708
+2025/05/09 20:35:08 [notice] 37828#18572: create thread 5840
+2025/05/09 20:35:08 [notice] 37828#18572: create thread 44776
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 28108
+2025/05/09 20:35:08 [notice] 28108#11456: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 28108#11456: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 28108#11456: create thread 43596
+2025/05/09 20:35:08 [notice] 28108#11456: create thread 30748
+2025/05/09 20:35:08 [notice] 28108#11456: create thread 4472
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 44060
+2025/05/09 20:35:08 [notice] 44060#35404: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 44060#35404: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 44060#35404: create thread 42948
+2025/05/09 20:35:08 [notice] 44060#35404: create thread 41624
+2025/05/09 20:35:08 [notice] 44060#35404: create thread 36528
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 28524
+2025/05/09 20:35:08 [notice] 28524#33576: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 28524#33576: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 28524#33576: create thread 41692
+2025/05/09 20:35:08 [notice] 28524#33576: create thread 9944
+2025/05/09 20:35:08 [notice] 28524#33576: create thread 42504
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 18568
+2025/05/09 20:35:08 [notice] 18568#27624: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 18568#27624: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 18568#27624: create thread 39148
+2025/05/09 20:35:08 [notice] 18568#27624: create thread 37892
+2025/05/09 20:35:08 [notice] 18568#27624: create thread 13456
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 43700
+2025/05/09 20:35:08 [notice] 43700#11624: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 43700#11624: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 43700#11624: create thread 5312
+2025/05/09 20:35:08 [notice] 43700#11624: create thread 43288
+2025/05/09 20:35:08 [notice] 43700#11624: create thread 44520
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 42748
+2025/05/09 20:35:08 [notice] 42748#35412: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 42748#35412: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 42748#35412: create thread 28148
+2025/05/09 20:35:08 [notice] 42748#35412: create thread 2940
+2025/05/09 20:35:08 [notice] 42748#35412: create thread 24784
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 35004
+2025/05/09 20:35:08 [notice] 35004#36220: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 35004#36220: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 35004#36220: create thread 39816
+2025/05/09 20:35:08 [notice] 35004#36220: create thread 1980
+2025/05/09 20:35:08 [notice] 35004#36220: create thread 42356
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 42868
+2025/05/09 20:35:08 [notice] 42868#44724: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 42868#44724: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 42868#44724: create thread 31332
+2025/05/09 20:35:08 [notice] 42868#44724: create thread 5500
+2025/05/09 20:35:08 [notice] 42868#44724: create thread 38580
+2025/05/09 20:35:08 [notice] 42976#21892: start worker process 38316
+2025/05/09 20:35:08 [notice] 38316#25400: openresty/1.27.1.2
+2025/05/09 20:35:08 [info] 38316#25400: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:08 [notice] 38316#25400: create thread 44464
+2025/05/09 20:35:08 [notice] 38316#25400: create thread 45052
+2025/05/09 20:35:08 [notice] 38316#25400: create thread 38032
+2025/05/09 20:35:09 [notice] 42976#21892: start worker process 32616
+2025/05/09 20:35:09 [notice] 32616#34084: openresty/1.27.1.2
+2025/05/09 20:35:09 [info] 32616#34084: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:09 [notice] 32616#34084: create thread 20784
+2025/05/09 20:35:09 [notice] 32616#34084: create thread 42076
+2025/05/09 20:35:09 [notice] 32616#34084: create thread 31200
+2025/05/09 20:35:09 [notice] 42976#21892: start worker process 30640
+2025/05/09 20:35:09 [notice] 30640#35024: openresty/1.27.1.2
+2025/05/09 20:35:09 [info] 30640#35024: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:35:09 [notice] 30640#35024: create thread 44908
+2025/05/09 20:35:09 [notice] 30640#35024: create thread 44396
+2025/05/09 20:35:09 [notice] 30640#35024: create thread 29272
+2025/05/09 20:35:17 [info] 15636#29628: *2 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 20:35:17 [info] 15636#29628: *1 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 20:35:17 [info] 15636#29628: *3 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 20:36:18 [info] 15636#29628: *5 client timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while waiting for request, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 20:36:27 [emerg] 30788#42284: "access_log" directive is not allowed here in ./conf/nginx.conf:9
+2025/05/09 20:36:32 [emerg] 32660#25408: "access_log" directive is not allowed here in ./conf/nginx.conf:9
+2025/05/09 20:36:39 [emerg] 28572#31012: "access_log" directive is not allowed here in ./conf/nginx.conf:9
+2025/05/09 20:36:53 [notice] 44292#26700: signal process started
+2025/05/09 20:36:53 [notice] 42976#21892: exiting
+2025/05/09 20:36:53 [notice] 15636#40400: gracefully shutting down
+2025/05/09 20:36:53 [notice] 22772#30732: gracefully shutting down
+2025/05/09 20:36:53 [notice] 37828#18572: gracefully shutting down
+2025/05/09 20:36:53 [notice] 35160#14200: gracefully shutting down
+2025/05/09 20:36:53 [notice] 18248#25068: gracefully shutting down
+2025/05/09 20:36:53 [notice] 44060#35404: gracefully shutting down
+2025/05/09 20:36:53 [notice] 28108#11456: gracefully shutting down
+2025/05/09 20:36:53 [notice] 28524#33576: gracefully shutting down
+2025/05/09 20:36:53 [notice] 18568#27624: gracefully shutting down
+2025/05/09 20:36:53 [notice] 30888#39516: gracefully shutting down
+2025/05/09 20:36:53 [notice] 43700#11624: gracefully shutting down
+2025/05/09 20:36:53 [notice] 42748#35412: gracefully shutting down
+2025/05/09 20:36:53 [notice] 35004#36220: gracefully shutting down
+2025/05/09 20:36:53 [notice] 42868#44724: gracefully shutting down
+2025/05/09 20:36:53 [notice] 38316#25400: gracefully shutting down
+2025/05/09 20:36:53 [notice] 25360#42348: gracefully shutting down
+2025/05/09 20:36:53 [notice] 32616#34084: gracefully shutting down
+2025/05/09 20:36:53 [notice] 41480#44960: gracefully shutting down
+2025/05/09 20:36:53 [notice] 30600#34876: gracefully shutting down
+2025/05/09 20:36:53 [notice] 30640#35024: gracefully shutting down
+2025/05/09 20:36:53 [notice] 15636#30596: exiting
+2025/05/09 20:36:53 [notice] 37828#5840: exiting
+2025/05/09 20:36:53 [notice] 35160#16064: exiting
+2025/05/09 20:36:53 [notice] 28108#30748: exiting
+2025/05/09 20:36:53 [notice] 28524#9944: exiting
+2025/05/09 20:36:53 [notice] 44060#41624: exiting
+2025/05/09 20:36:53 [notice] 30888#27556: exiting
+2025/05/09 20:36:53 [notice] 18248#3164: exiting
+2025/05/09 20:36:53 [notice] 43700#43288: exiting
+2025/05/09 20:36:53 [notice] 22772#11560: exiting
+2025/05/09 20:36:53 [notice] 42748#2940: exiting
+2025/05/09 20:36:53 [notice] 35004#1980: exiting
+2025/05/09 20:36:53 [notice] 25360#3120: exiting
+2025/05/09 20:36:53 [notice] 30640#44396: exiting
+2025/05/09 20:36:53 [notice] 30600#15652: exiting
+2025/05/09 20:36:53 [notice] 41480#20516: exiting
+2025/05/09 20:36:53 [notice] 18568#37892: exiting
+2025/05/09 20:36:53 [notice] 38316#45052: exiting
+2025/05/09 20:36:53 [notice] 42868#5500: exiting
+2025/05/09 20:36:53 [notice] 32616#42076: exiting
+2025/05/09 20:36:53 [notice] 41480#32076: exiting
+2025/05/09 20:36:53 [notice] 22772#35768: exiting
+2025/05/09 20:36:53 [notice] 42748#28148: exiting
+2025/05/09 20:36:53 [notice] 43700#5312: exiting
+2025/05/09 20:36:53 [notice] 30600#42072: exiting
+2025/05/09 20:36:53 [notice] 41480#44960: exit
+2025/05/09 20:36:53 [notice] 43700#11624: exit
+2025/05/09 20:36:53 [notice] 42748#35412: exit
+2025/05/09 20:36:53 [notice] 22772#30732: exit
+2025/05/09 20:36:53 [notice] 30600#34876: exit
+2025/05/09 20:36:53 [notice] 42976#21892: worker process 42748 exited with code 0
+2025/05/09 20:36:53 [notice] 42976#21892: worker process 43700 exited with code 0
+2025/05/09 20:36:53 [notice] 42976#21892: worker process 41480 exited with code 0
+2025/05/09 20:36:53 [notice] 42976#21892: worker process 22772 exited with code 0
+2025/05/09 20:36:53 [notice] 42976#21892: worker process 30600 exited with code 0
+2025/05/09 20:36:53 [notice] 35004#39816: exiting
+2025/05/09 20:36:53 [notice] 15636#29628: exiting
+2025/05/09 20:36:53 [notice] 35004#36220: exit
+2025/05/09 20:36:53 [notice] 15636#40400: exit
+2025/05/09 20:36:53 [notice] 42976#21892: worker process 35004 exited with code 0
+2025/05/09 20:36:53 [notice] 42976#21892: worker process 15636 exited with code 0
+2025/05/09 20:36:53 [notice] 30888#28340: exiting
+2025/05/09 20:36:53 [notice] 18248#31296: exiting
+2025/05/09 20:36:53 [notice] 35160#32300: exiting
+2025/05/09 20:36:53 [notice] 42868#31332: exiting
+2025/05/09 20:36:53 [notice] 38316#44464: exiting
+2025/05/09 20:36:53 [notice] 30888#39516: exit
+2025/05/09 20:36:53 [notice] 18248#25068: exit
+2025/05/09 20:36:53 [notice] 42868#44724: exit
+2025/05/09 20:36:53 [notice] 35160#14200: exit
+2025/05/09 20:36:53 [notice] 38316#25400: exit
+2025/05/09 20:36:53 [notice] 42976#21892: worker process 35160 exited with code 0
+2025/05/09 20:36:53 [notice] 42976#21892: worker process 30888 exited with code 0
+2025/05/09 20:36:53 [notice] 42976#21892: worker process 18248 exited with code 0
+2025/05/09 20:36:53 [notice] 42976#21892: worker process 42868 exited with code 0
+2025/05/09 20:36:53 [notice] 42976#21892: worker process 38316 exited with code 0
+2025/05/09 20:36:53 [notice] 32616#20784: exiting
+2025/05/09 20:36:53 [notice] 32616#34084: exit
+2025/05/09 20:36:53 [notice] 42976#21892: worker process 32616 exited with code 0
+2025/05/09 20:36:53 [notice] 30640#44908: exiting
+2025/05/09 20:36:53 [notice] 25360#29428: exiting
+2025/05/09 20:36:53 [notice] 30640#35024: exit
+2025/05/09 20:36:53 [notice] 25360#42348: exit
+2025/05/09 20:36:53 [notice] 42976#21892: worker process 25360 exited with code 0
+2025/05/09 20:36:53 [notice] 42976#21892: worker process 30640 exited with code 0
+2025/05/09 20:36:54 [notice] 28108#43596: exiting
+2025/05/09 20:36:54 [notice] 44060#42948: exiting
+2025/05/09 20:36:54 [notice] 37828#29708: exiting
+2025/05/09 20:36:54 [notice] 28108#11456: exit
+2025/05/09 20:36:54 [notice] 44060#35404: exit
+2025/05/09 20:36:54 [notice] 37828#18572: exit
+2025/05/09 20:36:54 [notice] 42976#21892: worker process 28108 exited with code 0
+2025/05/09 20:36:54 [notice] 42976#21892: worker process 37828 exited with code 0
+2025/05/09 20:36:54 [notice] 42976#21892: worker process 44060 exited with code 0
+2025/05/09 20:36:54 [notice] 18568#39148: exiting
+2025/05/09 20:36:54 [notice] 28524#41692: exiting
+2025/05/09 20:36:54 [notice] 18568#27624: exit
+2025/05/09 20:36:54 [notice] 28524#33576: exit
+2025/05/09 20:36:54 [notice] 42976#21892: worker process 18568 exited with code 0
+2025/05/09 20:36:54 [notice] 42976#21892: worker process 28524 exited with code 0
+2025/05/09 20:36:54 [notice] 42976#21892: exit
+2025/05/09 20:40:03 [notice] 41204#15180: using the "select" event method
+2025/05/09 20:40:03 [notice] 41204#15180: openresty/1.27.1.2
+2025/05/09 20:40:03 [info] 41204#15180: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:03 [notice] 41204#15180: start worker processes
+2025/05/09 20:40:03 [notice] 41204#15180: start worker process 13740
+2025/05/09 20:40:04 [notice] 13740#25260: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 13740#25260: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 13740#25260: create thread 44500
+2025/05/09 20:40:04 [notice] 13740#25260: create thread 30592
+2025/05/09 20:40:04 [notice] 13740#25260: create thread 42428
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 42604
+2025/05/09 20:40:04 [notice] 42604#28104: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 42604#28104: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 42604#28104: create thread 13772
+2025/05/09 20:40:04 [notice] 42604#28104: create thread 42672
+2025/05/09 20:40:04 [notice] 42604#28104: create thread 27696
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 26732
+2025/05/09 20:40:04 [notice] 26732#43452: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 26732#43452: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 26732#43452: create thread 256
+2025/05/09 20:40:04 [notice] 26732#43452: create thread 44928
+2025/05/09 20:40:04 [notice] 26732#43452: create thread 33740
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 31220
+2025/05/09 20:40:04 [notice] 31220#32356: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 31220#32356: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 31220#32356: create thread 45048
+2025/05/09 20:40:04 [notice] 31220#32356: create thread 29288
+2025/05/09 20:40:04 [notice] 31220#32356: create thread 37460
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 11488
+2025/05/09 20:40:04 [notice] 11488#7440: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 11488#7440: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 11488#7440: create thread 44088
+2025/05/09 20:40:04 [notice] 11488#7440: create thread 30796
+2025/05/09 20:40:04 [notice] 11488#7440: create thread 42408
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 25492
+2025/05/09 20:40:04 [notice] 25492#44288: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 25492#44288: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 25492#44288: create thread 33668
+2025/05/09 20:40:04 [notice] 25492#44288: create thread 13532
+2025/05/09 20:40:04 [notice] 25492#44288: create thread 6264
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 42276
+2025/05/09 20:40:04 [notice] 42276#13964: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 42276#13964: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 42276#13964: create thread 10120
+2025/05/09 20:40:04 [notice] 42276#13964: create thread 7208
+2025/05/09 20:40:04 [notice] 42276#13964: create thread 31452
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 4164
+2025/05/09 20:40:04 [notice] 4164#5724: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 4164#5724: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 4164#5724: create thread 6928
+2025/05/09 20:40:04 [notice] 4164#5724: create thread 17704
+2025/05/09 20:40:04 [notice] 4164#5724: create thread 27968
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 42812
+2025/05/09 20:40:04 [notice] 42812#14464: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 42812#14464: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 42812#14464: create thread 1140
+2025/05/09 20:40:04 [notice] 42812#14464: create thread 44340
+2025/05/09 20:40:04 [notice] 42812#14464: create thread 44536
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 25336
+2025/05/09 20:40:04 [notice] 25336#38388: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 25336#38388: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 25336#38388: create thread 31192
+2025/05/09 20:40:04 [notice] 25336#38388: create thread 25504
+2025/05/09 20:40:04 [notice] 25336#38388: create thread 3220
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 37024
+2025/05/09 20:40:04 [notice] 37024#40224: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 37024#40224: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 37024#40224: create thread 44632
+2025/05/09 20:40:04 [notice] 37024#40224: create thread 16484
+2025/05/09 20:40:04 [notice] 37024#40224: create thread 37836
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 42668
+2025/05/09 20:40:04 [notice] 42668#44996: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 42668#44996: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 42668#44996: create thread 3028
+2025/05/09 20:40:04 [notice] 42668#44996: create thread 37660
+2025/05/09 20:40:04 [notice] 42668#44996: create thread 42944
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 4004
+2025/05/09 20:40:04 [notice] 4004#10392: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 4004#10392: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 4004#10392: create thread 27796
+2025/05/09 20:40:04 [notice] 4004#10392: create thread 10260
+2025/05/09 20:40:04 [notice] 4004#10392: create thread 24744
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 35536
+2025/05/09 20:40:04 [notice] 35536#5196: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 35536#5196: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 35536#5196: create thread 30372
+2025/05/09 20:40:04 [notice] 35536#5196: create thread 5072
+2025/05/09 20:40:04 [notice] 35536#5196: create thread 42344
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 2780
+2025/05/09 20:40:04 [notice] 2780#37612: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 2780#37612: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 2780#37612: create thread 30020
+2025/05/09 20:40:04 [notice] 2780#37612: create thread 39456
+2025/05/09 20:40:04 [notice] 2780#37612: create thread 42068
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 28164
+2025/05/09 20:40:04 [notice] 28164#37780: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 28164#37780: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 28164#37780: create thread 480
+2025/05/09 20:40:04 [notice] 28164#37780: create thread 42400
+2025/05/09 20:40:04 [notice] 28164#37780: create thread 9976
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 25308
+2025/05/09 20:40:04 [notice] 25308#16448: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 25308#16448: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 25308#16448: create thread 42620
+2025/05/09 20:40:04 [notice] 25308#16448: create thread 38432
+2025/05/09 20:40:04 [notice] 25308#16448: create thread 3724
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 38848
+2025/05/09 20:40:04 [notice] 38848#33384: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 38848#33384: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 38848#33384: create thread 19348
+2025/05/09 20:40:04 [notice] 38848#33384: create thread 6136
+2025/05/09 20:40:04 [notice] 38848#33384: create thread 6512
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 31260
+2025/05/09 20:40:04 [notice] 31260#33440: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 31260#33440: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 31260#33440: create thread 28384
+2025/05/09 20:40:04 [notice] 31260#33440: create thread 21812
+2025/05/09 20:40:04 [notice] 31260#33440: create thread 30488
+2025/05/09 20:40:04 [notice] 41204#15180: start worker process 32292
+2025/05/09 20:40:04 [notice] 32292#5448: openresty/1.27.1.2
+2025/05/09 20:40:04 [info] 32292#5448: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:40:04 [notice] 32292#5448: create thread 15596
+2025/05/09 20:40:04 [notice] 32292#5448: create thread 29888
+2025/05/09 20:40:04 [notice] 32292#5448: create thread 23916
+2025/05/09 20:45:34 [info] 13740#44500: *1 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 20:45:34 [info] 13740#44500: *2 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 20:46:35 [info] 13740#44500: *5 client timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while waiting for request, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 20:52:50 [info] 13740#44500: *6 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 20:52:50 [info] 13740#44500: *7 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 20:52:52 [error] 13740#44500: *8 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "OPTIONS /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 20:52:52 [warn] 13740#44500: *8 upstream server temporarily disabled while connecting to upstream, client: 127.0.0.1, server: localhost, request: "OPTIONS /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 20:53:50 [info] 13740#44500: *10 client timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while waiting for request, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 20:56:54 [notice] 30776#23412: signal process started
+2025/05/09 20:56:54 [notice] 41204#15180: exiting
+2025/05/09 20:56:54 [notice] 42604#28104: gracefully shutting down
+2025/05/09 20:56:54 [notice] 26732#43452: gracefully shutting down
+2025/05/09 20:56:54 [notice] 13740#25260: gracefully shutting down
+2025/05/09 20:56:54 [notice] 31220#32356: gracefully shutting down
+2025/05/09 20:56:54 [notice] 4164#5724: gracefully shutting down
+2025/05/09 20:56:54 [notice] 37024#40224: gracefully shutting down
+2025/05/09 20:56:54 [notice] 4004#10392: gracefully shutting down
+2025/05/09 20:56:54 [notice] 42276#13964: gracefully shutting down
+2025/05/09 20:56:54 [notice] 11488#7440: gracefully shutting down
+2025/05/09 20:56:54 [notice] 25492#44288: gracefully shutting down
+2025/05/09 20:56:54 [notice] 42668#44996: gracefully shutting down
+2025/05/09 20:56:54 [notice] 35536#5196: gracefully shutting down
+2025/05/09 20:56:54 [notice] 25336#38388: gracefully shutting down
+2025/05/09 20:56:54 [notice] 42812#14464: gracefully shutting down
+2025/05/09 20:56:54 [notice] 2780#37612: gracefully shutting down
+2025/05/09 20:56:54 [notice] 42604#42672: exiting
+2025/05/09 20:56:54 [notice] 25308#16448: gracefully shutting down
+2025/05/09 20:56:54 [notice] 28164#37780: gracefully shutting down
+2025/05/09 20:56:54 [notice] 26732#44928: exiting
+2025/05/09 20:56:54 [notice] 38848#33384: gracefully shutting down
+2025/05/09 20:56:54 [notice] 31220#29288: exiting
+2025/05/09 20:56:54 [notice] 31260#33440: gracefully shutting down
+2025/05/09 20:56:54 [notice] 32292#5448: gracefully shutting down
+2025/05/09 20:56:54 [notice] 37024#16484: exiting
+2025/05/09 20:56:54 [notice] 13740#30592: exiting
+2025/05/09 20:56:54 [notice] 4164#17704: exiting
+2025/05/09 20:56:54 [notice] 11488#30796: exiting
+2025/05/09 20:56:54 [notice] 4004#10260: exiting
+2025/05/09 20:56:54 [notice] 25336#25504: exiting
+2025/05/09 20:56:54 [notice] 35536#5072: exiting
+2025/05/09 20:56:54 [notice] 25492#13532: exiting
+2025/05/09 20:56:54 [notice] 42668#37660: exiting
+2025/05/09 20:56:54 [notice] 42276#7208: exiting
+2025/05/09 20:56:54 [notice] 42812#44340: exiting
+2025/05/09 20:56:54 [notice] 2780#39456: exiting
+2025/05/09 20:56:54 [notice] 25308#38432: exiting
+2025/05/09 20:56:54 [notice] 28164#42400: exiting
+2025/05/09 20:56:54 [notice] 31260#21812: exiting
+2025/05/09 20:56:54 [notice] 32292#29888: exiting
+2025/05/09 20:56:54 [notice] 38848#6136: exiting
+2025/05/09 20:56:54 [notice] 26732#256: exiting
+2025/05/09 20:56:54 [notice] 35536#30372: exiting
+2025/05/09 20:56:54 [notice] 42604#13772: exiting
+2025/05/09 20:56:54 [notice] 31220#45048: exiting
+2025/05/09 20:56:54 [notice] 13740#44500: exiting
+2025/05/09 20:56:54 [notice] 26732#43452: exit
+2025/05/09 20:56:54 [notice] 35536#5196: exit
+2025/05/09 20:56:54 [notice] 13740#25260: exit
+2025/05/09 20:56:54 [notice] 31220#32356: exit
+2025/05/09 20:56:54 [notice] 42604#28104: exit
+2025/05/09 20:56:54 [notice] 41204#15180: worker process 42604 exited with code 0
+2025/05/09 20:56:54 [notice] 41204#15180: worker process 13740 exited with code 0
+2025/05/09 20:56:54 [notice] 41204#15180: worker process 26732 exited with code 0
+2025/05/09 20:56:54 [notice] 41204#15180: worker process 31220 exited with code 0
+2025/05/09 20:56:54 [notice] 41204#15180: worker process 35536 exited with code 0
+2025/05/09 20:56:55 [notice] 11488#44088: exiting
+2025/05/09 20:56:55 [notice] 25308#42620: exiting
+2025/05/09 20:56:55 [notice] 28164#480: exiting
+2025/05/09 20:56:55 [notice] 25492#33668: exiting
+2025/05/09 20:56:55 [notice] 11488#7440: exit
+2025/05/09 20:56:55 [notice] 28164#37780: exit
+2025/05/09 20:56:55 [notice] 25492#44288: exit
+2025/05/09 20:56:55 [notice] 25308#16448: exit
+2025/05/09 20:56:55 [notice] 41204#15180: worker process 11488 exited with code 0
+2025/05/09 20:56:55 [notice] 41204#15180: worker process 28164 exited with code 0
+2025/05/09 20:56:55 [notice] 41204#15180: worker process 25308 exited with code 0
+2025/05/09 20:56:55 [notice] 41204#15180: worker process 25492 exited with code 0
+2025/05/09 20:56:55 [notice] 25336#31192: exiting
+2025/05/09 20:56:55 [notice] 32292#15596: exiting
+2025/05/09 20:56:55 [notice] 38848#19348: exiting
+2025/05/09 20:56:55 [notice] 4164#6928: exiting
+2025/05/09 20:56:55 [notice] 31260#28384: exiting
+2025/05/09 20:56:55 [notice] 42812#1140: exiting
+2025/05/09 20:56:55 [notice] 42276#10120: exiting
+2025/05/09 20:56:55 [notice] 37024#44632: exiting
+2025/05/09 20:56:55 [notice] 25336#38388: exit
+2025/05/09 20:56:55 [notice] 4164#5724: exit
+2025/05/09 20:56:55 [notice] 42812#14464: exit
+2025/05/09 20:56:55 [notice] 42276#13964: exit
+2025/05/09 20:56:55 [notice] 37024#40224: exit
+2025/05/09 20:56:55 [notice] 32292#5448: exit
+2025/05/09 20:56:55 [notice] 31260#33440: exit
+2025/05/09 20:56:55 [notice] 38848#33384: exit
+2025/05/09 20:56:55 [notice] 41204#15180: worker process 4164 exited with code 0
+2025/05/09 20:56:55 [notice] 41204#15180: worker process 42276 exited with code 0
+2025/05/09 20:56:55 [notice] 41204#15180: worker process 42812 exited with code 0
+2025/05/09 20:56:55 [notice] 41204#15180: worker process 25336 exited with code 0
+2025/05/09 20:56:55 [notice] 41204#15180: worker process 37024 exited with code 0
+2025/05/09 20:56:55 [notice] 41204#15180: worker process 38848 exited with code 0
+2025/05/09 20:56:55 [notice] 41204#15180: worker process 32292 exited with code 0
+2025/05/09 20:56:55 [notice] 41204#15180: worker process 31260 exited with code 0
+2025/05/09 20:56:55 [notice] 4004#27796: exiting
+2025/05/09 20:56:55 [notice] 2780#30020: exiting
+2025/05/09 20:56:55 [notice] 42668#3028: exiting
+2025/05/09 20:56:55 [notice] 2780#37612: exit
+2025/05/09 20:56:55 [notice] 4004#10392: exit
+2025/05/09 20:56:55 [notice] 42668#44996: exit
+2025/05/09 20:56:55 [notice] 41204#15180: worker process 42668 exited with code 0
+2025/05/09 20:56:55 [notice] 41204#15180: worker process 4004 exited with code 0
+2025/05/09 20:56:55 [notice] 41204#15180: worker process 2780 exited with code 0
+2025/05/09 20:56:55 [notice] 41204#15180: exit
+2025/05/09 20:57:05 [notice] 43960#36324: using the "select" event method
+2025/05/09 20:57:05 [notice] 43960#36324: openresty/1.27.1.2
+2025/05/09 20:57:05 [info] 43960#36324: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:05 [notice] 43960#36324: start worker processes
+2025/05/09 20:57:05 [notice] 43960#36324: start worker process 26856
+2025/05/09 20:57:05 [notice] 26856#33324: openresty/1.27.1.2
+2025/05/09 20:57:05 [info] 26856#33324: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:05 [notice] 26856#33324: create thread 35028
+2025/05/09 20:57:05 [notice] 26856#33324: create thread 37196
+2025/05/09 20:57:05 [notice] 26856#33324: create thread 28784
+2025/05/09 20:57:05 [notice] 43960#36324: start worker process 23272
+2025/05/09 20:57:05 [notice] 23272#28184: openresty/1.27.1.2
+2025/05/09 20:57:05 [info] 23272#28184: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:05 [notice] 23272#28184: create thread 16408
+2025/05/09 20:57:05 [notice] 23272#28184: create thread 37632
+2025/05/09 20:57:05 [notice] 23272#28184: create thread 44516
+2025/05/09 20:57:05 [notice] 43960#36324: start worker process 40516
+2025/05/09 20:57:05 [notice] 40516#30184: openresty/1.27.1.2
+2025/05/09 20:57:05 [info] 40516#30184: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:05 [notice] 40516#30184: create thread 7232
+2025/05/09 20:57:05 [notice] 40516#30184: create thread 29004
+2025/05/09 20:57:05 [notice] 40516#30184: create thread 34084
+2025/05/09 20:57:05 [notice] 43960#36324: start worker process 38192
+2025/05/09 20:57:05 [notice] 38192#13340: openresty/1.27.1.2
+2025/05/09 20:57:05 [info] 38192#13340: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:05 [notice] 38192#13340: create thread 36628
+2025/05/09 20:57:05 [notice] 38192#13340: create thread 30808
+2025/05/09 20:57:05 [notice] 38192#13340: create thread 34452
+2025/05/09 20:57:05 [notice] 43960#36324: start worker process 10316
+2025/05/09 20:57:05 [notice] 10316#19812: openresty/1.27.1.2
+2025/05/09 20:57:05 [info] 10316#19812: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:05 [notice] 10316#19812: create thread 39040
+2025/05/09 20:57:05 [notice] 10316#19812: create thread 36384
+2025/05/09 20:57:05 [notice] 10316#19812: create thread 4084
+2025/05/09 20:57:05 [notice] 43960#36324: start worker process 30600
+2025/05/09 20:57:05 [notice] 30600#21772: openresty/1.27.1.2
+2025/05/09 20:57:05 [info] 30600#21772: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:05 [notice] 30600#21772: create thread 28492
+2025/05/09 20:57:05 [notice] 30600#21772: create thread 32448
+2025/05/09 20:57:05 [notice] 30600#21772: create thread 26212
+2025/05/09 20:57:05 [notice] 43960#36324: start worker process 16784
+2025/05/09 20:57:05 [notice] 16784#43756: openresty/1.27.1.2
+2025/05/09 20:57:05 [info] 16784#43756: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:05 [notice] 16784#43756: create thread 42076
+2025/05/09 20:57:05 [notice] 16784#43756: create thread 44820
+2025/05/09 20:57:05 [notice] 16784#43756: create thread 43596
+2025/05/09 20:57:05 [notice] 43960#36324: start worker process 32236
+2025/05/09 20:57:05 [notice] 32236#2032: openresty/1.27.1.2
+2025/05/09 20:57:05 [info] 32236#2032: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:05 [notice] 32236#2032: create thread 4400
+2025/05/09 20:57:05 [notice] 32236#2032: create thread 7588
+2025/05/09 20:57:05 [notice] 32236#2032: create thread 41640
+2025/05/09 20:57:05 [notice] 43960#36324: start worker process 21496
+2025/05/09 20:57:05 [notice] 21496#32240: openresty/1.27.1.2
+2025/05/09 20:57:05 [info] 21496#32240: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:05 [notice] 21496#32240: create thread 42872
+2025/05/09 20:57:05 [notice] 21496#32240: create thread 33408
+2025/05/09 20:57:05 [notice] 21496#32240: create thread 1844
+2025/05/09 20:57:05 [notice] 43960#36324: start worker process 43900
+2025/05/09 20:57:05 [notice] 43900#40436: openresty/1.27.1.2
+2025/05/09 20:57:05 [info] 43900#40436: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:05 [notice] 43900#40436: create thread 43840
+2025/05/09 20:57:05 [notice] 43900#40436: create thread 36132
+2025/05/09 20:57:05 [notice] 43900#40436: create thread 6488
+2025/05/09 20:57:05 [notice] 43960#36324: start worker process 42356
+2025/05/09 20:57:05 [notice] 42356#2356: openresty/1.27.1.2
+2025/05/09 20:57:05 [info] 42356#2356: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:05 [notice] 42356#2356: create thread 24080
+2025/05/09 20:57:05 [notice] 42356#2356: create thread 33244
+2025/05/09 20:57:05 [notice] 42356#2356: create thread 27760
+2025/05/09 20:57:05 [notice] 43960#36324: start worker process 30916
+2025/05/09 20:57:05 [notice] 30916#40068: openresty/1.27.1.2
+2025/05/09 20:57:05 [info] 30916#40068: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:05 [notice] 30916#40068: create thread 24900
+2025/05/09 20:57:05 [notice] 30916#40068: create thread 20936
+2025/05/09 20:57:05 [notice] 30916#40068: create thread 19832
+2025/05/09 20:57:05 [notice] 43960#36324: start worker process 28292
+2025/05/09 20:57:05 [notice] 28292#41312: openresty/1.27.1.2
+2025/05/09 20:57:05 [info] 28292#41312: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:05 [notice] 28292#41312: create thread 25340
+2025/05/09 20:57:05 [notice] 28292#41312: create thread 7596
+2025/05/09 20:57:05 [notice] 28292#41312: create thread 31672
+2025/05/09 20:57:06 [notice] 43960#36324: start worker process 43280
+2025/05/09 20:57:06 [notice] 43280#43120: openresty/1.27.1.2
+2025/05/09 20:57:06 [info] 43280#43120: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:06 [notice] 43280#43120: create thread 4604
+2025/05/09 20:57:06 [notice] 43280#43120: create thread 17088
+2025/05/09 20:57:06 [notice] 43280#43120: create thread 37708
+2025/05/09 20:57:06 [notice] 43960#36324: start worker process 13676
+2025/05/09 20:57:06 [notice] 13676#27668: openresty/1.27.1.2
+2025/05/09 20:57:06 [info] 13676#27668: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:06 [notice] 13676#27668: create thread 44464
+2025/05/09 20:57:06 [notice] 13676#27668: create thread 27884
+2025/05/09 20:57:06 [notice] 13676#27668: create thread 3496
+2025/05/09 20:57:06 [notice] 43960#36324: start worker process 18940
+2025/05/09 20:57:06 [notice] 18940#16580: openresty/1.27.1.2
+2025/05/09 20:57:06 [info] 18940#16580: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:06 [notice] 18940#16580: create thread 22192
+2025/05/09 20:57:06 [notice] 18940#16580: create thread 38956
+2025/05/09 20:57:06 [notice] 18940#16580: create thread 42352
+2025/05/09 20:57:06 [notice] 43960#36324: start worker process 44980
+2025/05/09 20:57:06 [notice] 44980#29484: openresty/1.27.1.2
+2025/05/09 20:57:06 [info] 44980#29484: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:06 [notice] 44980#29484: create thread 45016
+2025/05/09 20:57:06 [notice] 44980#29484: create thread 18592
+2025/05/09 20:57:06 [notice] 44980#29484: create thread 14112
+2025/05/09 20:57:06 [notice] 43960#36324: start worker process 36092
+2025/05/09 20:57:06 [notice] 36092#32936: openresty/1.27.1.2
+2025/05/09 20:57:06 [info] 36092#32936: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:06 [notice] 36092#32936: create thread 44668
+2025/05/09 20:57:06 [notice] 36092#32936: create thread 29136
+2025/05/09 20:57:06 [notice] 36092#32936: create thread 28244
+2025/05/09 20:57:06 [notice] 43960#36324: start worker process 23732
+2025/05/09 20:57:06 [notice] 23732#30908: openresty/1.27.1.2
+2025/05/09 20:57:06 [info] 23732#30908: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:06 [notice] 23732#30908: create thread 2372
+2025/05/09 20:57:06 [notice] 23732#30908: create thread 44324
+2025/05/09 20:57:06 [notice] 23732#30908: create thread 22372
+2025/05/09 20:57:06 [notice] 43960#36324: start worker process 26576
+2025/05/09 20:57:06 [notice] 26576#16432: openresty/1.27.1.2
+2025/05/09 20:57:06 [info] 26576#16432: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 20:57:06 [notice] 26576#16432: create thread 29288
+2025/05/09 20:57:06 [notice] 26576#16432: create thread 13772
+2025/05/09 20:57:06 [notice] 26576#16432: create thread 42672
+2025/05/09 20:57:08 [info] 26856#35028: *1 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 20:57:08 [info] 26856#35028: *2 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 20:57:16 [error] 26856#35028: *3 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "OPTIONS /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 20:57:16 [warn] 26856#35028: *3 upstream server temporarily disabled while connecting to upstream, client: 127.0.0.1, server: localhost, request: "OPTIONS /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 20:58:09 [info] 26856#35028: *5 client timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while waiting for request, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:02:14 [notice] 43096#24884: signal process started
+2025/05/09 21:02:14 [notice] 43960#36324: exiting
+2025/05/09 21:02:14 [notice] 26856#33324: gracefully shutting down
+2025/05/09 21:02:14 [notice] 23272#28184: gracefully shutting down
+2025/05/09 21:02:14 [notice] 40516#30184: gracefully shutting down
+2025/05/09 21:02:14 [notice] 10316#19812: gracefully shutting down
+2025/05/09 21:02:14 [notice] 38192#13340: gracefully shutting down
+2025/05/09 21:02:14 [notice] 21496#32240: gracefully shutting down
+2025/05/09 21:02:14 [notice] 43900#40436: gracefully shutting down
+2025/05/09 21:02:14 [notice] 42356#2356: gracefully shutting down
+2025/05/09 21:02:14 [notice] 30916#40068: gracefully shutting down
+2025/05/09 21:02:14 [notice] 28292#41312: gracefully shutting down
+2025/05/09 21:02:14 [notice] 13676#27668: gracefully shutting down
+2025/05/09 21:02:14 [notice] 18940#16580: gracefully shutting down
+2025/05/09 21:02:14 [notice] 43280#43120: gracefully shutting down
+2025/05/09 21:02:14 [notice] 44980#29484: gracefully shutting down
+2025/05/09 21:02:14 [notice] 36092#32936: gracefully shutting down
+2025/05/09 21:02:14 [notice] 23732#30908: gracefully shutting down
+2025/05/09 21:02:14 [notice] 30600#21772: gracefully shutting down
+2025/05/09 21:02:14 [notice] 16784#43756: gracefully shutting down
+2025/05/09 21:02:14 [notice] 32236#2032: gracefully shutting down
+2025/05/09 21:02:14 [notice] 26856#37196: exiting
+2025/05/09 21:02:14 [notice] 23272#37632: exiting
+2025/05/09 21:02:14 [notice] 26576#16432: gracefully shutting down
+2025/05/09 21:02:14 [notice] 40516#29004: exiting
+2025/05/09 21:02:14 [notice] 21496#33408: exiting
+2025/05/09 21:02:14 [notice] 42356#33244: exiting
+2025/05/09 21:02:14 [notice] 13676#27884: exiting
+2025/05/09 21:02:14 [notice] 30916#20936: exiting
+2025/05/09 21:02:14 [notice] 43900#36132: exiting
+2025/05/09 21:02:14 [notice] 38192#30808: exiting
+2025/05/09 21:02:14 [notice] 28292#7596: exiting
+2025/05/09 21:02:14 [notice] 18940#38956: exiting
+2025/05/09 21:02:14 [notice] 10316#36384: exiting
+2025/05/09 21:02:14 [notice] 30600#32448: exiting
+2025/05/09 21:02:14 [notice] 43280#17088: exiting
+2025/05/09 21:02:14 [notice] 44980#18592: exiting
+2025/05/09 21:02:14 [notice] 16784#44820: exiting
+2025/05/09 21:02:14 [notice] 36092#29136: exiting
+2025/05/09 21:02:14 [notice] 26576#13772: exiting
+2025/05/09 21:02:14 [notice] 23732#44324: exiting
+2025/05/09 21:02:14 [notice] 32236#7588: exiting
+2025/05/09 21:02:14 [notice] 16784#42076: exiting
+2025/05/09 21:02:14 [notice] 23732#2372: exiting
+2025/05/09 21:02:14 [notice] 32236#4400: exiting
+2025/05/09 21:02:14 [notice] 43900#43840: exiting
+2025/05/09 21:02:14 [notice] 21496#42872: exiting
+2025/05/09 21:02:14 [notice] 36092#44668: exiting
+2025/05/09 21:02:14 [notice] 16784#43756: exit
+2025/05/09 21:02:14 [notice] 23732#30908: exit
+2025/05/09 21:02:14 [notice] 26576#29288: exiting
+2025/05/09 21:02:14 [notice] 32236#2032: exit
+2025/05/09 21:02:14 [notice] 43900#40436: exit
+2025/05/09 21:02:14 [notice] 21496#32240: exit
+2025/05/09 21:02:14 [notice] 36092#32936: exit
+2025/05/09 21:02:14 [notice] 26576#16432: exit
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 32236 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 43900 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 36092 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 26576 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 16784 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 21496 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 23732 exited with code 0
+2025/05/09 21:02:14 [notice] 30916#24900: exiting
+2025/05/09 21:02:14 [notice] 42356#24080: exiting
+2025/05/09 21:02:14 [notice] 23272#16408: exiting
+2025/05/09 21:02:14 [notice] 30916#40068: exit
+2025/05/09 21:02:14 [notice] 42356#2356: exit
+2025/05/09 21:02:14 [notice] 23272#28184: exit
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 30916 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 42356 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 23272 exited with code 0
+2025/05/09 21:02:14 [notice] 28292#25340: exiting
+2025/05/09 21:02:14 [notice] 40516#7232: exiting
+2025/05/09 21:02:14 [notice] 38192#36628: exiting
+2025/05/09 21:02:14 [notice] 40516#30184: exit
+2025/05/09 21:02:14 [notice] 28292#41312: exit
+2025/05/09 21:02:14 [notice] 38192#13340: exit
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 38192 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 28292 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 40516 exited with code 0
+2025/05/09 21:02:14 [notice] 43280#4604: exiting
+2025/05/09 21:02:14 [notice] 43280#43120: exit
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 43280 exited with code 0
+2025/05/09 21:02:14 [notice] 30600#28492: exiting
+2025/05/09 21:02:14 [notice] 44980#45016: exiting
+2025/05/09 21:02:14 [notice] 13676#44464: exiting
+2025/05/09 21:02:14 [notice] 10316#39040: exiting
+2025/05/09 21:02:14 [notice] 18940#22192: exiting
+2025/05/09 21:02:14 [notice] 26856#35028: exiting
+2025/05/09 21:02:14 [notice] 30600#21772: exit
+2025/05/09 21:02:14 [notice] 44980#29484: exit
+2025/05/09 21:02:14 [notice] 10316#19812: exit
+2025/05/09 21:02:14 [notice] 13676#27668: exit
+2025/05/09 21:02:14 [notice] 18940#16580: exit
+2025/05/09 21:02:14 [notice] 26856#33324: exit
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 10316 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 30600 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 13676 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 18940 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 44980 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: worker process 26856 exited with code 0
+2025/05/09 21:02:14 [notice] 43960#36324: exit
+2025/05/09 21:02:26 [notice] 12548#43192: using the "select" event method
+2025/05/09 21:02:26 [notice] 12548#43192: openresty/1.27.1.2
+2025/05/09 21:02:26 [info] 12548#43192: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:26 [notice] 12548#43192: start worker processes
+2025/05/09 21:02:26 [notice] 12548#43192: start worker process 31012
+2025/05/09 21:02:26 [notice] 31012#30488: openresty/1.27.1.2
+2025/05/09 21:02:26 [info] 31012#30488: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:26 [notice] 31012#30488: create thread 34952
+2025/05/09 21:02:26 [notice] 31012#30488: create thread 29432
+2025/05/09 21:02:26 [notice] 31012#30488: create thread 5724
+2025/05/09 21:02:26 [notice] 12548#43192: start worker process 22400
+2025/05/09 21:02:26 [notice] 22400#24948: openresty/1.27.1.2
+2025/05/09 21:02:26 [info] 22400#24948: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:26 [notice] 22400#24948: create thread 33576
+2025/05/09 21:02:26 [notice] 22400#24948: create thread 44808
+2025/05/09 21:02:26 [notice] 22400#24948: create thread 29744
+2025/05/09 21:02:26 [notice] 12548#43192: start worker process 18808
+2025/05/09 21:02:26 [notice] 18808#38388: openresty/1.27.1.2
+2025/05/09 21:02:26 [info] 18808#38388: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:26 [notice] 18808#38388: create thread 29584
+2025/05/09 21:02:26 [notice] 18808#38388: create thread 43072
+2025/05/09 21:02:26 [notice] 18808#38388: create thread 10260
+2025/05/09 21:02:26 [notice] 12548#43192: start worker process 33828
+2025/05/09 21:02:26 [notice] 33828#30904: openresty/1.27.1.2
+2025/05/09 21:02:26 [info] 33828#30904: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:26 [notice] 33828#30904: create thread 42588
+2025/05/09 21:02:26 [notice] 33828#30904: create thread 44652
+2025/05/09 21:02:26 [notice] 33828#30904: create thread 43296
+2025/05/09 21:02:26 [notice] 12548#43192: start worker process 33112
+2025/05/09 21:02:26 [notice] 33112#43948: openresty/1.27.1.2
+2025/05/09 21:02:26 [info] 33112#43948: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:26 [notice] 33112#43948: create thread 10312
+2025/05/09 21:02:26 [notice] 33112#43948: create thread 34048
+2025/05/09 21:02:26 [notice] 33112#43948: create thread 20540
+2025/05/09 21:02:27 [notice] 12548#43192: start worker process 40044
+2025/05/09 21:02:27 [notice] 40044#9008: openresty/1.27.1.2
+2025/05/09 21:02:27 [info] 40044#9008: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:27 [notice] 40044#9008: create thread 32460
+2025/05/09 21:02:27 [notice] 40044#9008: create thread 41868
+2025/05/09 21:02:27 [notice] 40044#9008: create thread 29360
+2025/05/09 21:02:27 [notice] 12548#43192: start worker process 18876
+2025/05/09 21:02:27 [notice] 18876#29180: openresty/1.27.1.2
+2025/05/09 21:02:27 [info] 18876#29180: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:27 [notice] 18876#29180: create thread 37880
+2025/05/09 21:02:27 [notice] 18876#29180: create thread 34876
+2025/05/09 21:02:27 [notice] 18876#29180: create thread 33388
+2025/05/09 21:02:27 [notice] 12548#43192: start worker process 19124
+2025/05/09 21:02:27 [notice] 19124#18932: openresty/1.27.1.2
+2025/05/09 21:02:27 [info] 19124#18932: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:27 [notice] 19124#18932: create thread 31172
+2025/05/09 21:02:27 [notice] 19124#18932: create thread 38148
+2025/05/09 21:02:27 [notice] 19124#18932: create thread 33212
+2025/05/09 21:02:27 [notice] 12548#43192: start worker process 30876
+2025/05/09 21:02:27 [notice] 30876#10584: openresty/1.27.1.2
+2025/05/09 21:02:27 [info] 30876#10584: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:27 [notice] 30876#10584: create thread 12056
+2025/05/09 21:02:27 [notice] 30876#10584: create thread 40080
+2025/05/09 21:02:27 [notice] 30876#10584: create thread 11828
+2025/05/09 21:02:27 [notice] 12548#43192: start worker process 41216
+2025/05/09 21:02:27 [notice] 41216#28968: openresty/1.27.1.2
+2025/05/09 21:02:27 [info] 41216#28968: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:27 [notice] 41216#28968: create thread 44556
+2025/05/09 21:02:27 [notice] 41216#28968: create thread 23828
+2025/05/09 21:02:27 [notice] 41216#28968: create thread 43988
+2025/05/09 21:02:27 [notice] 12548#43192: start worker process 7892
+2025/05/09 21:02:27 [notice] 7892#44780: openresty/1.27.1.2
+2025/05/09 21:02:27 [info] 7892#44780: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:27 [notice] 7892#44780: create thread 25312
+2025/05/09 21:02:27 [notice] 7892#44780: create thread 45032
+2025/05/09 21:02:27 [notice] 7892#44780: create thread 35156
+2025/05/09 21:02:27 [notice] 12548#43192: start worker process 16064
+2025/05/09 21:02:27 [notice] 16064#41808: openresty/1.27.1.2
+2025/05/09 21:02:27 [info] 16064#41808: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:27 [notice] 16064#41808: create thread 24744
+2025/05/09 21:02:27 [notice] 16064#41808: create thread 3348
+2025/05/09 21:02:27 [notice] 16064#41808: create thread 43348
+2025/05/09 21:02:27 [notice] 12548#43192: start worker process 31208
+2025/05/09 21:02:27 [notice] 31208#15180: openresty/1.27.1.2
+2025/05/09 21:02:27 [info] 31208#15180: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:27 [notice] 31208#15180: create thread 7440
+2025/05/09 21:02:27 [notice] 31208#15180: create thread 22500
+2025/05/09 21:02:27 [notice] 31208#15180: create thread 38812
+2025/05/09 21:02:27 [notice] 12548#43192: start worker process 44036
+2025/05/09 21:02:27 [notice] 44036#21416: openresty/1.27.1.2
+2025/05/09 21:02:27 [info] 44036#21416: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:27 [notice] 44036#21416: create thread 42128
+2025/05/09 21:02:27 [notice] 44036#21416: create thread 5844
+2025/05/09 21:02:27 [notice] 44036#21416: create thread 42732
+2025/05/09 21:02:27 [notice] 12548#43192: start worker process 44688
+2025/05/09 21:02:27 [notice] 44688#27080: openresty/1.27.1.2
+2025/05/09 21:02:27 [info] 44688#27080: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:27 [notice] 44688#27080: create thread 44324
+2025/05/09 21:02:27 [notice] 44688#27080: create thread 4400
+2025/05/09 21:02:27 [notice] 44688#27080: create thread 7588
+2025/05/09 21:02:27 [notice] 12548#43192: start worker process 43840
+2025/05/09 21:02:27 [notice] 43840#36132: openresty/1.27.1.2
+2025/05/09 21:02:27 [info] 43840#36132: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:27 [notice] 43840#36132: create thread 41640
+2025/05/09 21:02:27 [notice] 43840#36132: create thread 28244
+2025/05/09 21:02:27 [notice] 43840#36132: create thread 40292
+2025/05/09 21:02:27 [notice] 12548#43192: start worker process 37444
+2025/05/09 21:02:27 [notice] 37444#43596: openresty/1.27.1.2
+2025/05/09 21:02:27 [info] 37444#43596: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:27 [notice] 37444#43596: create thread 30908
+2025/05/09 21:02:27 [notice] 37444#43596: create thread 32236
+2025/05/09 21:02:27 [notice] 37444#43596: create thread 42292
+2025/05/09 21:02:27 [notice] 12548#43192: start worker process 16784
+2025/05/09 21:02:27 [notice] 16784#42204: openresty/1.27.1.2
+2025/05/09 21:02:27 [info] 16784#42204: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:27 [notice] 16784#42204: create thread 8292
+2025/05/09 21:02:27 [notice] 16784#42204: create thread 44232
+2025/05/09 21:02:27 [notice] 16784#42204: create thread 20364
+2025/05/09 21:02:27 [notice] 12548#43192: start worker process 36092
+2025/05/09 21:02:27 [notice] 36092#4156: openresty/1.27.1.2
+2025/05/09 21:02:27 [info] 36092#4156: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:27 [notice] 36092#4156: create thread 29964
+2025/05/09 21:02:27 [notice] 36092#4156: create thread 16212
+2025/05/09 21:02:27 [notice] 36092#4156: create thread 39488
+2025/05/09 21:02:27 [notice] 12548#43192: start worker process 31716
+2025/05/09 21:02:27 [notice] 31716#41812: openresty/1.27.1.2
+2025/05/09 21:02:27 [info] 31716#41812: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:02:27 [notice] 31716#41812: create thread 30916
+2025/05/09 21:02:27 [notice] 31716#41812: create thread 20272
+2025/05/09 21:02:27 [notice] 31716#41812: create thread 5444
+2025/05/09 21:02:29 [info] 31012#34952: *1 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:02:30 [info] 31012#34952: *2 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:03:30 [info] 31012#34952: *5 client timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while waiting for request, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:07:40 [notice] 44516#20508: signal process started
+2025/05/09 21:07:40 [notice] 12548#43192: exiting
+2025/05/09 21:07:40 [notice] 22400#24948: gracefully shutting down
+2025/05/09 21:07:40 [notice] 31012#30488: gracefully shutting down
+2025/05/09 21:07:40 [notice] 18808#38388: gracefully shutting down
+2025/05/09 21:07:40 [notice] 33828#30904: gracefully shutting down
+2025/05/09 21:07:40 [notice] 33112#43948: gracefully shutting down
+2025/05/09 21:07:40 [notice] 18876#29180: gracefully shutting down
+2025/05/09 21:07:40 [notice] 30876#10584: gracefully shutting down
+2025/05/09 21:07:40 [notice] 19124#18932: gracefully shutting down
+2025/05/09 21:07:40 [notice] 16064#41808: gracefully shutting down
+2025/05/09 21:07:40 [notice] 31208#15180: gracefully shutting down
+2025/05/09 21:07:40 [notice] 41216#28968: gracefully shutting down
+2025/05/09 21:07:40 [notice] 44036#21416: gracefully shutting down
+2025/05/09 21:07:40 [notice] 44688#27080: gracefully shutting down
+2025/05/09 21:07:40 [notice] 43840#36132: gracefully shutting down
+2025/05/09 21:07:40 [notice] 40044#9008: gracefully shutting down
+2025/05/09 21:07:40 [notice] 31012#29432: exiting
+2025/05/09 21:07:40 [notice] 22400#44808: exiting
+2025/05/09 21:07:40 [notice] 7892#44780: gracefully shutting down
+2025/05/09 21:07:40 [notice] 18808#43072: exiting
+2025/05/09 21:07:40 [notice] 36092#4156: gracefully shutting down
+2025/05/09 21:07:40 [notice] 16784#42204: gracefully shutting down
+2025/05/09 21:07:40 [notice] 37444#43596: gracefully shutting down
+2025/05/09 21:07:40 [notice] 31716#41812: gracefully shutting down
+2025/05/09 21:07:40 [notice] 18876#34876: exiting
+2025/05/09 21:07:40 [notice] 33112#34048: exiting
+2025/05/09 21:07:40 [notice] 30876#40080: exiting
+2025/05/09 21:07:40 [notice] 19124#38148: exiting
+2025/05/09 21:07:40 [notice] 16064#3348: exiting
+2025/05/09 21:07:40 [notice] 33828#44652: exiting
+2025/05/09 21:07:40 [notice] 31208#22500: exiting
+2025/05/09 21:07:40 [notice] 41216#23828: exiting
+2025/05/09 21:07:40 [notice] 43840#28244: exiting
+2025/05/09 21:07:40 [notice] 40044#41868: exiting
+2025/05/09 21:07:40 [notice] 44688#4400: exiting
+2025/05/09 21:07:40 [notice] 7892#45032: exiting
+2025/05/09 21:07:40 [notice] 44036#5844: exiting
+2025/05/09 21:07:40 [notice] 36092#16212: exiting
+2025/05/09 21:07:40 [notice] 37444#32236: exiting
+2025/05/09 21:07:40 [notice] 16784#44232: exiting
+2025/05/09 21:07:40 [notice] 31716#20272: exiting
+2025/05/09 21:07:40 [notice] 36092#29964: exiting
+2025/05/09 21:07:40 [notice] 18808#29584: exiting
+2025/05/09 21:07:40 [notice] 31012#34952: exiting
+2025/05/09 21:07:40 [notice] 19124#31172: exiting
+2025/05/09 21:07:40 [notice] 16784#8292: exiting
+2025/05/09 21:07:40 [notice] 40044#32460: exiting
+2025/05/09 21:07:40 [notice] 44688#44324: exiting
+2025/05/09 21:07:40 [notice] 37444#30908: exiting
+2025/05/09 21:07:40 [notice] 44036#42128: exiting
+2025/05/09 21:07:40 [notice] 33112#10312: exiting
+2025/05/09 21:07:40 [notice] 18876#37880: exiting
+2025/05/09 21:07:40 [notice] 43840#41640: exiting
+2025/05/09 21:07:40 [notice] 33828#42588: exiting
+2025/05/09 21:07:40 [notice] 19124#18932: exit
+2025/05/09 21:07:40 [notice] 18808#38388: exit
+2025/05/09 21:07:40 [notice] 44688#27080: exit
+2025/05/09 21:07:40 [notice] 40044#9008: exit
+2025/05/09 21:07:40 [notice] 31012#30488: exit
+2025/05/09 21:07:40 [notice] 33828#30904: exit
+2025/05/09 21:07:40 [notice] 33112#43948: exit
+2025/05/09 21:07:40 [notice] 18876#29180: exit
+2025/05/09 21:07:40 [notice] 43840#36132: exit
+2025/05/09 21:07:40 [notice] 44036#21416: exit
+2025/05/09 21:07:40 [notice] 37444#43596: exit
+2025/05/09 21:07:40 [notice] 36092#4156: exit
+2025/05/09 21:07:40 [notice] 16784#42204: exit
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 19124 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 44688 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 31012 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 18808 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 33828 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 33112 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 40044 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 18876 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 44036 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 43840 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 37444 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 16784 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 36092 exited with code 0
+2025/05/09 21:07:40 [notice] 30876#12056: exiting
+2025/05/09 21:07:40 [notice] 41216#44556: exiting
+2025/05/09 21:07:40 [notice] 31716#30916: exiting
+2025/05/09 21:07:40 [notice] 7892#25312: exiting
+2025/05/09 21:07:40 [notice] 41216#28968: exit
+2025/05/09 21:07:40 [notice] 30876#10584: exit
+2025/05/09 21:07:40 [notice] 7892#44780: exit
+2025/05/09 21:07:40 [notice] 31716#41812: exit
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 7892 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 41216 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 31716 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 30876 exited with code 0
+2025/05/09 21:07:40 [notice] 31208#7440: exiting
+2025/05/09 21:07:40 [notice] 22400#33576: exiting
+2025/05/09 21:07:40 [notice] 16064#24744: exiting
+2025/05/09 21:07:40 [notice] 31208#15180: exit
+2025/05/09 21:07:40 [notice] 22400#24948: exit
+2025/05/09 21:07:40 [notice] 16064#41808: exit
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 16064 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 31208 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: worker process 22400 exited with code 0
+2025/05/09 21:07:40 [notice] 12548#43192: exit
+2025/05/09 21:07:44 [notice] 6240#20144: using the "select" event method
+2025/05/09 21:07:44 [notice] 6240#20144: openresty/1.27.1.2
+2025/05/09 21:07:44 [info] 6240#20144: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:44 [notice] 6240#20144: start worker processes
+2025/05/09 21:07:44 [notice] 6240#20144: start worker process 20936
+2025/05/09 21:07:45 [notice] 20936#31312: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 20936#31312: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 20936#31312: create thread 29040
+2025/05/09 21:07:45 [notice] 20936#31312: create thread 21116
+2025/05/09 21:07:45 [notice] 20936#31312: create thread 7524
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 42540
+2025/05/09 21:07:45 [notice] 42540#1648: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 42540#1648: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 42540#1648: create thread 41204
+2025/05/09 21:07:45 [notice] 42540#1648: create thread 17972
+2025/05/09 21:07:45 [notice] 42540#1648: create thread 11488
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 29016
+2025/05/09 21:07:45 [notice] 29016#42228: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 29016#42228: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 29016#42228: create thread 28108
+2025/05/09 21:07:45 [notice] 29016#42228: create thread 31372
+2025/05/09 21:07:45 [notice] 29016#42228: create thread 37160
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 5192
+2025/05/09 21:07:45 [notice] 5192#42036: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 5192#42036: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 5192#42036: create thread 10760
+2025/05/09 21:07:45 [notice] 5192#42036: create thread 29068
+2025/05/09 21:07:45 [notice] 5192#42036: create thread 27244
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 24280
+2025/05/09 21:07:45 [notice] 24280#10272: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 24280#10272: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 24280#10272: create thread 34272
+2025/05/09 21:07:45 [notice] 24280#10272: create thread 2356
+2025/05/09 21:07:45 [notice] 24280#10272: create thread 39520
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 3120
+2025/05/09 21:07:45 [notice] 3120#13740: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 3120#13740: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 3120#13740: create thread 20660
+2025/05/09 21:07:45 [notice] 3120#13740: create thread 39832
+2025/05/09 21:07:45 [notice] 3120#13740: create thread 448
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 29428
+2025/05/09 21:07:45 [notice] 29428#27896: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 29428#27896: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 29428#27896: create thread 29792
+2025/05/09 21:07:45 [notice] 29428#27896: create thread 11460
+2025/05/09 21:07:45 [notice] 29428#27896: create thread 32232
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 13848
+2025/05/09 21:07:45 [notice] 13848#22372: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 13848#22372: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 13848#22372: create thread 11144
+2025/05/09 21:07:45 [notice] 13848#22372: create thread 40384
+2025/05/09 21:07:45 [notice] 13848#22372: create thread 42088
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 27696
+2025/05/09 21:07:45 [notice] 27696#256: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 27696#256: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 27696#256: create thread 31936
+2025/05/09 21:07:45 [notice] 27696#256: create thread 1164
+2025/05/09 21:07:45 [notice] 27696#256: create thread 44680
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 11560
+2025/05/09 21:07:45 [notice] 11560#3028: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 11560#3028: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 11560#3028: create thread 3124
+2025/05/09 21:07:45 [notice] 11560#3028: create thread 28152
+2025/05/09 21:07:45 [notice] 11560#3028: create thread 7624
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 1844
+2025/05/09 21:07:45 [notice] 1844#42092: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 1844#42092: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 1844#42092: create thread 31848
+2025/05/09 21:07:45 [notice] 1844#42092: create thread 37088
+2025/05/09 21:07:45 [notice] 1844#42092: create thread 27612
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 39516
+2025/05/09 21:07:45 [notice] 39516#40492: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 39516#40492: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 39516#40492: create thread 33408
+2025/05/09 21:07:45 [notice] 39516#40492: create thread 44488
+2025/05/09 21:07:45 [notice] 39516#40492: create thread 15840
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 17388
+2025/05/09 21:07:45 [notice] 17388#18068: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 17388#18068: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 17388#18068: create thread 20616
+2025/05/09 21:07:45 [notice] 17388#18068: create thread 41016
+2025/05/09 21:07:45 [notice] 17388#18068: create thread 36652
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 43320
+2025/05/09 21:07:45 [notice] 43320#14408: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 43320#14408: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 43320#14408: create thread 25460
+2025/05/09 21:07:45 [notice] 43320#14408: create thread 35028
+2025/05/09 21:07:45 [notice] 43320#14408: create thread 19688
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 11016
+2025/05/09 21:07:45 [notice] 11016#44668: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 11016#44668: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 11016#44668: create thread 14588
+2025/05/09 21:07:45 [notice] 11016#44668: create thread 13776
+2025/05/09 21:07:45 [notice] 11016#44668: create thread 5368
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 43364
+2025/05/09 21:07:45 [notice] 43364#20656: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 43364#20656: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 43364#20656: create thread 13180
+2025/05/09 21:07:45 [notice] 43364#20656: create thread 2764
+2025/05/09 21:07:45 [notice] 43364#20656: create thread 43804
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 23460
+2025/05/09 21:07:45 [notice] 23460#37708: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 23460#37708: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 23460#37708: create thread 34848
+2025/05/09 21:07:45 [notice] 23460#37708: create thread 9796
+2025/05/09 21:07:45 [notice] 23460#37708: create thread 44548
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 28092
+2025/05/09 21:07:45 [notice] 28092#44996: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 28092#44996: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 28092#44996: create thread 44464
+2025/05/09 21:07:45 [notice] 28092#44996: create thread 27796
+2025/05/09 21:07:45 [notice] 28092#44996: create thread 14200
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 17192
+2025/05/09 21:07:45 [notice] 17192#20084: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 17192#20084: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 17192#20084: create thread 31172
+2025/05/09 21:07:45 [notice] 17192#20084: create thread 38148
+2025/05/09 21:07:45 [notice] 17192#20084: create thread 29584
+2025/05/09 21:07:45 [notice] 6240#20144: start worker process 44324
+2025/05/09 21:07:45 [notice] 44324#43072: openresty/1.27.1.2
+2025/05/09 21:07:45 [info] 44324#43072: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:07:45 [notice] 44324#43072: create thread 28244
+2025/05/09 21:07:45 [notice] 44324#43072: create thread 42128
+2025/05/09 21:07:45 [notice] 44324#43072: create thread 5844
+2025/05/09 21:07:50 [info] 20936#29040: *1 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:07:51 [info] 20936#29040: *2 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:07:56 [error] 20936#29040: *3 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "OPTIONS /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:07:56 [warn] 20936#29040: *3 upstream server temporarily disabled while connecting to upstream, client: 127.0.0.1, server: localhost, request: "OPTIONS /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:08:51 [info] 20936#29040: *5 client timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while waiting for request, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:10:44 [info] 20936#29040: *12 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:10:45 [info] 20936#29040: *13 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:11:45 [info] 20936#29040: *16 client timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while waiting for request, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:16:23 [info] 20936#29040: *17 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:16:23 [info] 20936#29040: *18 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:16:25 [error] 20936#29040: *19 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "POST /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:16:25 [warn] 20936#29040: *19 upstream server temporarily disabled while connecting to upstream, client: 127.0.0.1, server: localhost, request: "POST /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:16:33 [notice] 4920#39148: signal process started
+2025/05/09 21:16:33 [notice] 6240#20144: exiting
+2025/05/09 21:16:33 [notice] 20936#31312: gracefully shutting down
+2025/05/09 21:16:33 [notice] 29016#42228: gracefully shutting down
+2025/05/09 21:16:33 [notice] 5192#42036: gracefully shutting down
+2025/05/09 21:16:33 [notice] 24280#10272: gracefully shutting down
+2025/05/09 21:16:33 [notice] 42540#1648: gracefully shutting down
+2025/05/09 21:16:33 [notice] 29428#27896: gracefully shutting down
+2025/05/09 21:16:33 [notice] 3120#13740: gracefully shutting down
+2025/05/09 21:16:33 [notice] 13848#22372: gracefully shutting down
+2025/05/09 21:16:33 [notice] 27696#256: gracefully shutting down
+2025/05/09 21:16:33 [notice] 11560#3028: gracefully shutting down
+2025/05/09 21:16:33 [notice] 1844#42092: gracefully shutting down
+2025/05/09 21:16:33 [notice] 39516#40492: gracefully shutting down
+2025/05/09 21:16:33 [notice] 17388#18068: gracefully shutting down
+2025/05/09 21:16:33 [notice] 20936#21116: exiting
+2025/05/09 21:16:33 [notice] 23460#37708: gracefully shutting down
+2025/05/09 21:16:33 [notice] 11016#44668: gracefully shutting down
+2025/05/09 21:16:33 [notice] 43320#14408: gracefully shutting down
+2025/05/09 21:16:33 [notice] 29016#31372: exiting
+2025/05/09 21:16:33 [notice] 28092#44996: gracefully shutting down
+2025/05/09 21:16:33 [notice] 3120#39832: exiting
+2025/05/09 21:16:33 [notice] 43364#20656: gracefully shutting down
+2025/05/09 21:16:33 [notice] 42540#17972: exiting
+2025/05/09 21:16:33 [notice] 17192#20084: gracefully shutting down
+2025/05/09 21:16:33 [notice] 24280#2356: exiting
+2025/05/09 21:16:33 [notice] 44324#43072: gracefully shutting down
+2025/05/09 21:16:33 [notice] 5192#29068: exiting
+2025/05/09 21:16:33 [notice] 13848#40384: exiting
+2025/05/09 21:16:33 [notice] 27696#1164: exiting
+2025/05/09 21:16:33 [notice] 1844#37088: exiting
+2025/05/09 21:16:33 [notice] 29428#11460: exiting
+2025/05/09 21:16:33 [notice] 11560#28152: exiting
+2025/05/09 21:16:33 [notice] 39516#44488: exiting
+2025/05/09 21:16:33 [notice] 17388#41016: exiting
+2025/05/09 21:16:33 [notice] 23460#9796: exiting
+2025/05/09 21:16:33 [notice] 11016#13776: exiting
+2025/05/09 21:16:33 [notice] 43320#35028: exiting
+2025/05/09 21:16:33 [notice] 17192#38148: exiting
+2025/05/09 21:16:33 [notice] 43364#2764: exiting
+2025/05/09 21:16:33 [notice] 28092#27796: exiting
+2025/05/09 21:16:33 [notice] 44324#42128: exiting
+2025/05/09 21:16:33 [notice] 29428#29792: exiting
+2025/05/09 21:16:33 [notice] 27696#31936: exiting
+2025/05/09 21:16:33 [notice] 44324#28244: exiting
+2025/05/09 21:16:33 [notice] 17192#31172: exiting
+2025/05/09 21:16:33 [notice] 43364#13180: exiting
+2025/05/09 21:16:33 [notice] 28092#44464: exiting
+2025/05/09 21:16:33 [notice] 13848#11144: exiting
+2025/05/09 21:16:33 [notice] 24280#34272: exiting
+2025/05/09 21:16:33 [notice] 23460#34848: exiting
+2025/05/09 21:16:33 [notice] 3120#20660: exiting
+2025/05/09 21:16:33 [notice] 27696#256: exit
+2025/05/09 21:16:33 [notice] 3120#13740: exit
+2025/05/09 21:16:33 [notice] 29428#27896: exit
+2025/05/09 21:16:33 [notice] 13848#22372: exit
+2025/05/09 21:16:33 [notice] 44324#43072: exit
+2025/05/09 21:16:33 [notice] 17192#20084: exit
+2025/05/09 21:16:33 [notice] 24280#10272: exit
+2025/05/09 21:16:33 [notice] 43364#20656: exit
+2025/05/09 21:16:33 [notice] 28092#44996: exit
+2025/05/09 21:16:33 [notice] 23460#37708: exit
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 24280 exited with code 0
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 3120 exited with code 0
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 29428 exited with code 0
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 13848 exited with code 0
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 27696 exited with code 0
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 43364 exited with code 0
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 23460 exited with code 0
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 44324 exited with code 0
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 17192 exited with code 0
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 28092 exited with code 0
+2025/05/09 21:16:33 [notice] 1844#31848: exiting
+2025/05/09 21:16:33 [notice] 11560#3124: exiting
+2025/05/09 21:16:33 [notice] 5192#10760: exiting
+2025/05/09 21:16:33 [notice] 42540#41204: exiting
+2025/05/09 21:16:33 [notice] 39516#33408: exiting
+2025/05/09 21:16:33 [notice] 17388#20616: exiting
+2025/05/09 21:16:33 [notice] 42540#1648: exit
+2025/05/09 21:16:33 [notice] 11560#3028: exit
+2025/05/09 21:16:33 [notice] 1844#42092: exit
+2025/05/09 21:16:33 [notice] 5192#42036: exit
+2025/05/09 21:16:33 [notice] 17388#18068: exit
+2025/05/09 21:16:33 [notice] 39516#40492: exit
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 39516 exited with code 0
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 42540 exited with code 0
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 5192 exited with code 0
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 11560 exited with code 0
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 1844 exited with code 0
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 17388 exited with code 0
+2025/05/09 21:16:33 [notice] 43320#25460: exiting
+2025/05/09 21:16:33 [notice] 29016#28108: exiting
+2025/05/09 21:16:33 [notice] 29016#42228: exit
+2025/05/09 21:16:33 [notice] 43320#14408: exit
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 29016 exited with code 0
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 43320 exited with code 0
+2025/05/09 21:16:33 [notice] 11016#14588: exiting
+2025/05/09 21:16:33 [notice] 11016#44668: exit
+2025/05/09 21:16:33 [notice] 6240#20144: worker process 11016 exited with code 0
+2025/05/09 21:16:36 [notice] 27668#40536: using the "select" event method
+2025/05/09 21:16:36 [notice] 27668#40536: openresty/1.27.1.2
+2025/05/09 21:16:36 [info] 27668#40536: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:36 [notice] 27668#40536: start worker processes
+2025/05/09 21:16:36 [notice] 27668#40536: start worker process 26736
+2025/05/09 21:16:36 [notice] 26736#39020: openresty/1.27.1.2
+2025/05/09 21:16:36 [info] 26736#39020: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:36 [notice] 26736#39020: create thread 5552
+2025/05/09 21:16:36 [notice] 26736#39020: create thread 37956
+2025/05/09 21:16:36 [notice] 26736#39020: create thread 42192
+2025/05/09 21:16:36 [notice] 27668#40536: start worker process 43732
+2025/05/09 21:16:36 [notice] 43732#41692: openresty/1.27.1.2
+2025/05/09 21:16:36 [info] 43732#41692: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:36 [notice] 43732#41692: create thread 13040
+2025/05/09 21:16:36 [notice] 43732#41692: create thread 24144
+2025/05/09 21:16:36 [notice] 43732#41692: create thread 10732
+2025/05/09 21:16:36 [notice] 27668#40536: start worker process 29604
+2025/05/09 21:16:36 [notice] 29604#28756: openresty/1.27.1.2
+2025/05/09 21:16:36 [info] 29604#28756: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:36 [notice] 29604#28756: create thread 36384
+2025/05/09 21:16:36 [notice] 29604#28756: create thread 22056
+2025/05/09 21:16:36 [notice] 29604#28756: create thread 26796
+2025/05/09 21:16:36 [notice] 27668#40536: start worker process 28812
+2025/05/09 21:16:36 [notice] 28812#10120: openresty/1.27.1.2
+2025/05/09 21:16:36 [info] 28812#10120: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:36 [notice] 28812#10120: create thread 24056
+2025/05/09 21:16:36 [notice] 28812#10120: create thread 40484
+2025/05/09 21:16:36 [notice] 28812#10120: create thread 44968
+2025/05/09 21:16:36 [notice] 27668#40536: start worker process 30208
+2025/05/09 21:16:36 [notice] 30208#39932: openresty/1.27.1.2
+2025/05/09 21:16:36 [info] 30208#39932: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:36 [notice] 30208#39932: create thread 15608
+2025/05/09 21:16:36 [notice] 30208#39932: create thread 44452
+2025/05/09 21:16:36 [notice] 30208#39932: create thread 35312
+2025/05/09 21:16:36 [notice] 27668#40536: start worker process 34388
+2025/05/09 21:16:36 [notice] 34388#18548: openresty/1.27.1.2
+2025/05/09 21:16:36 [info] 34388#18548: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:36 [notice] 34388#18548: create thread 37968
+2025/05/09 21:16:36 [notice] 34388#18548: create thread 33192
+2025/05/09 21:16:36 [notice] 34388#18548: create thread 40360
+2025/05/09 21:16:37 [notice] 27668#40536: start worker process 22192
+2025/05/09 21:16:37 [notice] 22192#31076: openresty/1.27.1.2
+2025/05/09 21:16:37 [info] 22192#31076: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:37 [notice] 22192#31076: create thread 28988
+2025/05/09 21:16:37 [notice] 22192#31076: create thread 44096
+2025/05/09 21:16:37 [notice] 22192#31076: create thread 10104
+2025/05/09 21:16:37 [notice] 27668#40536: start worker process 33736
+2025/05/09 21:16:37 [notice] 33736#42424: openresty/1.27.1.2
+2025/05/09 21:16:37 [info] 33736#42424: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:37 [notice] 33736#42424: create thread 42232
+2025/05/09 21:16:37 [notice] 33736#42424: create thread 16664
+2025/05/09 21:16:37 [notice] 33736#42424: create thread 39596
+2025/05/09 21:16:37 [notice] 27668#40536: start worker process 11468
+2025/05/09 21:16:37 [notice] 11468#36348: openresty/1.27.1.2
+2025/05/09 21:16:37 [info] 11468#36348: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:37 [notice] 11468#36348: create thread 25260
+2025/05/09 21:16:37 [notice] 11468#36348: create thread 29564
+2025/05/09 21:16:37 [notice] 11468#36348: create thread 40356
+2025/05/09 21:16:37 [notice] 27668#40536: start worker process 8172
+2025/05/09 21:16:37 [notice] 8172#42292: openresty/1.27.1.2
+2025/05/09 21:16:37 [info] 8172#42292: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:37 [notice] 8172#42292: create thread 44708
+2025/05/09 21:16:37 [notice] 8172#42292: create thread 31492
+2025/05/09 21:16:37 [notice] 8172#42292: create thread 3612
+2025/05/09 21:16:37 [notice] 27668#40536: start worker process 38452
+2025/05/09 21:16:37 [notice] 38452#27068: openresty/1.27.1.2
+2025/05/09 21:16:37 [info] 38452#27068: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:37 [notice] 38452#27068: create thread 40456
+2025/05/09 21:16:37 [notice] 38452#27068: create thread 42032
+2025/05/09 21:16:37 [notice] 38452#27068: create thread 7204
+2025/05/09 21:16:37 [notice] 27668#40536: start worker process 1356
+2025/05/09 21:16:37 [notice] 1356#31884: openresty/1.27.1.2
+2025/05/09 21:16:37 [info] 1356#31884: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:37 [notice] 1356#31884: create thread 36628
+2025/05/09 21:16:37 [notice] 1356#31884: create thread 18868
+2025/05/09 21:16:37 [notice] 1356#31884: create thread 32712
+2025/05/09 21:16:37 [notice] 27668#40536: start worker process 37128
+2025/05/09 21:16:37 [notice] 37128#44568: openresty/1.27.1.2
+2025/05/09 21:16:37 [info] 37128#44568: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:37 [notice] 37128#44568: create thread 41812
+2025/05/09 21:16:37 [notice] 37128#44568: create thread 12812
+2025/05/09 21:16:37 [notice] 37128#44568: create thread 44764
+2025/05/09 21:16:37 [notice] 27668#40536: start worker process 33396
+2025/05/09 21:16:37 [notice] 33396#15468: openresty/1.27.1.2
+2025/05/09 21:16:37 [info] 33396#15468: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:37 [notice] 33396#15468: create thread 14664
+2025/05/09 21:16:37 [notice] 33396#15468: create thread 22188
+2025/05/09 21:16:37 [notice] 33396#15468: create thread 12728
+2025/05/09 21:16:37 [notice] 27668#40536: start worker process 5500
+2025/05/09 21:16:37 [notice] 5500#25436: openresty/1.27.1.2
+2025/05/09 21:16:37 [info] 5500#25436: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:37 [notice] 5500#25436: create thread 26888
+2025/05/09 21:16:37 [notice] 5500#25436: create thread 36076
+2025/05/09 21:16:37 [notice] 5500#25436: create thread 35824
+2025/05/09 21:16:37 [notice] 27668#40536: start worker process 30372
+2025/05/09 21:16:37 [notice] 30372#37576: openresty/1.27.1.2
+2025/05/09 21:16:37 [info] 30372#37576: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:37 [notice] 30372#37576: create thread 42044
+2025/05/09 21:16:37 [notice] 30372#37576: create thread 19744
+2025/05/09 21:16:37 [notice] 30372#37576: create thread 29072
+2025/05/09 21:16:37 [notice] 27668#40536: start worker process 43696
+2025/05/09 21:16:37 [notice] 43696#27900: openresty/1.27.1.2
+2025/05/09 21:16:37 [info] 43696#27900: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:37 [notice] 43696#27900: create thread 39924
+2025/05/09 21:16:37 [notice] 43696#27900: create thread 35148
+2025/05/09 21:16:37 [notice] 43696#27900: create thread 18932
+2025/05/09 21:16:37 [notice] 27668#40536: start worker process 45052
+2025/05/09 21:16:37 [notice] 45052#38156: openresty/1.27.1.2
+2025/05/09 21:16:37 [info] 45052#38156: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:37 [notice] 45052#38156: create thread 11624
+2025/05/09 21:16:37 [notice] 45052#38156: create thread 12592
+2025/05/09 21:16:37 [notice] 45052#38156: create thread 40292
+2025/05/09 21:16:37 [notice] 27668#40536: start worker process 25996
+2025/05/09 21:16:37 [notice] 25996#30232: openresty/1.27.1.2
+2025/05/09 21:16:37 [info] 25996#30232: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:37 [notice] 25996#30232: create thread 43296
+2025/05/09 21:16:37 [notice] 25996#30232: create thread 33112
+2025/05/09 21:16:37 [notice] 25996#30232: create thread 21760
+2025/05/09 21:16:37 [notice] 27668#40536: start worker process 39148
+2025/05/09 21:16:37 [notice] 39148#4920: openresty/1.27.1.2
+2025/05/09 21:16:37 [info] 39148#4920: OS: 300000 build:22631, "", suite:100, type:1
+2025/05/09 21:16:37 [notice] 39148#4920: create thread 34272
+2025/05/09 21:16:37 [notice] 39148#4920: create thread 2356
+2025/05/09 21:16:37 [notice] 39148#4920: create thread 13180
+2025/05/09 21:16:38 [notice] 6240#20144: exit
+2025/05/09 21:16:39 [info] 26736#5552: *1 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:16:39 [info] 26736#5552: *2 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:16:50 [error] 26736#5552: *3 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "POST /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:16:50 [warn] 26736#5552: *3 upstream server temporarily disabled while connecting to upstream, client: 127.0.0.1, server: localhost, request: "POST /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:17:07 [error] 26736#5552: *3 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "POST /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:17:07 [warn] 26736#5552: *3 upstream server temporarily disabled while connecting to upstream, client: 127.0.0.1, server: localhost, request: "POST /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:17:47 [error] 26736#5552: *3 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET /api/v1/cards/like-status?reply_id=18 HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/like-status?reply_id=18", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:17:47 [warn] 26736#5552: *3 upstream server temporarily disabled while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET /api/v1/cards/like-status?reply_id=18 HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/like-status?reply_id=18", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:17:51 [info] 26736#5552: *29 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:17:51 [info] 26736#5552: *30 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:18:15 [info] 26736#5552: *3 client prematurely closed connection, so upstream connection is closed too while connecting to upstream, client: 127.0.0.1, server: localhost, request: "POST /api/v1/cards/like HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/like", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:18:16 [info] 26736#5552: *36 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:18:16 [info] 26736#5552: *37 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:18:16 [info] 26736#5552: *38 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:18:16 [info] 26736#5552: *39 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:18:18 [error] 26736#5552: *5 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "POST /api/v1/cards/getreplycard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getreplycard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:18:18 [warn] 26736#5552: *5 upstream server temporarily disabled while connecting to upstream, client: 127.0.0.1, server: localhost, request: "POST /api/v1/cards/getreplycard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getreplycard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:18:42 [error] 26736#5552: *5 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "POST /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:18:42 [warn] 26736#5552: *5 upstream server temporarily disabled while connecting to upstream, client: 127.0.0.1, server: localhost, request: "POST /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:19:16 [info] 26736#5552: *41 client timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while waiting for request, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:19:16 [info] 26736#5552: *43 client timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while waiting for request, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:19:16 [info] 26736#5552: *44 client timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while waiting for request, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:19:59 [notice] 13800#32644: signal process started
+2025/05/09 21:19:59 [error] 13800#32644: CreateFile() "./logs/nginx.pid" failed (2: The system cannot find the file specified)
+2025/05/09 21:20:10 [info] 26736#5552: *54 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:20:10 [info] 26736#5552: *55 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:20:19 [error] 26736#5552: *56 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "POST /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:20:19 [warn] 26736#5552: *56 upstream server temporarily disabled while connecting to upstream, client: 127.0.0.1, server: localhost, request: "POST /api/v1/cards/getcard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getcard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:20:39 [notice] 39644#42620: signal process started
+2025/05/09 21:20:39 [error] 39644#42620: CreateFile() "./logs/nginx.pid" failed (2: The system cannot find the file specified)
+2025/05/09 21:20:39 [notice] 37540#42220: signal process started
+2025/05/09 21:20:39 [error] 37540#42220: CreateFile() "./logs/nginx.pid" failed (2: The system cannot find the file specified)
+2025/05/09 21:20:39 [notice] 27684#32644: signal process started
+2025/05/09 21:20:39 [error] 27684#32644: CreateFile() "./logs/nginx.pid" failed (2: The system cannot find the file specified)
+2025/05/09 21:20:40 [notice] 23412#14112: signal process started
+2025/05/09 21:20:40 [error] 23412#14112: CreateFile() "./logs/nginx.pid" failed (2: The system cannot find the file specified)
+2025/05/09 21:20:47 [info] 26736#5552: *65 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:20:47 [info] 26736#5552: *66 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:20:49 [error] 26736#5552: *58 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "POST /api/v1/cards/getreplycard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getreplycard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:20:49 [warn] 26736#5552: *58 upstream server temporarily disabled while connecting to upstream, client: 127.0.0.1, server: localhost, request: "POST /api/v1/cards/getreplycard HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/getreplycard", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:20:49 [info] 26736#5552: *71 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:20:49 [info] 26736#5552: *72 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:21:00 [info] 26736#5552: *82 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:21:00 [info] 26736#5552: *83 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:21:00 [info] 26736#5552: *84 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:21:00 [info] 26736#5552: *85 SSL_do_handshake() failed (SSL: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown:SSL alert number 46) while SSL handshaking, client: 127.0.0.1, server: 0.0.0.0:443
+2025/05/09 21:21:02 [error] 26736#5552: *58 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET /api/v1/cards/like-status?reply_id=b189ae50-388b-468c-86e4-7032ade6d97e HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/like-status?reply_id=b189ae50-388b-468c-86e4-7032ade6d97e", host: "localhost", referrer: "http://localhost:5174/"
+2025/05/09 21:21:02 [warn] 26736#5552: *58 upstream server temporarily disabled while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET /api/v1/cards/like-status?reply_id=b189ae50-388b-468c-86e4-7032ade6d97e HTTP/1.1", upstream: "https://[::1]:8000/api/v1/cards/like-status?reply_id=b189ae50-388b-468c-86e4-7032ade6d97e", host: "localhost", referrer: "http://localhost:5174/"

@@ -1,0 +1,357 @@
+=encoding utf-8
+
+=head1 NAME
+
+ngx_mgmt_module - Module ngx_mgmt_module
+
+
+
+
+=head1
+
+
+
+The C<ngx_mgmt_module> module enables
+NGINX Plus license verification and usage reporting.
+This is mandatory for each
+L<C<nginxE<sol>1.27.2
+(nginx-plus-r33)>|https://docs.nginx.com/nginx/releases/#nginxplusrelease-33-r33> instance.
+
+
+
+
+
+A JWT license file named C<license.jwt>
+should be located at
+C<E<sol>etcE<sol>nginxE<sol>> for Linux or
+C<E<sol>usrE<sol>localE<sol>etcE<sol>nginxE<sol>> for FreeBSD
+or at the path specified by the L</license_token> directive.
+The license file is available from
+L<MyF5|https://my.f5.com>.
+
+
+
+
+
+Usage report is sent to F5 licensing endpoint
+every hour using the
+secure connection.
+Optionally, in network-restricted environments
+reporting can be configured to
+L<F5 NGINX
+Instance Manager|https://docs.nginx.com/nginx-management-suite/about/> from which the report can be sent
+to F5 licensing endpoint.
+
+
+
+
+
+By default, if the initial usage report
+is not received by F5 licensing endpoint, nginx will stop processing traffic.
+
+
+
+
+
+
+B<NOTE>
+
+This module is available as part of our
+commercial subscription.
+
+
+
+
+
+=head1 Example Configuration
+
+
+
+
+    
+    mgmt {
+        # in case if custom path is required
+        license_token custom/file/path/license.jwt;
+    
+        # in case of reporting to NGINX Instance Manager
+        usage_report endpoint=NIM_FQDN;
+    }
+
+
+
+
+
+
+=head1 Directives
+
+=head2 mgmt
+
+
+mgmt { B<...> }
+
+
+
+B<context:> I<main>
+
+
+
+
+
+Provides the configuration file context in which
+usage reporting and license management directives
+are specified.
+
+
+
+
+
+
+
+=head2 enforce_initial_report
+
+
+B<syntax:> enforce_initial_report I<C<on> E<verbar> C<off>>
+
+
+B<default:> I<on>
+
+
+B<context:> I<mgmt>
+
+
+
+This directive appeared in version 1.27.2.
+
+
+
+
+
+Enables or disables the 180-day grace period
+for sending the initial usage report.
+
+
+
+
+
+The initial usage report is sent immediately
+upon nginx first start after installation.
+By default, if the initial report is not received by F5 licensing endpoint,
+nginx stops processing traffic until the report is successfully delivered.
+Setting the directive value to C<off> enables
+the 180-day grace period during which
+the initial usage report must be received by F5 licensing endpoint.
+
+
+
+
+
+
+
+=head2 license_token
+
+
+B<syntax:> license_token I<I<C<file>>>
+
+
+B<default:> I<license.jwt>
+
+
+B<context:> I<mgmt>
+
+
+
+This directive appeared in version 1.27.2.
+
+
+
+
+
+Specifies a JWT license I<C<file>>.
+By default, the I<C<license.jwt>> file is expected to be at
+C<E<sol>etcE<sol>nginxE<sol>> for Linux or at
+C<E<sol>usrE<sol>localE<sol>etcE<sol>nginxE<sol>> for FreeBSD.
+
+
+
+
+
+
+
+=head2 resolver
+
+
+B<syntax:> resolver I<
+    I<C<address>> ...
+    [C<valid>=I<C<time>>]
+    [C<ipv4>=C<on>E<verbar>C<off>]
+    [C<ipv6>=C<on>E<verbar>C<off>]
+    [C<status_zone>=I<C<zone>>]>
+
+
+
+B<context:> I<mgmt>
+
+
+
+
+
+Configures name servers used to resolve usage reporting endpoint name.
+By default, the system resolver is used.
+
+
+
+
+
+See L<ngx_http_core_module> for details.
+
+
+
+
+
+
+
+=head2 ssl_crl
+
+
+B<syntax:> ssl_crl I<I<C<file>>>
+
+
+
+B<context:> I<mgmt>
+
+
+
+
+
+Specifies a I<C<file>> with revoked certificates (CRL)
+in the PEM format used to verify
+the certificate of the usage reporting endpoint.
+
+
+
+
+
+
+
+=head2 ssl_trusted_certificate
+
+
+B<syntax:> ssl_trusted_certificate I<I<C<file>>>
+
+
+B<default:> I<system CA bundle>
+
+
+B<context:> I<mgmt>
+
+
+
+
+
+Specifies a I<C<file>> with trusted CA certificates in the PEM format
+used to verify
+the certificate of the usage reporting endpoint.
+
+
+
+
+
+
+
+=head2 ssl_verify
+
+
+B<syntax:> ssl_verify I<C<on> E<verbar> C<off>>
+
+
+B<default:> I<on>
+
+
+B<context:> I<mgmt>
+
+
+
+
+
+Enables or disables verification of the usage reporting endpoint certificate.
+
+
+
+
+
+
+B<NOTE>
+
+Before 1.27.2, the default value was C<off>.
+
+
+
+
+
+
+
+
+=head2 state_path
+
+
+B<syntax:> state_path I<I<C<path>>>
+
+
+
+B<context:> I<mgmt>
+
+
+
+This directive appeared in version 1.27.2.
+
+
+
+
+
+Defines a directory for storing state files
+(C<nginx-mgmt-*>)
+created by the C<ngx_mgmt_module> module.
+The default directory
+for Linux is C<E<sol>varE<sol>libE<sol>nginxE<sol>state>,
+for FreeBSD is C<E<sol>varE<sol>dbE<sol>nginxE<sol>state>.
+
+
+
+
+
+
+
+=head2 usage_report
+
+
+B<syntax:> usage_report I< [C<endpoint>=I<C<address>>]
+         [C<interval>=I<C<time>>]>
+
+
+B<default:> I<endpoint=product.connect.nginx.com interval=1h>
+
+
+B<context:> I<mgmt>
+
+
+
+
+
+Sets the I<C<address>> and I<C<port>>
+of the usage reporting endpoint.
+The C<interval> parameter sets an interval between
+two consecutive reports.
+
+B<NOTE>
+
+Before 1.27.2, the default values were
+C<nginx-mgmt.local> and
+C<30m>.
+
+
+
+
+
+
+
+
