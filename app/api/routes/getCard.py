@@ -28,7 +28,12 @@ def get_card(session: SessionDep, request_data: CardRequest): # Receive request 
     statement = statement.order_by(DefaultCard.time.desc())
     cards = session.exec(statement).all()#执行查询
     return DefaultCardResponse(data = cards) #返回卡片列表
-
+@router.get("/getonecard/{number}")
+def get_onecard(number:int,session:SessionDep):
+    thecard=session.exec(select(DefaultCard).where(DefaultCard.number == number)).first()
+    if not thecard:
+        raise HTTPException(status_code=404, detail="卡片不存在")
+    return thecard
 # 请求最新的一个卡片，通过category去查询
 @router.post("/getnewcard",response_model=DefaultCardResponse)
 def get_new_card(session:SessionDep,request_data:CardRequest_New):
