@@ -6,18 +6,20 @@ from sqlmodel import select
 from loguru import logger
 from app.models import Cookie, User, Message, CookieResponse, CookieUse, GetUserCookieNum
 from app import crud
-from app.api.deps import CurrentUser, SessionDep
+from app.api.deps import CurrentUser, AsyncSessionDep, RedisClient
 
 router = APIRouter(prefix="/cookies",tags=["cookies"])
+TOTAL_API_CALLS_KEY = "total_api_calls"
 
 @router.get("/addcookie", response_model=Message)
-def add_cookie(session:SessionDep,current_user:CurrentUser):
+async def add_cookie(session:AsyncSessionDep,current_user:CurrentUser, redis: RedisClient):
+    await redis.incr(TOTAL_API_CALLS_KEY)
     user_id_from_token = current_user.id
 
     generated_cookie_name = ""
     while True:
         temp_name = ''.join(random.choices(string.ascii_letters + string.digits, k=7))
-        existing_cookie = crud.get_cookie_by_name(session=session, name=temp_name)
+        existing_cookie = await crud.get_cookie_by_name(session=session, name=temp_name)
         if not existing_cookie:
             generated_cookie_name = temp_name
             break
@@ -33,7 +35,7 @@ def add_cookie(session:SessionDep,current_user:CurrentUser):
         id=user_id_from_token
     )
 
-    updated_user, created_cookie_obj = crud.spend_user_cookie_and_create_new_db_cookie(
+    updated_user, created_cookie_obj = await crud.spend_user_cookie_and_create_new_db_cookie(
         session=session,
         user_id=user_id_from_token,
         new_cookie_obj=new_cookie_data_obj
@@ -44,46 +46,46 @@ def add_cookie(session:SessionDep,current_user:CurrentUser):
     if not created_cookie_obj:
         return Message(message="cookies点数不足")
 
+    await session.commit()
+    await session.refresh(updated_user)
+    await session.refresh(created_cookie_obj)
+
     try:
-        session.commit()
-        session.refresh(updated_user)
-        session.refresh(created_cookie_obj)
         logger.info(f"User {user_id_from_token} added cookie (Name: {created_cookie_obj.name}, UserID via FK: {created_cookie_obj.id}). Remaining cookies: {updated_user.cookies}")
         return Message(message=f"Cookie '{created_cookie_obj.name}' 添加成功，剩余cookies: {updated_user.cookies}")
     except Exception as e:
-        logger.exception(f"Error committing to database: {e}")
-        session.rollback()
+        logger.exception(f"Error during cookie addition: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="添加Cookie失败，请稍后再试")
 
-# 查询cookie,通过user.id，也就是uuid去查询
 @router.get("/getcookie", response_model=CookieResponse)
-def get_cookie(session:SessionDep,current_user:CurrentUser):
+async def get_cookie(session:AsyncSessionDep,current_user:CurrentUser, redis: RedisClient):
+    await redis.incr(TOTAL_API_CALLS_KEY)
     user_id_from_token = current_user.id
-    # 通过user.id去查询cookie
-    cookies = session.exec(select(Cookie).where(Cookie.id==user_id_from_token)).all()
+    result = await session.exec(select(Cookie).where(Cookie.id==user_id_from_token))
+    cookies = result.all()
     return CookieResponse(data=cookies)
 
-# 客户端携带cookie的name以及自己的token去启用name对应的cookie
 @router.post("/use_cookie", response_model=Message)
-def use_cookie(session:SessionDep,current_user:CurrentUser,cookie_use:CookieUse):
+async def use_cookie(session:AsyncSessionDep,current_user:CurrentUser,cookie_use:CookieUse, redis: RedisClient):
+    await redis.incr(TOTAL_API_CALLS_KEY)
     user_id_from_token = current_user.id
-    # 通过user.id去查询cookie
-    cookies = session.exec(select(Cookie).where(Cookie.id==user_id_from_token)).all()
-    # 如果有cookies的inused为True，则将inused设置为False
-    for cookie in cookies:
-        if cookie.inused:
-            crud.set_cookie_inused_to_false(session=session, cookie_name=cookie.name)
-    # 将传入的cookie_use.name设置为True
-    crud.set_cookie_inused_to_true(session=session, cookie_name=cookie_use.name)
+    result = await session.exec(select(Cookie).where(Cookie.id==user_id_from_token))
+    cookies = result.all()
+    for cookie_item in cookies:
+        if cookie_item.inused:
+            await crud.set_cookie_inused_to_false(session=session, cookie_name=cookie_item.name)
+    await crud.set_cookie_inused_to_true(session=session, cookie_name=cookie_use.name)
     logger.info(f"User {user_id_from_token} used cookie (Name: {cookie_use.name}).")
     return Message(message="Cookie启用成功")
 
-#通过用户的id去查询用户拥有的cookie数量
 @router.get("/getusercookienum",response_model=GetUserCookieNum)
-def get_user_cookie_num(session:SessionDep,current_user:CurrentUser):
+async def get_user_cookie_num(session:AsyncSessionDep,current_user:CurrentUser, redis: RedisClient):
+    await redis.incr(TOTAL_API_CALLS_KEY)
     user_id_from_token = current_user.id
-    # 通过user.id 去查询user表里的cookies的int值
-    user = session.exec(select(User).where(User.id==user_id_from_token)).first()
+    result = await session.exec(select(User).where(User.id==user_id_from_token))
+    user = result.first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
     return GetUserCookieNum(number=user.cookies)
 
 

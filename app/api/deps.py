@@ -7,10 +7,12 @@ from fastapi.security import OAuth2PasswordBearer
 from jwt.exceptions import InvalidTokenError
 from pydantic import ValidationError
 from sqlmodel import Session
+from sqlmodel.ext.asyncio.session import AsyncSession # For SQLModel
+# from sqlalchemy.ext.asyncio import AsyncSession # For pure SQLAlchemy
 
 from app.core import security
 from app.core.config import settings
-from app.core.db import engine
+from app.core.db import engine # Assuming this 'engine' is now an AsyncEngine
 from app.models import TokenPayload, User
 
 # 创建一个 OAuth2PasswordBearer 实例，用于处理 Bearer Token 认证
@@ -28,13 +30,35 @@ def get_db() -> Generator[Session, None, None]:
     通过 yield 将会话提供给路径操作函数或其他依赖项。
     请求处理完成后，会话会自动关闭。
     """
+    # Note: This uses the same 'engine'. If 'engine' is async,
+    # creating a synchronous Session like this might be problematic
+    # or not work as expected. This dependency should be reviewed
+    # if the application is fully asynchronous.
     with Session(engine) as session:
         yield session
 
 # 类型注解：用于 FastAPI 依赖注入的数据库会话
-# Annotated[Session, Depends(get_db)] 表示参数类型是 Session，
-# 并且它的值应该通过调用 get_db() 函数来获取
 SessionDep = Annotated[Session, Depends(get_db)]
+
+# Asynchronous DB session dependency
+async def get_async_db() -> Generator[AsyncSession, None, None]:
+    """
+    Asynchronous database session dependency.
+    """
+    async with AsyncSession(engine) as session: # Use AsyncSession
+        try:
+            yield session
+            # Optional: commit if no errors, or handle commits in endpoints
+            # await session.commit()
+        except Exception:
+            await session.rollback()
+            raise
+        # finally:
+            # Context manager AsyncSession(engine) handles closing the session.
+            # await session.close()
+
+AsyncSessionDep = Annotated[AsyncSession, Depends(get_async_db)]
+
 
 # 类型注解：用于 FastAPI 依赖注入的 Token 字符串
 # Annotated[str, Depends(reusable_oauth2)] 表示参数类型是 str，
@@ -42,12 +66,12 @@ SessionDep = Annotated[Session, Depends(get_db)]
 TokenDep = Annotated[str, Depends(reusable_oauth2)]
 
 # 依赖项函数：获取当前已认证的用户
-def get_current_user(session: SessionDep, token: TokenDep) -> User:
+async def get_current_user(session: AsyncSessionDep, token: TokenDep) -> User:
     """
     解析并验证 token，然后从数据库中获取对应的用户。
 
     Args:
-        session: 数据库会话，通过 SessionDep 注入。
+        session: 异步数据库会话，通过 AsyncSessionDep 注入。
         token: 从请求头中提取的 Bearer Token 字符串，通过 TokenDep 注入。
 
     Raises:
@@ -72,13 +96,13 @@ def get_current_user(session: SessionDep, token: TokenDep) -> User:
             detail="无法验证凭据",
         )
     # 从数据库中根据 token 中的 subject (用户 ID) 获取用户对象
-    user = session.get(User, token_data.sub)
+    user = await session.get(User, token_data.sub)
     if not user:
         # 如果数据库中找不到该用户，抛出 404 错误
-        raise HTTPException(status_code=404, detail="用户未找到")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="用户未找到")
     if not user.is_active:
         # 如果用户已被禁用，抛出 400 错误
-        raise HTTPException(status_code=400, detail="无效用户")
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="无效用户")
     # 返回有效的用户对象
     return user
 
@@ -88,7 +112,7 @@ def get_current_user(session: SessionDep, token: TokenDep) -> User:
 CurrentUser = Annotated[User, Depends(get_current_user)]
 
 # 依赖项函数：获取当前已认证且具有超级用户权限的用户
-def get_current_active_superuser(current_user: CurrentUser) -> User:
+async def get_current_active_superuser(current_user: CurrentUser) -> User:
     """
     检查当前用户是否是超级用户。
 
@@ -107,7 +131,39 @@ def get_current_active_superuser(current_user: CurrentUser) -> User:
     if not current_user.is_superuser:
         # 如果不是超级用户，抛出 403 错误
         raise HTTPException(
-            status_code=403, detail="该用户没有足够的权限"
+            status_code=status.HTTP_403_FORBIDDEN, detail="该用户没有足够的权限"
         )
     # 返回具有超级用户权限的用户对象
     return current_user
+
+# --- Begin Redis Dependency ---
+import redis.asyncio as aioredis # For asynchronous Redis operations
+
+# You might want to move REDIS_URL to your app.core.config.settings
+# For example: settings.REDIS_URL or settings.ASYNC_REDIS_URL
+# Ensure your Redis server is running and accessible at this URL.
+REDIS_URL = "redis://localhost:6379/0"
+
+async def get_redis() -> Generator[aioredis.Redis, None, None]:
+    """
+    Asynchronous Redis client dependency generator.
+    Connects to Redis using the URL specified.
+    """
+    redis_client = None
+    try:
+        redis_client = aioredis.from_url(REDIS_URL, encoding="utf-8", decode_responses=True)
+        yield redis_client
+    except Exception as e:
+        # Handle connection errors or other issues during Redis client setup
+        # You might want to log this error
+        print(f"Error connecting to Redis or during Redis operation: {e}")
+        # Depending on your error handling strategy, you might re-raise or raise an HTTPException
+        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, 
+                            detail="Could not connect to Redis service")
+    finally:
+        if redis_client:
+            await redis_client.close()
+
+# Type annotation for Redis dependency
+RedisClient = Annotated[aioredis.Redis, Depends(get_redis)]
+# --- End Redis Dependency ---

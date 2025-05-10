@@ -1,16 +1,21 @@
 from sqlmodel import Session, create_engine, select
+from sqlalchemy.ext.asyncio import create_async_engine
 
 from app import crud
 from app.core.config import settings
 from app.models import User, UserCreate
 from loguru import logger
 
-# Modify create_engine to include connect_args for timeout
-engine = create_engine(
+# The new asynchronous engine, now including pool_size and max_overflow
+engine = create_async_engine(
     str(settings.SQLALCHEMY_DATABASE_URI),
-    connect_args={"connect_timeout": 1} # Change 10 to 3
+    pool_size=200,
+    max_overflow=200
 )
 
+# If your previous engine had other parameters like echo=True, 
+# you should add them here as well, for example:
+# engine = create_async_engine(str(settings.SQLALCHEMY_DATABASE_URI), echo=True)
 
 # make sure all SQLModel models are imported (app.models) before initializing DB
 # otherwise, SQLModel might fail to initialize relationships properly

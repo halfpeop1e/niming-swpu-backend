@@ -1,1 +1,2 @@
-print("hello world")
+local prometheus = require("prometheus")
+print("Prometheus module loaded successfully!")
