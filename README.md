@@ -171,11 +171,130 @@ The email templates are in `./backend/app/email-templates/`. Here, there are two
 Before continuing, ensure you have the [MJML extension](https://marketplace.visualstudio.com/items?itemName=attilabuti.vscode-mjml) installed in your VS Code.
 
 # niming-swpu-backend
-这是swpu匿名论坛的后端项目
+​	这是swpu匿名论坛的后端项目，使用uvicorn启动ASGI服务端，服务端为fastapi实现，并使用异步数据库引擎，能够做到高并发的处理。
 
 启动:
 
 ```bash
 	uvicorn app.main:app --reload --host 0.0.0.0 --port 8000 --ssl-keyfile ./key.pem --ssl-certfile ./cert.pem
+```
+
+## .env
+
+```
+# Domain
+# This would be set to the production domain with an env var on deployment
+# used by Traefik to transmit traffic and aqcuire TLS certificates
+DOMAIN=localhost
+# To test the local Traefik config
+# DOMAIN=localhost.tiangolo.com
+
+# Used by the backend to generate links in emails to the frontend
+FRONTEND_HOST=http://localhost:5173
+# In staging and production, set this env var to the frontend host, e.g.
+# FRONTEND_HOST=https://dashboard.example.com
+
+# Environment: local, staging, production
+ENVIRONMENT=local
+
+PROJECT_NAME="halfpeople"
+STACK_NAME=full-stack-fastapi-project
+
+# Backend
+BACKEND_CORS_ORIGINS="https://localhost:443,http://localhost:80"
+SECRET_KEY=CTTg1VnwQ6VLy_GhPZRjZbcMs-0fhWmD8sUvQEuUgOw
+FIRST_SUPERUSER=2074288854@qq.com
+FIRST_SUPERUSER_PASSWORD=1996yong
+
+# Emails
+SMTP_HOST=localhost
+SMTP_USER=Kiriyama
+SMTP_PASSWORD=Kiriyama
+EMAILS_FROM_EMAIL=2074288854@qq.com
+SMTP_TLS=True
+SMTP_SSL=False
+SMTP_PORT=587
+
+# Postgres
+POSTGRES_SERVER=localhost
+POSTGRES_PORT=5432
+POSTGRES_DB=app
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=1996yong
+
+SENTRY_DSN=
+
+# Configure these with your own Docker registry images
+DOCKER_IMAGE_BACKEND=backend
+DOCKER_IMAGE_FRONTEND=frontend
+```
+
+
+
+# Streamlit 流量监控网站
+
+​	基于python steamlit 开发。在web文件夹里安装对应的依赖后输入：**streamlit run 主页面.py    既可以启动** 
+
+目前已开发了三个页面
+
+1. 主页面
+2. 流量监控图像化
+3. API调用统计
+
+数据采集至Redis数据库，这个也需要安装
+
+# LK Pro图床的启动方式
+
+​	需要安装php8,4 以及imagick等扩展，安装方式自己问ai也可以。postgresql数据库等请自己在.env中配置并创建对应的数据表。
+
+```bash
+ php artisan serve --port 8081	
+```
+
+​	端口暴露在8081，并注意查看接口管理文档协同开发，转发策略请配置在openresty的nginx.conf中，对外使用https（也就是代理服务器配置），对内使用http协议。
+
+## .env
+
+```
+APP_NAME="Lsky Pro"
+APP_ENV=prod
+APP_KEY=base64:Gi5+nhdlnwCEZ6IwpGJpmimpc5h7un7tjrSWA6AjSnY=
+APP_DEBUG=false
+APP_URL=http://localhost
+
+LOG_CHANNEL=daily
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=postgres
+DB_USERNAME=postgres
+DB_PASSWORD=1996yong
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+FILESYSTEM_DISK=public
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_APP_CLUSTER=mt1
+
+MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+IGNITION_SHARING_ENABLED=false
+
 ```
 
