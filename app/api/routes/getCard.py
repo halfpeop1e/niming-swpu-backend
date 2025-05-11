@@ -1,16 +1,20 @@
 import uuid
 
-from fastapi import APIRouter, Depends,HTTPException,Request, Query
+from fastapi import APIRouter, Depends,HTTPException,Request, Query, File, UploadFile, Form, status
 from sqlalchemy import or_
 from sqlalchemy.exc import IntegrityError
 from sqlmodel import select
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, HttpUrl
 from loguru import logger
+from typing import Optional, Any, List
+import hashlib
+import os
 
 from app import crud
 from app.api.deps import AsyncSessionDep, CurrentUser, SessionDep, RedisClient
 from app.models import AddReplyCard, AddReplyCard_Client, DefaultCard, DefaultCardResponse, Message, CardRequest, \
-    AddCard, ReplyCardRequest, AddReplyCardResponse, CardRequest_New, LikeRequest, ReplyLike
+    AddCard, ReplyCardRequest, AddReplyCardResponse, CardRequest_New, LikeRequest, ReplyLike,ImageUploadResponse, \
+    ImageData, ImageDataLinks, ImagePathInfo
 
 ##################该页面定义了获取聊天卡片信息的接口以及实现
 
@@ -45,14 +49,14 @@ async def get_card(session: AsyncSessionDep, request_data: CardRequest, redis: R
     cards = result.all()
     return DefaultCardResponse(data = cards)
 
-@router.get("/getonecard/{number}")
+@router.get("/getonecard/{number}", response_model=DefaultCardResponse)
 async def get_onecard(number:int, session:AsyncSessionDep, redis: RedisClient):
     await redis.incr(TOTAL_API_CALLS_KEY)
     result = await session.exec(select(DefaultCard).where(DefaultCard.number == number))
     thecard = result.first()
     if not thecard:
         raise HTTPException(status_code=404, detail="卡片不存在")
-    return thecard
+    return DefaultCardResponse(data=[thecard])
 
 # 请求最新的一个卡片，通过category去查询
 @router.post("/getnewcard",response_model=DefaultCardResponse)
@@ -76,6 +80,9 @@ async def get_reply_card(session:AsyncSessionDep,request_data:ReplyCardRequest, 
 async def add_card(session:AsyncSessionDep,current_user: CurrentUser,request_data:AddCard, redis: RedisClient):
     await redis.incr(TOTAL_API_CALLS_KEY)
     logger.info(f"话题更新了一条信息: {request_data}")
+    # request_data.imageUrls is Optional[List[ImagePathInfo]]
+    logger.info(f"收到的图片信息对象列表: {request_data.imageUrls}")
+
     result = await session.exec(select(DefaultCard).order_by(DefaultCard.number.desc()))
     last_card = result.first()
     if last_card:
@@ -83,11 +90,32 @@ async def add_card(session:AsyncSessionDep,current_user: CurrentUser,request_dat
     else:
         new_number = 1
     logger.info(f"Calculated new card number: {new_number}")
+
+    # 从 List[ImagePathInfo] 提取 List[str] (只包含 relativePath)
+    image_relative_paths: Optional[List[str]] = None # Default to None (or [] if empty list is preferred over NULL in DB)
+    if request_data.imageUrls: # Check if the list exists and is not empty
+        paths = [
+            img_info.relativePath 
+            for img_info in request_data.imageUrls 
+            if img_info and hasattr(img_info, 'relativePath') and img_info.relativePath
+        ]
+        if paths: # If we successfully extracted any paths
+            image_relative_paths = paths
+    
+    logger.info(f"提取的图片相对路径列表 (用于数据库): {image_relative_paths}")
+
     try:
-        new_card = DefaultCard(number=new_number,id=request_data.id,content=request_data.content,
-                               time=request_data.time,category=request_data.category)
-        logger.info(f"Created DefaultCard instance: {new_card}")
-        await crud.create_card(session=session,card_in=new_card)
+        new_card = DefaultCard(
+            number=new_number,
+            id=request_data.id,
+            content=request_data.content,
+            time=request_data.time,
+            category=request_data.category,
+            thumbs=0,  # Initialize thumbs, assuming 0 is the default for a new card
+            imageUrls=image_relative_paths # Assign the extracted list of relative paths
+        )
+        logger.info(f"Created DefaultCard instance for DB: {new_card}")
+        await crud.create_card(session=session, card_in=new_card)
         logger.info("Successfully called crud.create_card")
         return Message(message="发送成功")
     except Exception as e:
@@ -97,17 +125,45 @@ async def add_card(session:AsyncSessionDep,current_user: CurrentUser,request_dat
 @router.post("/addreplycard",response_model=Message)
 async def add_reply_card(session:AsyncSessionDep,current_user: CurrentUser,request_data:AddReplyCard_Client, redis: RedisClient):
     await redis.incr(TOTAL_API_CALLS_KEY)
+    logger.info(f"Adding reply card. Request data: {request_data}")
+
     result = await session.exec(select(DefaultCard).where(DefaultCard.number==request_data.number))
     card = result.first()
-    if card:
-        number = card.number
-    else:
+    if not card: # Check if the parent card exists
+        logger.warning(f"Parent card with number {request_data.number} not found.")
+        # Consider returning a more specific error message or status code
+        # For now, matching existing logic but HTTPException might be better.
         return Message(message="卡片不存在")
-    new_reply_card = AddReplyCard(number=number,id=request_data.id,
-                                  content=request_data.content,time=request_data.time,
-                                  reply=request_data.reply,thumbs=0)
+    
+    # Process imageUrls from List[ImagePathInfo] to List[str]
+    image_relative_paths: Optional[List[str]] = None
+    if request_data.imageUrls: # Check if imageUrls list exists and is not empty
+        logger.info(f"Received imageUrls for reply card: {request_data.imageUrls}")
+        paths = [
+            img_info.relativePath 
+            for img_info in request_data.imageUrls 
+            if img_info and hasattr(img_info, 'relativePath') and img_info.relativePath
+        ]
+        if paths:
+            image_relative_paths = paths
+        logger.info(f"Extracted relative paths for reply card DB: {image_relative_paths}")
+    else:
+        logger.info("No imageUrls provided for reply card.")
+
+    new_reply_card = AddReplyCard(
+        number=request_data.number, # This is the foreign key to DefaultCard.number
+        id=request_data.id,
+        content=request_data.content,
+        time=request_data.time,
+        reply=request_data.reply,
+        thumbs=0, # Initialize thumbs
+        imageUrls=image_relative_paths # Assign the processed list of relative paths
+    )
+    
+    logger.info(f"Creating AddReplyCard instance for DB: {new_reply_card}")
     await crud.create_reply_card(session=session,reply_card_in=new_reply_card)
-    logger.info(f"User {request_data.id} added reply card (Number: {number}), content: {request_data.content}, reply: {request_data.reply}, time: {request_data.time}")
+    # Original log, slightly updated to reflect potential images
+    logger.info(f"User {request_data.id} added reply card (Parent Card Number: {request_data.number}), content: {request_data.content}, reply: {request_data.reply}, time: {request_data.time}, images: {image_relative_paths is not None}")
     return Message(message="回复卡片添加成功")
 
 
@@ -204,4 +260,7 @@ async def get_like_status(reply_id: str, session: AsyncSessionDep, current_user:
     existing = result.first()
 
     return {"liked": bool(existing)}
+
+
+
 

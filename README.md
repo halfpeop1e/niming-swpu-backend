@@ -171,7 +171,7 @@ The email templates are in `./backend/app/email-templates/`. Here, there are two
 Before continuing, ensure you have the [MJML extension](https://marketplace.visualstudio.com/items?itemName=attilabuti.vscode-mjml) installed in your VS Code.
 
 # niming-swpu-backend
-​	这是swpu匿名论坛的后端项目，使用uvicorn启动ASGI服务端，服务端为fastapi实现，并使用异步数据库引擎，能够做到高并发的处理。
+​	这是swpu匿名论坛的后端项目，使用uvicorn启动ASGI服务端，服务端为fastapi实现，并使用异步数据库引擎，能够做到高并发的处理。一般情况我们会忽略--ssl-keyfile后面的内容，只会启用http。
 
 启动:
 
@@ -251,7 +251,9 @@ DOCKER_IMAGE_FRONTEND=frontend
  php artisan serve --port 8081	
 ```
 
-​	端口暴露在8081，并注意查看接口管理文档协同开发，转发策略请配置在openresty的nginx.conf中，对外使用https（也就是代理服务器配置），对内使用http协议。
+​	端口暴露在8081，并注意查看接口管理文档协同开发，转发策略请配置在openresty的nginx.conf中，对外使用https（也就是代理服务器配置），对内使用http协议。开发的接口文档请详细查看：
+
+[相册列表 - Lsky Pro+](https://lsky-pro.apifox.cn/)
 
 ## .env
 

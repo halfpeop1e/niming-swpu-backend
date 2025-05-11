@@ -1,11 +1,13 @@
-from typing import Optional
+from typing import Optional, List, Any
 import uuid
 from datetime import datetime
 from typing import Literal
+from loguru import logger
 
-from pydantic import EmailStr, BaseModel
-from sqlalchemy import UniqueConstraint
-from sqlmodel import Field, Relationship, SQLModel
+from pydantic import EmailStr, BaseModel, validator, field_validator, model_validator
+from sqlalchemy import UniqueConstraint, Column, String, Integer, Text, DateTime, Boolean, ARRAY, func
+from sqlmodel import Field, Relationship, SQLModel, select
+from sqlalchemy.dialects.postgresql import JSONB
 
 
 # 这个算是用户表的基类，其他的用户表继承这个基类
@@ -119,18 +121,68 @@ class NewPassword(SQLModel):
     token: str
     new_password: str = Field(min_length=8, max_length=40)
 
+
+# 请求回复卡片的图片
+class ImagePathInfo(BaseModel):
+    original_filename: Optional[str] = None # 原图片名称
+    relativePath: str # 图片url，图床分配的
+
+
 #聊天内容的卡片
-class DefaultCard(SQLModel,table=True):
-    number: int = Field(primary_key=True)#主键,可以自增
-    id: str
-    content: str
-    time: str
-    category: str
-    thumbs:int
+class DefaultCardBase(SQLModel):
+    id: Optional[str] = Field(default=None)
+    content: Optional[str] = Field(default=None)
+    time: Optional[str] = Field(default=None)
+    category: Optional[str] = Field(default=None)
+    thumbs: Optional[int] = Field(default=0)
+
+class DefaultCard(DefaultCardBase, table=True):
+    __tablename__ = "defaultcard" # type: ignore
+    number: int = Field(default=None, primary_key=True, index=True)
+    imageUrls: Optional[List[str]] = Field(default=None, sa_column=Column(ARRAY(String)))
+    
 
 #响应的卡片
 class DefaultCardResponse(SQLModel):
     data: list[DefaultCard]
+
+    @model_validator(mode='after')
+    def process_image_urls_in_response(self) -> 'DefaultCardResponse':
+        # from loguru import logger # If logging can be made to work, it would be useful here
+        # logger.debug("DefaultCardResponse validator: Processing imageUrls for response.")
+        if self.data:
+            for card_instance in self.data:
+                # Check if imageUrls exists, is a list, is not empty, and looks like a char-split array
+                if hasattr(card_instance, 'imageUrls') and \
+                   card_instance.imageUrls is not None and \
+                   isinstance(card_instance.imageUrls, list) and \
+                   len(card_instance.imageUrls) > 0:
+                    
+                    first_val = card_instance.imageUrls[0]
+                    # Ensure there's a last element to check for symmetrical braces
+                    if len(card_instance.imageUrls) > 1:
+                        last_val = card_instance.imageUrls[-1]
+                    else: # Only one element, can't be a matched pair of braces
+                        last_val = None 
+
+                    # Condition to identify the char-split string: list of strings, starts with '{', ends with '}'
+                    if isinstance(first_val, str) and first_val == '{' and \
+                       isinstance(last_val, str) and last_val == '}':
+                        
+                        # logger.debug(f"DefaultCardResponse: Card {getattr(card_instance, 'number', 'N/A')}: imageUrls appears char-split. Rejoining.")
+                        rejoined_string = "".join(str(char_or_item) for char_or_item in card_instance.imageUrls)
+                        # logger.debug(f"DefaultCardResponse: Card {getattr(card_instance, 'number', 'N/A')}: Rejoined to: {rejoined_string}")
+                        
+                        # Now parse the rejoined string (which should be like "{path1,path2}")
+                        if rejoined_string.startswith("{") and rejoined_string.endswith("}"):
+                            stripped_value = rejoined_string[1:-1]
+                            if not stripped_value: # Handles empty array string "{}"
+                                card_instance.imageUrls = []
+                            else:
+                                card_instance.imageUrls = [item.strip() for item in stripped_value.split(',') if item.strip()]
+                            # logger.debug(f"DefaultCardResponse: Card {getattr(card_instance, 'number', 'N/A')}: Parsed to: {card_instance.imageUrls}")
+                        # else: logger.warning(f"DefaultCardResponse: Card {getattr(card_instance, 'number', 'N/A')}: Rejoined string doesn't have expected format: {rejoined_string}")
+        return self
 
 #请求话题的卡片
 class CardRequest(BaseModel):
@@ -151,6 +203,9 @@ class AddCard(BaseModel):
     content: str
     time: str
     category: str
+    imageUrls: Optional[List[ImagePathInfo]] = Field(default=None)
+
+
 
 #添加的回复卡片，客户端发送
 class AddReplyCard_Client(BaseModel):
@@ -159,7 +214,7 @@ class AddReplyCard_Client(BaseModel):
     content: str
     time: str
     reply: str|None=None #回复内容,可以为空
-    time: str
+    imageUrls: Optional[List[ImagePathInfo]] = Field(default=None)
 
 #添加回复卡片,数据库存储
 class AddReplyCard(SQLModel,table=True):
@@ -170,12 +225,46 @@ class AddReplyCard(SQLModel,table=True):
     content: str
     time: str
     reply: str|None=None #回复内容,可以为空
-    time: str
     thumbs: int
+    imageUrls: Optional[List[str]] = Field(default=None, sa_column=Column(ARRAY(String)))
 
 #添加回复卡片的响应
 class AddReplyCardResponse(SQLModel):
     data: list[AddReplyCard]
+
+    @model_validator(mode='after')
+    def process_reply_card_image_urls_in_response(self) -> 'AddReplyCardResponse':
+        # from loguru import logger # Optional: uncomment if logger is configured and needed for debugging
+        # logger.debug("AddReplyCardResponse validator: Processing imageUrls for response.")
+        if self.data:
+            for card_instance in self.data:
+                if hasattr(card_instance, 'imageUrls') and \
+                   card_instance.imageUrls is not None and \
+                   isinstance(card_instance.imageUrls, list) and \
+                   len(card_instance.imageUrls) > 0:
+                    
+                    first_val = card_instance.imageUrls[0]
+                    if len(card_instance.imageUrls) > 1:
+                        last_val = card_instance.imageUrls[-1]
+                    else:
+                        last_val = None
+
+                    if isinstance(first_val, str) and first_val == '{' and \
+                       isinstance(last_val, str) and last_val == '}':
+                        
+                        # logger.debug(f"AddReplyCardResponse: Card ID {getattr(card_instance, 'id', 'N/A')}: imageUrls appears char-split. Rejoining.")
+                        rejoined_string = "".join(str(char_or_item) for char_or_item in card_instance.imageUrls)
+                        # logger.debug(f"AddReplyCardResponse: Card ID {getattr(card_instance, 'id', 'N/A')}: Rejoined to: {rejoined_string}")
+                        
+                        if rejoined_string.startswith("{") and rejoined_string.endswith("}"):
+                            stripped_value = rejoined_string[1:-1]
+                            if not stripped_value:
+                                card_instance.imageUrls = []
+                            else:
+                                card_instance.imageUrls = [item.strip() for item in stripped_value.split(',') if item.strip()]
+                            # logger.debug(f"AddReplyCardResponse: Card ID {getattr(card_instance, 'id', 'N/A')}: Parsed to: {card_instance.imageUrls}")
+                        # else: logger.warning(f"AddReplyCardResponse: Card ID {getattr(card_instance, 'id', 'N/A')}: Rejoined string not in expected format: {rejoined_string}")
+        return self
 
 class Cookie(SQLModel,table=True):
     name: str = Field(primary_key=True)
@@ -206,3 +295,38 @@ class ReplyLike(SQLModel, table=True):
 class LikeRequest(BaseModel):
     reply_id: str
     action: Literal["like", "unlike"]
+
+# 上传图片的数据结构
+
+class ImageDataLinks(BaseModel):
+    url: str #图片访问的url
+    html: str
+    bbcode: str
+    markdown: str
+    markdown_with_link: str
+    thumbnail_url: str #缩略图
+
+class ImageData(BaseModel):
+    key: str
+    name: str
+    pathname: str
+    origin_name: str
+    size: float
+    mimetype: str
+    extension: str
+    md5: str
+    sha1: str
+    links: ImageDataLinks
+
+class ImageUploadResponse(BaseModel):
+    status: bool
+    message: str
+    data: Optional[ImageData] = None #图片数据,可以为空
+
+# 客户端请求过来的数据
+class ImageUploadRequest(BaseModel):
+    pass # Add pass to make it a valid empty class definition
+
+
+
+
