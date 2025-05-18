@@ -6,14 +6,14 @@ from sqlmodel import select
 from loguru import logger
 from app.models import Cookie, User, Message, CookieResponse, CookieUse, GetUserCookieNum
 from app import crud
-from app.api.deps import CurrentUser, AsyncSessionDep, RedisClient
+from app.api.deps import CurrentUser, AsyncSessionDep
 
 router = APIRouter(prefix="/cookies",tags=["cookies"])
 TOTAL_API_CALLS_KEY = "total_api_calls"
 
 @router.get("/addcookie", response_model=Message)
-async def add_cookie(session:AsyncSessionDep,current_user:CurrentUser, redis: RedisClient):
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def add_cookie(session:AsyncSessionDep,current_user:CurrentUser, ):
+    
     user_id_from_token = current_user.id
 
     generated_cookie_name = ""
@@ -58,16 +58,16 @@ async def add_cookie(session:AsyncSessionDep,current_user:CurrentUser, redis: Re
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="添加Cookie失败，请稍后再试")
 
 @router.get("/getcookie", response_model=CookieResponse)
-async def get_cookie(session:AsyncSessionDep,current_user:CurrentUser, redis: RedisClient):
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def get_cookie(session:AsyncSessionDep,current_user:CurrentUser, ):
+    
     user_id_from_token = current_user.id
     result = await session.exec(select(Cookie).where(Cookie.id==user_id_from_token))
     cookies = result.all()
     return CookieResponse(data=cookies)
 
 @router.post("/use_cookie", response_model=Message)
-async def use_cookie(session:AsyncSessionDep,current_user:CurrentUser,cookie_use:CookieUse, redis: RedisClient):
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def use_cookie(session:AsyncSessionDep,current_user:CurrentUser,cookie_use:CookieUse, ):
+    
     user_id_from_token = current_user.id
     result = await session.exec(select(Cookie).where(Cookie.id==user_id_from_token))
     cookies = result.all()
@@ -79,13 +79,13 @@ async def use_cookie(session:AsyncSessionDep,current_user:CurrentUser,cookie_use
     return Message(message="Cookie启用成功")
 
 @router.get("/getusercookienum",response_model=GetUserCookieNum)
-async def get_user_cookie_num(session:AsyncSessionDep,current_user:CurrentUser, redis: RedisClient):
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def get_user_cookie_num(session:AsyncSessionDep,current_user:CurrentUser, ):
+    
     user_id_from_token = current_user.id
     result = await session.exec(select(User).where(User.id==user_id_from_token))
     user = result.first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
-    return GetUserCookieNum(number=user.cookies)
+    return GetUserCookieNum(number=user.cookies if user.cookies is not None else 0)
 
 

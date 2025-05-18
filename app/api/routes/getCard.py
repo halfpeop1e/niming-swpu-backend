@@ -41,8 +41,8 @@ async def get_stress_test_cards(
 
 # 请求话题卡片的接口
 @router.post("/getcard", response_model=DefaultCardResponse)
-async def get_card(session: AsyncSessionDep, request_data: CardRequest, redis: RedisClient):
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def get_card(session: AsyncSessionDep, request_data: CardRequest, ):
+    
     statement = select(DefaultCard).where(DefaultCard.category==request_data.category).offset(request_data.skip).limit(5)
     statement = statement.order_by(DefaultCard.time.desc())
     result = await session.exec(statement)
@@ -50,8 +50,8 @@ async def get_card(session: AsyncSessionDep, request_data: CardRequest, redis: R
     return DefaultCardResponse(data = cards)
 
 @router.get("/getonecard/{number}", response_model=DefaultCardResponse)
-async def get_onecard(number:int, session:AsyncSessionDep, redis: RedisClient):
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def get_onecard(number:int, session:AsyncSessionDep, ):
+    
     result = await session.exec(select(DefaultCard).where(DefaultCard.number == number))
     thecard = result.first()
     if not thecard:
@@ -60,8 +60,8 @@ async def get_onecard(number:int, session:AsyncSessionDep, redis: RedisClient):
 
 # 请求最新的一个卡片，通过category去查询
 @router.post("/getnewcard",response_model=DefaultCardResponse)
-async def get_new_card(session:AsyncSessionDep,request_data:CardRequest_New, redis: RedisClient):
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def get_new_card(session:AsyncSessionDep,request_data:CardRequest_New, ):
+    
     statement = select(DefaultCard).where(DefaultCard.category==request_data.category).order_by(DefaultCard.time.desc()).limit(1)
     result = await session.exec(statement)
     card = result.first()
@@ -69,16 +69,16 @@ async def get_new_card(session:AsyncSessionDep,request_data:CardRequest_New, red
 
 # 请求回复卡片的内容
 @router.post("/getreplycard",response_model=AddReplyCardResponse)
-async def get_reply_card(session:AsyncSessionDep,request_data:ReplyCardRequest, redis: RedisClient):
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def get_reply_card(session:AsyncSessionDep,request_data:ReplyCardRequest, ):
+    
     statement = select(AddReplyCard).where(AddReplyCard.number==request_data.number).offset(request_data.skip).limit(5)
     result = await session.exec(statement)
     cards = result.all()
     return AddReplyCardResponse(data = cards)
 
 @router.post("/addcard",response_model=Message)
-async def add_card(session:AsyncSessionDep,current_user: CurrentUser,request_data:AddCard, redis: RedisClient):
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def add_card(session:AsyncSessionDep,current_user: CurrentUser,request_data:AddCard, ):
+    
     logger.info(f"话题更新了一条信息: {request_data}")
     # request_data.imageUrls is Optional[List[ImagePathInfo]]
     logger.info(f"收到的图片信息对象列表: {request_data.imageUrls}")
@@ -123,8 +123,8 @@ async def add_card(session:AsyncSessionDep,current_user: CurrentUser,request_dat
         raise
 
 @router.post("/addreplycard",response_model=Message)
-async def add_reply_card(session:AsyncSessionDep,current_user: CurrentUser,request_data:AddReplyCard_Client, redis: RedisClient):
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def add_reply_card(session:AsyncSessionDep,current_user: CurrentUser,request_data:AddReplyCard_Client, ):
+    
     logger.info(f"Adding reply card. Request data: {request_data}")
 
     result = await session.exec(select(DefaultCard).where(DefaultCard.number==request_data.number))
@@ -168,8 +168,8 @@ async def add_reply_card(session:AsyncSessionDep,current_user: CurrentUser,reque
 
 
 @router.post("/like")
-async def toggle_like(data: LikeRequest, session: AsyncSessionDep, current_user: CurrentUser, request: Request, redis: RedisClient):
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def toggle_like(data: LikeRequest, session: AsyncSessionDep, current_user: CurrentUser, request: Request, ):
+    
     user_id = current_user.id
     print("收到请求体：", await request.json())
     try:
@@ -248,8 +248,8 @@ async def toggle_like(data: LikeRequest, session: AsyncSessionDep, current_user:
         raise HTTPException(status_code=400, detail="无效操作类型")
 
 @router.get("/like-status")
-async def get_like_status(reply_id: str, session: AsyncSessionDep, current_user: CurrentUser, redis: RedisClient):
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def get_like_status(reply_id: str, session: AsyncSessionDep, current_user: CurrentUser, ):
+    
     user_id = current_user.id
     result = await session.exec(
         select(ReplyLike).where(

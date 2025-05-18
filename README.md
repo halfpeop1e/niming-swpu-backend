@@ -177,6 +177,8 @@ Before continuing, ensure you have the [MJML extension](https://marketplace.visu
 
 ```bash
 	uvicorn app.main:app --reload --host 0.0.0.0 --port 8000 --ssl-keyfile ./key.pem --ssl-certfile ./cert.pem
+	
+	PS D:\AWINXIN\back_web\my-full-stack\backend> uvicorn app.main:app --reload --host 0.0.0.0 --port 8081
 ```
 
 ## .env
@@ -248,10 +250,10 @@ DOCKER_IMAGE_FRONTEND=frontend
 ​	需要安装php8,4 以及imagick等扩展，安装方式自己问ai也可以。postgresql数据库等请自己在.env中配置并创建对应的数据表。
 
 ```bash
- php artisan serve --port 8081	
+ php artisan serve
 ```
 
-​	端口暴露在8081，并注意查看接口管理文档协同开发，转发策略请配置在openresty的nginx.conf中，对外使用https（也就是代理服务器配置），对内使用http协议。开发的接口文档请详细查看：
+​	端口暴露在8000，并注意查看接口管理文档协同开发，转发策略请配置在openresty的nginx.conf中，对外使用https（也就是代理服务器配置），对内使用http协议。开发的接口文档请详细查看：
 
 [相册列表 - Lsky Pro+](https://lsky-pro.apifox.cn/)
 
@@ -298,5 +300,11 @@ MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 
 IGNITION_SHARING_ENABLED=false
 
+```
+
+# SMTP服务
+
+```bash
+授权码： xuifavlduzfndjie 2074288854@qq.com
 ```
 

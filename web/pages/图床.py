@@ -14,7 +14,7 @@ if 'page_config_图床' not in st.session_state:
     st.session_state.page_config_图床 = True
 
 # --- API Configuration ---
-API_BASE_URL = "https://localhost/api/v2/"
+API_BASE_URL = "http://localhost:10009/api/v2/"
 
 # --- Session State Initialization ---
 if 'current_page' not in st.session_state:
@@ -22,7 +22,7 @@ if 'current_page' not in st.session_state:
 if 'auth_token' not in st.session_state:
     # Placeholder for token. User's code hardcodes it in headers_token for now.
     # The "获取token" button can be modified to set this state.
-    st.session_state.auth_token = "1|eSrsXuXJObotXin2CsqwpEBTagJNihy02kPZcH8r" # Default/example from user's code
+    st.session_state.auth_token = "14|qdU50u07xpfsMhSutwn1KhsdSg29EnWUaJn9JGf5" # Default/example from user's code
 if 'api_response_data' not in st.session_state:
     st.session_state.api_response_data = {}
 

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.api.routes import items, login, private, users, utils,getCard,cookies,upload
+from app.api.routes import items, login, private, smtp, users, utils,getCard,cookies,upload
 from app.core.config import settings
 
 #api路由器，包含所有路由组
@@ -12,5 +12,6 @@ api_router.include_router(items.router)
 api_router.include_router(getCard.router)
 api_router.include_router(cookies.router)
 api_router.include_router(upload.router)
+api_router.include_router(smtp.router)
 if settings.ENVIRONMENT == "local":
     api_router.include_router(private.router)

@@ -1,4 +1,3 @@
-login_number = 0 # This will no longer be the primary source of truth
 from datetime import timedelta
 from typing import Annotated, Any
 
@@ -7,7 +6,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from app import crud
 # 导入依赖项，包括数据库会话、当前用户和超级用户检查
-from app.api.deps import CurrentUser, AsyncSessionDep, get_current_active_superuser, RedisClient
+from app.api.deps import CurrentUser, AsyncSessionDep, get_current_active_superuser
 from app.core import security
 from app.core.config import settings
 from app.core.security import get_password_hash
@@ -32,14 +31,14 @@ TOTAL_API_CALLS_KEY = "total_api_calls" # Key for total API calls
 async def login_access_token(
     session: AsyncSessionDep, # Changed SessionDep
     form_data: Annotated[OAuth2PasswordRequestForm, Depends()], # 依赖注入：获取 OAuth2 表单数据 (username, password)
-    redis: RedisClient # Inject Redis client
+     # Inject Redis client
 ) -> Token:
     """
     OAuth2 兼容的 token 登录接口。
     接收用户名和密码，验证成功后返回一个 access token。
     """
-    await redis.incr(TOTAL_API_CALLS_KEY)
-    await redis.incr(LOGIN_COUNTER_KEY)
+    
+    
     # 使用 email (form_data.username) 和 password 进行认证
     user = await crud.authenticate(
         session=session, email=form_data.username, password=form_data.password
@@ -53,7 +52,7 @@ async def login_access_token(
     # 从配置中读取 access token 的过期时间
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     # 更新登录次数 in Redis
-    await redis.incr(LOGIN_COUNTER_KEY)
+    
     # 创建 access token
     return Token(
         access_token=security.create_access_token(
@@ -63,24 +62,24 @@ async def login_access_token(
 
 
 @router.post("/login/test-token", response_model=UserPublic)
-async def test_token(current_user: CurrentUser, redis: RedisClient) -> Any:
+async def test_token(current_user: CurrentUser, ) -> Any:
     """
     测试 access token 是否有效。
     需要请求头中带有有效的 Bearer token。
     """
-    await redis.incr(TOTAL_API_CALLS_KEY)
+    
     # current_user 依赖项会自动验证 token 并返回对应的用户对象
     # 如果 token 无效或过期，依赖项会抛出异常
     return current_user
 
 
 @router.post("/password-recovery/{email}")
-async def recover_password(email: str, session: AsyncSessionDep, redis: RedisClient) -> Message: # Changed SessionDep
+async def recover_password(email: str, session: AsyncSessionDep, ) -> Message: # Changed SessionDep
     """
     密码恢复接口。
     向指定邮箱发送包含密码重置 token 的邮件。
     """
-    await redis.incr(TOTAL_API_CALLS_KEY)
+    
     # 根据邮箱查找用户
     user = await crud.get_user_by_email(session=session, email=email)
 
@@ -107,12 +106,12 @@ async def recover_password(email: str, session: AsyncSessionDep, redis: RedisCli
 
 
 @router.post("/reset-password/")
-async def reset_password(session: AsyncSessionDep, body: NewPassword, redis: RedisClient) -> Message: # Changed SessionDep
+async def reset_password(session: AsyncSessionDep, body: NewPassword, ) -> Message: # Changed SessionDep
     """
     重置密码接口。
     使用有效的 token 和新密码来更新用户密码。
     """
-    await redis.incr(TOTAL_API_CALLS_KEY)
+    
     # 验证密码重置 token 并获取对应的邮箱
     email = verify_password_reset_token(token=body.token)
     if not email:
@@ -147,12 +146,12 @@ async def reset_password(session: AsyncSessionDep, body: NewPassword, redis: Red
     dependencies=[Depends(get_current_active_superuser)],
     response_class=HTMLResponse, # 指定响应类型为 HTML
 )
-async def recover_password_html_content(email: str, session: AsyncSessionDep, redis: RedisClient) -> Any: # Changed SessionDep
+async def recover_password_html_content(email: str, session: AsyncSessionDep, ) -> Any: # Changed SessionDep
     """
     获取密码恢复邮件的 HTML 内容（仅限超级用户）。
     用于预览或测试邮件模板。
     """
-    await redis.incr(TOTAL_API_CALLS_KEY)
+    
     # 根据邮箱查找用户
     user = await crud.get_user_by_email(session=session, email=email)
 
@@ -178,23 +177,16 @@ async def recover_password_html_content(email: str, session: AsyncSessionDep, re
 @router.post("/login/verify-token", response_model=Message)
 async def verify_token(
     current_user: CurrentUser, # This dependency handles token verification
-    redis: RedisClient # Inject Redis client
+     # Inject Redis client
 ) -> Message:
     """
     Verifies the provided access token.
     Requires a valid Bearer token in the Authorization header.
     Returns a success message if the token is valid and the user is active.
     """
-    await redis.incr(TOTAL_API_CALLS_KEY)
+    
     # If the code reaches here, it means the CurrentUser dependency
     # successfully validated the token and retrieved an active user.
     # 更新登录次数 in Redis
-    await redis.incr(LOGIN_COUNTER_KEY)
+    
     return Message(message="登录成功")
-
-#获取登录次数
-@router.get("/login/get_login_number")
-async def get_login_number(redis: RedisClient) -> int:
-    await redis.incr(TOTAL_API_CALLS_KEY)
-    count = await redis.get(LOGIN_COUNTER_KEY)
-    return int(count) if count else 0
