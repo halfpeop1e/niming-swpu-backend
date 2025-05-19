@@ -31,6 +31,7 @@ class UserRegister(SQLModel):
     email: EmailStr = Field(max_length=255)
     password: str = Field(min_length=8, max_length=40)
     full_name: str | None = Field(default=None, max_length=255)
+    verify_code: str = Field(min_length=6, max_length=6)
 
 # 更新用户信息，这里继承了UserBase，然后添加了email和password
 class UserUpdate(UserBase):
@@ -53,6 +54,7 @@ class User(UserBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
     hashed_password: str
     items: list["Item"] = Relationship(back_populates="owner", cascade_delete=True)
+    cookies: Optional[int] = 3  # 设置为可选字段
 
 
 # 返回给前端的用户信息，这里继承了UserBase，然后添加了uuid标识符
@@ -205,6 +207,9 @@ class AddCard(BaseModel):
     category: str
     imageUrls: Optional[List[ImagePathInfo]] = Field(default=None)
 
+#注册时候发送的验证码
+class VerifyCodeRequest(BaseModel):
+    email: str
 
 
 #添加的回复卡片，客户端发送
@@ -335,6 +340,21 @@ class ImageUploadResponse(BaseModel):
 class ImageUploadRequest(BaseModel):
     pass # Add pass to make it a valid empty class definition
 
-
+#重设密码
+class UserResetPassword(SQLModel):
+    email: EmailStr = Field(
+        max_length=255,
+        description="用户邮箱地址",
+    )
+    verify_code: str = Field(
+        min_length=6,
+        max_length=6,
+        description="6位验证码",
+    )
+    password: str = Field(
+        min_length=8,
+        max_length=40,
+        description="新密码，长度8-40个字符",
+    )
 
 

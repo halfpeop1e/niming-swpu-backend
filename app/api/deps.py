@@ -1,19 +1,23 @@
 from collections.abc import Generator
-from typing import Annotated
-
+from typing import Annotated, AsyncGenerator
 import jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jwt.exceptions import InvalidTokenError
+from loguru import logger
 from pydantic import ValidationError
 from sqlmodel import Session
 from sqlmodel.ext.asyncio.session import AsyncSession # For SQLModel
 # from sqlalchemy.ext.asyncio import AsyncSession # For pure SQLAlchemy
-
 from app.core import security
 from app.core.config import settings
 from app.core.db import engine # Assuming this 'engine' is now an AsyncEngine
 from app.models import TokenPayload, User
+from smtplib import SMTP
+from email.mime.text import MIMEText
+from email.utils import formataddr
+import smtplib
+import redis.asyncio as aioredis # For asynchronous Redis operations
 
 # 创建一个 OAuth2PasswordBearer 实例，用于处理 Bearer Token 认证
 # tokenUrl 指定了客户端获取 token 的端点路径
@@ -40,22 +44,40 @@ def get_db() -> Generator[Session, None, None]:
 # 类型注解：用于 FastAPI 依赖注入的数据库会话
 SessionDep = Annotated[Session, Depends(get_db)]
 
+#邮箱登录
+def get_smtp() -> Generator[SMTP, None, None]:
+    try:
+        # 使用普通 SMTP 连接
+        server = smtplib.SMTP(settings.MAIL_SERVER, settings.MAIL_PORT)
+        server.set_debuglevel(settings.MAIL_DEBUG)
+        server.ehlo()
+        server.starttls()
+        server.ehlo()
+        server.login(settings.MAIL_USERNAME, settings.MAIL_PASSWORD)
+        yield server
+    except Exception as e:
+        logger.error(f"SMTP 连接失败: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        try:
+            server.quit()
+        except:
+            pass
+        
+    
+SMTPDep = Annotated[SMTP, Depends(get_smtp)]
+
 # Asynchronous DB session dependency
-async def get_async_db() -> Generator[AsyncSession, None, None]:
+async def get_async_db() -> AsyncGenerator[AsyncSession, None]:
     """
     Asynchronous database session dependency.
     """
-    async with AsyncSession(engine) as session: # Use AsyncSession
+    async with AsyncSession(engine) as session:
         try:
             yield session
-            # Optional: commit if no errors, or handle commits in endpoints
-            # await session.commit()
         except Exception:
             await session.rollback()
             raise
-        # finally:
-            # Context manager AsyncSession(engine) handles closing the session.
-            # await session.close()
 
 AsyncSessionDep = Annotated[AsyncSession, Depends(get_async_db)]
 
@@ -137,33 +159,15 @@ async def get_current_active_superuser(current_user: CurrentUser) -> User:
     return current_user
 
 # --- Begin Redis Dependency ---
-import redis.asyncio as aioredis # For asynchronous Redis operations
-
-# You might want to move REDIS_URL to your app.core.config.settings
-# For example: settings.REDIS_URL or settings.ASYNC_REDIS_URL
-# Ensure your Redis server is running and accessible at this URL.
 REDIS_URL = "redis://localhost:6379/0"
-
-async def get_redis() -> Generator[aioredis.Redis, None, None]:
-    """
-    Asynchronous Redis client dependency generator.
-    Connects to Redis using the URL specified.
-    """
+async def get_redis() -> AsyncGenerator[aioredis.Redis, None]:
     redis_client = None
     try:
         redis_client = aioredis.from_url(REDIS_URL, encoding="utf-8", decode_responses=True)
         yield redis_client
-    except Exception as e:
-        # Handle connection errors or other issues during Redis client setup
-        # You might want to log this error
-        print(f"Error connecting to Redis or during Redis operation: {e}")
-        # Depending on your error handling strategy, you might re-raise or raise an HTTPException
-        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, 
-                            detail="Could not connect to Redis service")
     finally:
         if redis_client:
             await redis_client.close()
-
 # Type annotation for Redis dependency
 RedisClient = Annotated[aioredis.Redis, Depends(get_redis)]
 # --- End Redis Dependency ---

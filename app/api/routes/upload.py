@@ -2,7 +2,6 @@ import uuid
 import httpx
 import os
 import hashlib
-
 from fastapi import APIRouter, Depends,HTTPException,Request, Query, File, UploadFile, Form, status
 from sqlalchemy import or_
 from sqlalchemy.exc import IntegrityError
@@ -15,10 +14,13 @@ from app.api.deps import AsyncSessionDep, CurrentUser, SessionDep, RedisClient
 from app.models import Message, ImageUploadResponse, ImageData, ImageDataLinks
 
 router = APIRouter(prefix="/upload", tags=["upload"])
-
+# 获取当前工作目录
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(current_dir))
+env_path = os.path.join(project_root, '.env')
 # 假设这些是常量或从配置中读取
-IMAGE_HOST_URL = "http://127.0.0.1:8000/api/v1/upload"
-IMAGE_HOST_TOKEN = "3|Q07kKqG6GqDNUO6W2rPi94HuQTuckvnkEFM5rFdP" # 例如 "3|Q07kKqG6GqDNUO6W2rPi94HuQTuckvnkEFM5rFdP"
+IMAGE_HOST_URL = os.getenv("IMAGE_HOST_URL")
+IMAGE_HOST_TOKEN = os.getenv("IMAGE_HOST_TOKEN")
 
 # Define a response model in this file for returning multiple image details
 # This is similar to what was discussed for getCard.py but now in upload.py
@@ -41,7 +43,6 @@ class MultipleImagePathsResponse(BaseModel): # Renamed for clarity
 @router.post("/upload-images", response_model=MultipleImagePathsResponse)
 async def upload_image_to_host(
     current_user: CurrentUser,
-    redis: RedisClient,
     imageFiles: List[UploadFile] = File(...)
 ):
     # 上传接口说明

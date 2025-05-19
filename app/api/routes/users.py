@@ -1,7 +1,9 @@
 import uuid
-from typing import Any
+from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, HTTPException
+from loguru import logger
+import redis
 from sqlmodel import col, delete, func, select
 
 from app import crud
@@ -10,6 +12,7 @@ from app.api.deps import (
     AsyncSessionDep,
     get_current_active_superuser,
     RedisClient,
+    get_redis,
 )
 from app.core.config import settings
 from app.core.security import get_password_hash, verify_password
@@ -21,6 +24,7 @@ from app.models import (
     UserCreate,
     UserPublic,
     UserRegister,
+    UserResetPassword,
     UsersPublic,
     UserUpdate,
     UserUpdateMe,
@@ -38,8 +42,8 @@ TOTAL_API_CALLS_KEY = "total_api_calls" # Key for total API calls
     dependencies=[Depends(get_current_active_superuser)],
     response_model=UsersPublic,
 )
-async def read_users(session: AsyncSessionDep, redis: RedisClient, skip: int = 0, limit: int = 100) -> Any:
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def read_users(session: AsyncSessionDep, skip: int = 0, limit: int = 100) -> Any:
+    
     """
     Retrieve users.
     """
@@ -57,8 +61,8 @@ async def read_users(session: AsyncSessionDep, redis: RedisClient, skip: int = 0
 @router.post(
     "/", dependencies=[Depends(get_current_active_superuser)], response_model=UserPublic
 )
-async def create_user(*, session: AsyncSessionDep, user_in: UserCreate, redis: RedisClient) -> Any:
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def create_user(*, session: AsyncSessionDep, user_in: UserCreate, ) -> Any:
+    
     """
     Create new user.
     """
@@ -70,7 +74,7 @@ async def create_user(*, session: AsyncSessionDep, user_in: UserCreate, redis: R
         )
 
     user_created = await crud.create_user(session=session, user_create=user_in)
-    await redis.incr(SIGNUP_COUNTER_KEY)
+    
 
     if settings.emails_enabled and user_in.email:
         email_data = generate_new_account_email(
@@ -86,9 +90,9 @@ async def create_user(*, session: AsyncSessionDep, user_in: UserCreate, redis: R
 #更新用户信息
 @router.patch("/me", response_model=UserPublic)
 async def update_user_me(
-    *, session: AsyncSessionDep, user_in: UserUpdateMe, current_user: CurrentUser, redis: RedisClient
+    *, session: AsyncSessionDep, user_in: UserUpdateMe, current_user: CurrentUser, 
 ) -> Any:
-    await redis.incr(TOTAL_API_CALLS_KEY)
+    
     """
     Update own user.
     """
@@ -109,9 +113,9 @@ async def update_user_me(
 #更新密码
 @router.patch("/me/password", response_model=Message)
 async def update_password_me(
-    *, session: AsyncSessionDep, body: UpdatePassword, current_user: CurrentUser, redis: RedisClient
+    *, session: AsyncSessionDep, body: UpdatePassword, current_user: CurrentUser,
 ) -> Any:
-    await redis.incr(TOTAL_API_CALLS_KEY)
+    
     """
     Update own password.
     """
@@ -129,8 +133,8 @@ async def update_password_me(
 
 
 @router.get("/me", response_model=UserPublic)
-async def read_user_me(current_user: CurrentUser, redis: RedisClient) -> Any:
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def read_user_me(current_user: CurrentUser, ) -> Any:
+    
     """
     Get current user.
     """
@@ -138,8 +142,8 @@ async def read_user_me(current_user: CurrentUser, redis: RedisClient) -> Any:
 
 #删除用户
 @router.delete("/me", response_model=Message)
-async def delete_user_me(session: AsyncSessionDep, current_user: CurrentUser, redis: RedisClient) -> Any:
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def delete_user_me(session: AsyncSessionDep, current_user: CurrentUser, ) -> Any:
+    
     """
     Delete own user.
     """
@@ -153,28 +157,48 @@ async def delete_user_me(session: AsyncSessionDep, current_user: CurrentUser, re
 
 #注册用户的接口以及实现
 @router.post("/signup", response_model=UserPublic)
-async def register_user(session: AsyncSessionDep, user_in: UserRegister, redis: RedisClient) -> Any:
-    await redis.incr(TOTAL_API_CALLS_KEY)
+async def register_user(session: AsyncSessionDep, user_in: UserRegister,
+redis: Annotated[redis.Redis, Depends(get_redis)]                        
+                         ) -> Any:
+    
     """
     Create new user without the need to be logged in.
     """
-    user = await crud.get_user_by_email(session=session, email=user_in.email)
-    if user:
-        raise HTTPException(
-            status_code=400,
-            detail="The user with this email already exists in the system",
-        )
-    user_create = UserCreate.model_validate(user_in)
-    user_created = await crud.create_user(session=session, user_create=user_create)
-    await redis.incr(SIGNUP_COUNTER_KEY)
+    # 从redis中获取验证码
+    try:
+        verify_code = await redis.get(f"verify_code:{user_in.email}")
+        if verify_code is None:
+            raise HTTPException(status_code=400, detail="验证码不存在")
+        if verify_code != user_in.verify_code:  # 不需要 decode，因为已经设置了 decode_responses=True
+            raise HTTPException(status_code=400, detail="验证码错误")
+        # 删除验证码
+        await redis.delete(f"verify_code:{user_in.email}")
+
+    except Exception as e:
+        logger.error(f"获取验证码失败: {e}")
+        raise HTTPException(status_code=400, detail=str(e))
+    try:
+        # 创建用户
+        user = await crud.get_user_by_email(session=session, email=user_in.email)
+        if user:
+            raise HTTPException(
+                status_code=400,
+                detail="The user with this email already exists in the system",
+            )
+        user_create = UserCreate.model_validate(user_in)
+        user_created = await crud.create_user(session=session, user_create=user_create)
+    except Exception as e:
+        logger.error(f"创建用户失败: {e}")
+        raise HTTPException(status_code=400, detail=str(e))
+    
     return user_created
 
 
 @router.get("/{user_id}", response_model=UserPublic)
 async def read_user_by_id(
-    user_id: uuid.UUID, session: AsyncSessionDep, current_user: CurrentUser, redis: RedisClient
+    user_id: uuid.UUID, session: AsyncSessionDep, current_user: CurrentUser, 
 ) -> Any:
-    await redis.incr(TOTAL_API_CALLS_KEY)
+    
     """
     Get a specific user by id.
     """
@@ -201,9 +225,9 @@ async def update_user(
     session: AsyncSessionDep,
     user_id: uuid.UUID,
     user_in: UserUpdate,
-    redis: RedisClient
+    
 ) -> Any:
-    await redis.incr(TOTAL_API_CALLS_KEY)
+    
     """
     Update a user.
     """
@@ -227,9 +251,9 @@ async def update_user(
 
 @router.delete("/{user_id}", dependencies=[Depends(get_current_active_superuser)])
 async def delete_user(
-    session: AsyncSessionDep, current_user: CurrentUser, user_id: uuid.UUID, redis: RedisClient
+    session: AsyncSessionDep, current_user: CurrentUser, user_id: uuid.UUID, 
 ) -> Message:
-    await redis.incr(TOTAL_API_CALLS_KEY)
+    
     """
     Delete a user.
     """
@@ -245,3 +269,36 @@ async def delete_user(
     await session.delete(user)
     await session.commit()
     return Message(message="User deleted successfully")
+
+#重设密码
+@router.post("/reset_password", response_model=Message)
+async def reset_password(session: AsyncSessionDep, user_in: UserResetPassword,
+redis: Annotated[redis.Redis, Depends(get_redis)]
+) -> Any:
+    """
+    Reset password.
+    """
+    try:
+        # 从redis中获取验证码
+        verify_code = await redis.get(f"reset_password_verify_code:{user_in.email}")
+        if verify_code is None:
+            raise HTTPException(status_code=400, detail="验证码不存在")
+        if verify_code != user_in.verify_code:
+            raise HTTPException(status_code=400, detail="验证码错误")
+        # 删除验证码
+        await redis.delete(f"reset_password_verify_code:{user_in.email}")
+        
+        # 获取用户并更新密码
+        user = await crud.get_user_by_email(session=session, email=user_in.email)
+        if not user:
+            raise HTTPException(status_code=404, detail="用户不存在")
+            
+        # 使用 hashed_password 而不是 password
+        user.hashed_password = get_password_hash(user_in.password)
+        session.add(user)
+        await session.commit()
+        return Message(message="密码重设成功")
+        
+    except Exception as e:
+        logger.error(f"重置密码失败: {e}")
+        raise HTTPException(status_code=400, detail=str(e))

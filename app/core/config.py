@@ -1,7 +1,9 @@
 import secrets
 import warnings
+from dotenv import load_dotenv
 from typing import Annotated, Any, Literal
-
+import os
+from loguru import logger
 from pydantic import (
     AnyUrl,
     BeforeValidator,
@@ -10,11 +12,32 @@ from pydantic import (
     PostgresDsn,
     computed_field,
     model_validator,
+    EmailStr,
 )
+from pathlib import Path
 from pydantic_core import MultiHostUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing_extensions import Self
 
+# 获取当前工作目录
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(current_dir))
+env_path = os.path.join(project_root, '.env')
+
+
+logger.info(f"Current directory: {current_dir}")
+logger.info(f"Project root: {project_root}")
+logger.info(f"Looking for .env file at: {env_path}")
+logger.info(f".env file exists: {os.path.exists(env_path)}")
+
+# 加载 .env 文件
+load_dotenv(env_path, override=True)
+
+# 打印环境变量
+logger.info(f"MAIL_DEBUG: {os.getenv('MAIL_DEBUG')}")
+logger.info(f"MAIL_USERNAME: {os.getenv('MAIL_USERNAME')}")
+logger.info(f"MAIL_PASSWORD: {os.getenv('MAIL_PASSWORD')}")
+logger.info(f"MAIL_SERVER: {os.getenv('MAIL_SERVER')}")
 
 def parse_cors(v: Any) -> list[str] | str:
     if isinstance(v, str) and not v.startswith("["):
@@ -23,11 +46,9 @@ def parse_cors(v: Any) -> list[str] | str:
         return v
     raise ValueError(v)
 
-
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        # Use top level .env file (one level above ./backend/)
-        env_file=".env",
+        env_file=env_path,
         env_ignore_empty=True,
         extra="ignore",
     )
@@ -57,6 +78,15 @@ class Settings(BaseSettings):
     POSTGRES_PASSWORD: str = ""
     POSTGRES_DB: str = ""
 
+    MAIL_USERNAME: str
+    MAIL_PASSWORD: str
+    MAIL_PORT: int
+    MAIL_SERVER: str
+    MAIL_STARTTLS: bool
+    MAIL_SSL_TLS: bool
+    MAIL_FROM: str
+    MAIL_DEBUG: int
+    
     @computed_field  # type: ignore[prop-decorator]
     @property
     def SQLALCHEMY_DATABASE_URI(self) -> PostgresDsn:
