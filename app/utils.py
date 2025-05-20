@@ -121,3 +121,34 @@ def verify_password_reset_token(token: str) -> str | None:
         return str(decoded_token["sub"])
     except InvalidTokenError:
         return None
+
+
+def process_image_urls(card_instance: Any) -> None:
+    """
+    处理卡片实例中的图片URL列表，将字符分割的URL重新组合成正确的格式
+    
+    Args:
+        card_instance: 包含 imageUrls 属性的卡片实例
+    """
+    if hasattr(card_instance, 'imageUrls') and \
+       card_instance.imageUrls is not None and \
+       isinstance(card_instance.imageUrls, list) and \
+       len(card_instance.imageUrls) > 0:
+        
+        first_val = card_instance.imageUrls[0]
+        if len(card_instance.imageUrls) > 1:
+            last_val = card_instance.imageUrls[-1]
+        else:
+            last_val = None
+
+        if isinstance(first_val, str) and first_val == '{' and \
+           isinstance(last_val, str) and last_val == '}':
+            
+            rejoined_string = "".join(str(char_or_item) for char_or_item in card_instance.imageUrls)
+            
+            if rejoined_string.startswith("{") and rejoined_string.endswith("}"):
+                stripped_value = rejoined_string[1:-1]
+                if not stripped_value:  # Handles empty array string "{}"
+                    card_instance.imageUrls = []
+                else:
+                    card_instance.imageUrls = [item.strip() for item in stripped_value.split(',') if item.strip()]

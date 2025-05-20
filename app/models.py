@@ -8,6 +8,7 @@ from pydantic import EmailStr, BaseModel, validator, field_validator, model_vali
 from sqlalchemy import UniqueConstraint, Column, String, Integer, Text, DateTime, Boolean, ARRAY, func
 from sqlmodel import Field, Relationship, SQLModel, select
 from sqlalchemy.dialects.postgresql import JSONB
+from app.utils import process_image_urls
 
 
 # 这个算是用户表的基类，其他的用户表继承这个基类
@@ -150,40 +151,9 @@ class DefaultCardResponse(SQLModel):
 
     @model_validator(mode='after')
     def process_image_urls_in_response(self) -> 'DefaultCardResponse':
-        # from loguru import logger # If logging can be made to work, it would be useful here
-        # logger.debug("DefaultCardResponse validator: Processing imageUrls for response.")
         if self.data:
             for card_instance in self.data:
-                # Check if imageUrls exists, is a list, is not empty, and looks like a char-split array
-                if hasattr(card_instance, 'imageUrls') and \
-                   card_instance.imageUrls is not None and \
-                   isinstance(card_instance.imageUrls, list) and \
-                   len(card_instance.imageUrls) > 0:
-                    
-                    first_val = card_instance.imageUrls[0]
-                    # Ensure there's a last element to check for symmetrical braces
-                    if len(card_instance.imageUrls) > 1:
-                        last_val = card_instance.imageUrls[-1]
-                    else: # Only one element, can't be a matched pair of braces
-                        last_val = None 
-
-                    # Condition to identify the char-split string: list of strings, starts with '{', ends with '}'
-                    if isinstance(first_val, str) and first_val == '{' and \
-                       isinstance(last_val, str) and last_val == '}':
-                        
-                        # logger.debug(f"DefaultCardResponse: Card {getattr(card_instance, 'number', 'N/A')}: imageUrls appears char-split. Rejoining.")
-                        rejoined_string = "".join(str(char_or_item) for char_or_item in card_instance.imageUrls)
-                        # logger.debug(f"DefaultCardResponse: Card {getattr(card_instance, 'number', 'N/A')}: Rejoined to: {rejoined_string}")
-                        
-                        # Now parse the rejoined string (which should be like "{path1,path2}")
-                        if rejoined_string.startswith("{") and rejoined_string.endswith("}"):
-                            stripped_value = rejoined_string[1:-1]
-                            if not stripped_value: # Handles empty array string "{}"
-                                card_instance.imageUrls = []
-                            else:
-                                card_instance.imageUrls = [item.strip() for item in stripped_value.split(',') if item.strip()]
-                            # logger.debug(f"DefaultCardResponse: Card {getattr(card_instance, 'number', 'N/A')}: Parsed to: {card_instance.imageUrls}")
-                        # else: logger.warning(f"DefaultCardResponse: Card {getattr(card_instance, 'number', 'N/A')}: Rejoined string doesn't have expected format: {rejoined_string}")
+                process_image_urls(card_instance)
         return self
 
 #请求话题的卡片
@@ -239,36 +209,9 @@ class AddReplyCardResponse(SQLModel):
 
     @model_validator(mode='after')
     def process_reply_card_image_urls_in_response(self) -> 'AddReplyCardResponse':
-        # from loguru import logger # Optional: uncomment if logger is configured and needed for debugging
-        # logger.debug("AddReplyCardResponse validator: Processing imageUrls for response.")
         if self.data:
             for card_instance in self.data:
-                if hasattr(card_instance, 'imageUrls') and \
-                   card_instance.imageUrls is not None and \
-                   isinstance(card_instance.imageUrls, list) and \
-                   len(card_instance.imageUrls) > 0:
-                    
-                    first_val = card_instance.imageUrls[0]
-                    if len(card_instance.imageUrls) > 1:
-                        last_val = card_instance.imageUrls[-1]
-                    else:
-                        last_val = None
-
-                    if isinstance(first_val, str) and first_val == '{' and \
-                       isinstance(last_val, str) and last_val == '}':
-                        
-                        # logger.debug(f"AddReplyCardResponse: Card ID {getattr(card_instance, 'id', 'N/A')}: imageUrls appears char-split. Rejoining.")
-                        rejoined_string = "".join(str(char_or_item) for char_or_item in card_instance.imageUrls)
-                        # logger.debug(f"AddReplyCardResponse: Card ID {getattr(card_instance, 'id', 'N/A')}: Rejoined to: {rejoined_string}")
-                        
-                        if rejoined_string.startswith("{") and rejoined_string.endswith("}"):
-                            stripped_value = rejoined_string[1:-1]
-                            if not stripped_value:
-                                card_instance.imageUrls = []
-                            else:
-                                card_instance.imageUrls = [item.strip() for item in stripped_value.split(',') if item.strip()]
-                            # logger.debug(f"AddReplyCardResponse: Card ID {getattr(card_instance, 'id', 'N/A')}: Parsed to: {card_instance.imageUrls}")
-                        # else: logger.warning(f"AddReplyCardResponse: Card ID {getattr(card_instance, 'id', 'N/A')}: Rejoined string not in expected format: {rejoined_string}")
+                process_image_urls(card_instance)
         return self
 
 class Cookie(SQLModel,table=True):
@@ -349,4 +292,24 @@ class UserResetPassword(SQLModel):
         description="新密码，长度8-40个字符",
     )
 
+# 用户寻找自己发布的话题的卡片请求
+class UserFindCardRequest(BaseModel):
+    Cookie:str #cookie ID
+    skip:int=0
 
+# 用户寻找自己发布的回复卡片的响应
+class UserFindCardResponse(SQLModel):
+    DefaultCard: List[DefaultCard]
+    AddReplyCard: List[AddReplyCard]
+
+    @model_validator(mode='after')
+    def process_reply_card_image_urls_in_response(self) -> 'UserFindCardResponse':
+        # 处理 AddReplyCard
+        if self.AddReplyCard:
+            for card_instance in self.AddReplyCard:
+                process_image_urls(card_instance)
+        # 处理 DefaultCard
+        if self.DefaultCard:
+            for card_instance in self.DefaultCard:
+                process_image_urls(card_instance)
+        return self

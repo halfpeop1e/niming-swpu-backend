@@ -14,7 +14,7 @@ from app import crud
 from app.api.deps import AsyncSessionDep, CurrentUser, SessionDep, RedisClient
 from app.models import AddReplyCard, AddReplyCard_Client, DefaultCard, DefaultCardResponse, Message, CardRequest, \
     AddCard, ReplyCardRequest, AddReplyCardResponse, CardRequest_New, LikeRequest, ReplyLike,ImageUploadResponse, \
-    ImageData, ImageDataLinks, ImagePathInfo
+    ImageData, ImageDataLinks, ImagePathInfo, UserFindCardRequest, UserFindCardResponse
 
 ##################该页面定义了获取聊天卡片信息的接口以及实现
 
@@ -261,6 +261,19 @@ async def get_like_status(reply_id: str, session: AsyncSessionDep, current_user:
 
     return {"liked": bool(existing)}
 
-
+@router.post("/get-user-cards")
+async def get_user_cards(session: AsyncSessionDep, request: UserFindCardRequest, ):
+    user_id = request.Cookie
+    # 从默认的话题卡片种获取用户发布的卡片
+    result_default = await session.exec(
+        select(DefaultCard).where(DefaultCard.id == user_id).offset(request.skip).limit(5)
+    )
+    # 从回复卡片种获取用户发布的卡片
+    result_reply = await session.exec(
+        select(AddReplyCard).where(AddReplyCard.id == user_id).offset(request.skip).limit(5)
+    )
+    cards_default = result_default.all()
+    cards_reply = result_reply.all()
+    return UserFindCardResponse(DefaultCard=cards_default, AddReplyCard=cards_reply)
 
 
