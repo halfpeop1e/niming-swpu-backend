@@ -313,3 +313,17 @@ class UserFindCardResponse(SQLModel):
             for card_instance in self.DefaultCard:
                 process_image_urls(card_instance)
         return self
+
+# 用户通过卡片的片段内容寻找帖子
+class UserFindCardByContentRequest(BaseModel):
+    content: str
+    skip:int=0
+
+class UserFindCardByContentResponse(SQLModel):
+    DefaultCard: List[DefaultCard]
+    @model_validator(mode='after')
+    def process_reply_card_image_urls_in_response(self) -> 'UserFindCardByContentResponse':
+        if self.DefaultCard:
+            for card_instance in self.DefaultCard:
+                process_image_urls(card_instance)
+        return self

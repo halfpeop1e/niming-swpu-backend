@@ -14,7 +14,7 @@ from app import crud
 from app.api.deps import AsyncSessionDep, CurrentUser, SessionDep, RedisClient
 from app.models import AddReplyCard, AddReplyCard_Client, DefaultCard, DefaultCardResponse, Message, CardRequest, \
     AddCard, ReplyCardRequest, AddReplyCardResponse, CardRequest_New, LikeRequest, ReplyLike,ImageUploadResponse, \
-    ImageData, ImageDataLinks, ImagePathInfo, UserFindCardRequest, UserFindCardResponse
+    ImageData, ImageDataLinks, ImagePathInfo, UserFindCardByContentRequest, UserFindCardByContentResponse, UserFindCardRequest, UserFindCardResponse
 
 ##################该页面定义了获取聊天卡片信息的接口以及实现
 
@@ -276,4 +276,11 @@ async def get_user_cards(session: AsyncSessionDep, request: UserFindCardRequest,
     cards_reply = result_reply.all()
     return UserFindCardResponse(DefaultCard=cards_default, AddReplyCard=cards_reply)
 
-
+# 用户通过卡片的片段内容寻找帖子
+@router.post("/find-card-by-content")
+async def find_card_by_content(session: AsyncSessionDep, request: UserFindCardByContentRequest, ):
+    result = await session.exec(
+        select(DefaultCard).where(DefaultCard.content.like(f"%{request.content}%")).offset(request.skip).limit(5)
+    )
+    cards = result.all()
+    return UserFindCardByContentResponse(DefaultCard=cards)
