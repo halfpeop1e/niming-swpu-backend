@@ -168,7 +168,8 @@ class CardRequest_New(BaseModel):
 class ReplyCardRequest(BaseModel):
     number: int
     skip: int = 0
-
+class CardFavoriteRequest(BaseModel):
+    skip: int = 0
 #添加的卡片，客户端发送的卡片
 class AddCard(BaseModel):
     id: str
@@ -243,10 +244,11 @@ class LikeRequest(BaseModel):
     reply_id: str
     action: Literal["like", "unlike"]
 class CardFavorite(SQLModel, table=True):
-    card_number=int=Field(primary_key=True)
+    card_number:int=Field(primary_key=True)
     user_id: uuid.UUID
+
     __table_args__ = (
-        # 防止重复点赞
+        # 防止重复收藏
         UniqueConstraint("card_number", "user_id"),
     )
 class FavoriteRequest(BaseModel):

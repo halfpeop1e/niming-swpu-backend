@@ -13,8 +13,9 @@ import os
 from app import crud
 from app.api.deps import AsyncSessionDep, CurrentUser, SessionDep, RedisClient
 from app.models import AddReplyCard, AddReplyCard_Client, DefaultCard, DefaultCardResponse, Message, CardRequest, \
-    AddCard, ReplyCardRequest, AddReplyCardResponse, CardRequest_New, LikeRequest, ReplyLike,ImageUploadResponse, \
-    ImageData, ImageDataLinks, ImagePathInfo, UserFindCardRequest, UserFindCardResponse
+    AddCard, ReplyCardRequest, AddReplyCardResponse, CardRequest_New, LikeRequest, ReplyLike, ImageUploadResponse, \
+    ImageData, ImageDataLinks, ImagePathInfo, UserFindCardRequest, UserFindCardResponse, FavoriteRequest, CardFavorite, \
+    CardFavoriteRequest
 
 ##################该页面定义了获取聊天卡片信息的接口以及实现
 
@@ -276,4 +277,73 @@ async def get_user_cards(session: AsyncSessionDep, request: UserFindCardRequest,
     cards_reply = result_reply.all()
     return UserFindCardResponse(DefaultCard=cards_default, AddReplyCard=cards_reply)
 
+@router.post("/favorite")
+async def toggle_like(data: FavoriteRequest, session: AsyncSessionDep, current_user: CurrentUser, request: Request, ):
+    user_id = current_user.id
+    try:
+        card_number=data.card_number
+    except ValueError:
+        card_number = None
+    result = await session.exec(
+        select(DefaultCard).where(DefaultCard.number == card_number)
+    )
+    default_card = result.first()
+    if not default_card:
+        raise HTTPException(status_code=404,detail="未寻找到已收藏卡片")
+    aim_cardnumber=data.card_number
+    if data.action == "favorite":
+        result = await session.exec(
+            select(CardFavorite).where(
+                CardFavorite.card_number == aim_cardnumber,
+                CardFavorite.user_id == user_id
+            )
+        )
+        existing = result.first()
+        if existing:
+            raise HTTPException(status_code=400, detail="不能重复收藏")
+        new_favorite = CardFavorite(card_number=aim_cardnumber, user_id=user_id)
+        session.add(new_favorite)
+        await session.commit()
+        return {"message": "收藏成功"}
+    elif data.action == "unfavorite":
+        result = await session.exec(
+            select(CardFavorite).where(
+                CardFavorite.card_number == aim_cardnumber,
+                CardFavorite.user_id == user_id
+            )
+        )
+        delete_favorite = result.first()
+        if not delete_favorite:
+            raise HTTPException(status_code=400,detail="还未收藏")
+        await session.delete(delete_favorite)
+        await session.commit()
+        return {"message": "取消点赞成功"}
+    else:
+        raise HTTPException(status_code=400,detail="无效操作类型")
 
+
+@router.get("/favorite-status")
+async def get_favorite_status(card_number: int, session: AsyncSessionDep, current_user: CurrentUser, ):
+    user_id = current_user.id
+    result = await session.exec(
+        select(CardFavorite).where(
+            CardFavorite.card_number == card_number,
+            CardFavorite.user_id == user_id
+        )
+    )
+    existing = result.first()
+
+    return {"favorite": bool(existing)}
+@router.post("/getfavoritecard", response_model=DefaultCardResponse)
+async def get_favorite_card(current_user: CurrentUser,session: AsyncSessionDep,request_data: CardFavoriteRequest):
+    user_favorite=await session.execute(
+        select(CardFavorite.card_number).where(CardFavorite.user_id==current_user.id).offset(request_data.skip).limit(5)
+    )
+    cardnumbers=[row[0] for row in user_favorite.all()]
+    if cardnumbers:
+        favoritecard = select(DefaultCard).where(DefaultCard.number.in_(cardnumbers))
+        result=await session.exec(favoritecard)
+    else:
+        return []
+    cards=result.all()
+    return DefaultCardResponse(data = cards)
